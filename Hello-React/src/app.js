@@ -1,8 +1,9 @@
 //Babelın çevirim yapması için tek bir root element olmalı
 var product = {
         name: "Iphone 15",
-        price: "500",
-        description: "Iyi telefon"
+        price: "400",
+        description: "Iyi telefon",
+        colors: ["silver","white","black","red"]
         
 }
 function formatPrice(product){
@@ -26,7 +27,9 @@ var template =
                         { product.price > 0 && <li>{ product.price}</li>}
                         { ( product.price && product.price > 500) && <li>{ product.price}$</li>}
                         { printDescription(product) }  
-                        { product.description && <li>{ product.description}</li> }      
+                        { product.description && <li>{ product.description}</li> }     
+                        { product.colors.length > 3 ? <li>Birden fazla renk seçeneğimiz vardır</li> : ""} 
+                        { ( product.name.length > 3 && product.price > 400 ) ? <li>{ product.name }</li> : <li>Hatalı Ürün</li>}
                                     
                 </ul>
         </div>
