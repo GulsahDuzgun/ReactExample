@@ -1,24 +1,26 @@
+//Babelın çevirim yapması için tek bir root element olmalı
+var p_name = "Iphone 14 Pro";
+var p_price = "45000";
+var product = {
+        name : "Iphone 15",
+        price : "55000"
+}
+function formatPrice(product){
+        return product.price + "TL";
+}
 
-        // const domElement = document.querySelector("#content");
-        // let header = document.createElement("h1");
-        // header.innerHTML = "My First React App!"
-        // //    <h1>My First React App!</h1>
-        // domElement.appendChild(header)
-
-        //var template =  React.createElement('h1',null,'My First React App!');
-        //Babelın çevirim yapması için tek bir root element olmalı
-        var template =
-         <div>
-                <h1 id="header1">My First React Application!</h1>
-                <div>
+var template =
+ <div>
+        <h1 id="header1">My First React Application!</h1>
+        <div>
                 <ul>
-                        <li>Lorem, ipsum.</li>
-                        <li>Lorem, ipsum.</li>
-                        <li>Lorem, ipsum.</li>
+                        <li>{ p_name }</li>
+                        <li>{ p_price }</li>
+                        <li>{ formatPrice(product) }</li>
                         <li>Lorem, ipsum.</li>
                 </ul>
-                Lorem ipsum dolor sit amet.</div>
+        </div>
 
-          </div>//her zaman kapsayıcı bir root eleman olmalıdır
-        var rootReact = ReactDOM.createRoot(document.querySelector("#content"));
-        rootReact.render(template)
+  </div>//her zaman kapsayıcı bir root eleman olmalıdır
+var rootReact = ReactDOM.createRoot(document.querySelector("#content"));
+rootReact.render(template)       
