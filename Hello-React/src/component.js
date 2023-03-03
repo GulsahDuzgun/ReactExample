@@ -7,7 +7,7 @@ function Header(props){
 function Todo(props){
     return(
          <ul>
-            <li>Gorev1</li>
+            <li>{ props.description}</li>
             <li>Gorev2</li>
             <li>Gorev3</li>
         </ul>
@@ -28,16 +28,20 @@ class TodoClass extends React.Component{
 class Footer extends React.Component{
     render(){
         return(
-            <h2>iletişim kısmı</h2>
-        )
+            <div>
+                <h2>iletişim kısmı</h2>
+                <h2>{ this.props.title}</h2>
+            </div>
+        );
+        
     }
 }
 
 var template = <div>
         <Header/>
-        <Todo />
+        <Todo description = "Function yönteminde props kullanılır" />
         <TodoClass/>
-        <Footer/>
+        <Footer title = "Footer"/>
     </div>;
 
 root.render(template)

@@ -18,7 +18,7 @@ function Header(props) {
   return /*#__PURE__*/React.createElement("h1", null, "TODO WEB PAGE");
 }
 function Todo(props) {
-  return /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Gorev1"), /*#__PURE__*/React.createElement("li", null, "Gorev2"), /*#__PURE__*/React.createElement("li", null, "Gorev3"));
+  return /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, props.description), /*#__PURE__*/React.createElement("li", null, "Gorev2"), /*#__PURE__*/React.createElement("li", null, "Gorev3"));
 }
 var TodoClass = /*#__PURE__*/function (_React$Component) {
   _inherits(TodoClass, _React$Component);
@@ -45,10 +45,14 @@ var Footer = /*#__PURE__*/function (_React$Component2) {
   _createClass(Footer, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("h2", null, "ileti\u015Fim k\u0131sm\u0131");
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", null, "ileti\u015Fim k\u0131sm\u0131"), /*#__PURE__*/React.createElement("h2", null, this.props.title));
     }
   }]);
   return Footer;
 }(React.Component);
-var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(Todo, null), /*#__PURE__*/React.createElement(TodoClass, null), /*#__PURE__*/React.createElement(Footer, null));
+var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(Todo, {
+  description: "Function y\xF6nteminde props kullan\u0131l\u0131r"
+}), /*#__PURE__*/React.createElement(TodoClass, null), /*#__PURE__*/React.createElement(Footer, {
+  title: "Footer"
+}));
 root.render(template);
