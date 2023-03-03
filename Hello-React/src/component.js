@@ -1,47 +1,55 @@
 var root = ReactDOM.createRoot(document.querySelector("#content"));
 
 function Header(props){
-    return (<h1>TODO WEB PAGE</h1>);
+    return (<h1>{ props.title}</h1>);
 }
 
-function Todo(props){
+function ShowMessage(props){
     return(
-         <ul>
-            <li>{ props.description}</li>
-            <li>Gorev2</li>
-            <li>Gorev3</li>
-        </ul>
+        <p>{ props.message}</p>
     );
 }
 
-class TodoClass extends React.Component{
+class TodoList extends React.Component{
     render(){
         return(
-        <ul>
-            <li>Gorev1</li>
-            <li>Gorev2</li>
-            <li>Gorev3</li>
-        </ul>  
+            <ul>{
+                   this.props.items.map((element, index)=>{
+                    return(
+                            <TodoItem key={index} item ={element}/>
+                    )}
+                   )}
+            </ul>
         )
     }
 }
-class Footer extends React.Component{
+
+class TodoItem extends React.Component{
     render(){
         return(
-            <div>
-                <h2>iletişim kısmı</h2>
-                <h2>{ this.props.title}</h2>
-            </div>
+            <p>{ this.props.item }</p>
         );
-        
     }
 }
 
-var template = <div>
-        <Header/>
-        <Todo description = "Function yönteminde props kullanılır" />
-        <TodoClass/>
-        <Footer title = "Footer"/>
-    </div>;
+class TodoApp extends React.Component {
+    render(){
+        const data = {
+         header: "Todo Application",
+         description: "Bekleyen Görevler",
+         task:["Gorev1","Gorev2","Gorev3"]
 
-root.render(template)
+        }
+        return(
+   
+            <div>
+                <Header title = {data.header}/>
+                <ShowMessage message = {data.description}/>
+                <TodoList items = {data.task} />
+
+            </div>
+        );
+    }
+}
+
+root.render(<TodoApp/>)

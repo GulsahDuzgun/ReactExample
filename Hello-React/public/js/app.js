@@ -15,44 +15,70 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 var root = ReactDOM.createRoot(document.querySelector("#content"));
 function Header(props) {
-  return /*#__PURE__*/React.createElement("h1", null, "TODO WEB PAGE");
+  return /*#__PURE__*/React.createElement("h1", null, props.title);
 }
-function Todo(props) {
-  return /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, props.description), /*#__PURE__*/React.createElement("li", null, "Gorev2"), /*#__PURE__*/React.createElement("li", null, "Gorev3"));
+function ShowMessage(props) {
+  return /*#__PURE__*/React.createElement("p", null, props.message);
 }
-var TodoClass = /*#__PURE__*/function (_React$Component) {
-  _inherits(TodoClass, _React$Component);
-  var _super = _createSuper(TodoClass);
-  function TodoClass() {
-    _classCallCheck(this, TodoClass);
+var TodoList = /*#__PURE__*/function (_React$Component) {
+  _inherits(TodoList, _React$Component);
+  var _super = _createSuper(TodoList);
+  function TodoList() {
+    _classCallCheck(this, TodoList);
     return _super.apply(this, arguments);
   }
-  _createClass(TodoClass, [{
+  _createClass(TodoList, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Gorev1"), /*#__PURE__*/React.createElement("li", null, "Gorev2"), /*#__PURE__*/React.createElement("li", null, "Gorev3"));
+      return /*#__PURE__*/React.createElement("ul", null, this.props.items.map(function (element, index) {
+        return /*#__PURE__*/React.createElement(TodoItem, {
+          key: index,
+          item: element
+        });
+      }));
     }
   }]);
-  return TodoClass;
+  return TodoList;
 }(React.Component);
-var Footer = /*#__PURE__*/function (_React$Component2) {
-  _inherits(Footer, _React$Component2);
-  var _super2 = _createSuper(Footer);
-  function Footer() {
-    _classCallCheck(this, Footer);
+var TodoItem = /*#__PURE__*/function (_React$Component2) {
+  _inherits(TodoItem, _React$Component2);
+  var _super2 = _createSuper(TodoItem);
+  function TodoItem() {
+    _classCallCheck(this, TodoItem);
     return _super2.apply(this, arguments);
   }
-  _createClass(Footer, [{
+  _createClass(TodoItem, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", null, "ileti\u015Fim k\u0131sm\u0131"), /*#__PURE__*/React.createElement("h2", null, this.props.title));
+      return /*#__PURE__*/React.createElement("p", null, this.props.item);
     }
   }]);
-  return Footer;
+  return TodoItem;
 }(React.Component);
-var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(Todo, {
-  description: "Function y\xF6nteminde props kullan\u0131l\u0131r"
-}), /*#__PURE__*/React.createElement(TodoClass, null), /*#__PURE__*/React.createElement(Footer, {
-  title: "Footer"
-}));
-root.render(template);
+var TodoApp = /*#__PURE__*/function (_React$Component3) {
+  _inherits(TodoApp, _React$Component3);
+  var _super3 = _createSuper(TodoApp);
+  function TodoApp() {
+    _classCallCheck(this, TodoApp);
+    return _super3.apply(this, arguments);
+  }
+  _createClass(TodoApp, [{
+    key: "render",
+    value: function render() {
+      var data = {
+        header: "Todo Application",
+        description: "Bekleyen Görevler",
+        task: ["Gorev1", "Gorev2", "Gorev3"]
+      };
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
+        title: data.header
+      }), /*#__PURE__*/React.createElement(ShowMessage, {
+        message: data.description
+      }), /*#__PURE__*/React.createElement(TodoList, {
+        items: data.task
+      }));
+    }
+  }]);
+  return TodoApp;
+}(React.Component);
+root.render( /*#__PURE__*/React.createElement(TodoApp, null));
