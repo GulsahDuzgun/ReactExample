@@ -3,32 +3,18 @@ var products = [
 {
         name: "Iphone 15",
         price: "400",
-        description: "Iyi telefon",
-        colors: ["silver","white","black","red"]
-        
 },
 {
         name: "Iphone 16",
         price: "80000",
-        description: "Iyi telefon",
-        colors: ["silver","white","black","red"]
-        
 },
 {
         name: "Iphone 17",
         price: "4500",
-        description: "Iyi telefon",
-        colors: ["silver","white","black","red"]
-        
 }]
-function formatPrice(product){
-        return product.price + "TL";
-}
 
-function printDescription(product){
-        if(product.description){
-               return <li>{ product.description}</li>
-        }
+function addProduct(event, name){
+        console.log(name, event.target);
 }
 
 var template =
@@ -37,22 +23,11 @@ var template =
         { products.map((product,index) => ( 
                 <div className = "product_details" key={index}>
                 <ul>
-                        <li>{ product.name }</li>
-                        <li>{ product.price }</li>
-                        <li>{ formatPrice(product) }</li>
-                        { product.price > 0 && <li>{ product.price}</li>}
-                        { ( product.price && product.price > 500) && <li>{ product.price}$</li>}
-                        { printDescription(product) }  
-                        { product.description && <li>{ product.description}</li> }     
-                        { product.colors.length > 3 ? <li>Birden fazla renk seçeneğimiz vardır</li> : ""} 
-                        { ( product.name.length > 3 && product.price > 400 ) ? <li>{ product.name }</li> : <li>Hatalı Ürün</li>}
-                        {product.colors.map((color,index) => (
-                                <li key = {index} >{ color }</li>
-                        ))}
-                                    
+                        <li>{ <h2> { product.name } </h2> }</li>
+                        <li>{ product.price }</li> 
+                        <button type="button" onClick = {((event)=> {addProduct(event, product.name)})}  >Ekle</button>                    
                 </ul>
-        </div>
-                        
+        </div>               
         ))}
         
 
