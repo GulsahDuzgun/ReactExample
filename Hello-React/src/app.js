@@ -17,14 +17,26 @@ var products = [
 }]
 
 
-function addProduct(event, name){
+function showProduct(event, name){
         console.log(name, event.target);
 
         if(!secilenUrun.includes(name)){
                 secilenUrun.push(name);
-                rootReact.render(renderApp())
+                renderApp()
 
         }
+}
+
+function addProduct(event){
+        event.preventDefault();
+        let p_name = event.target.elements.pName.value;
+        let p_price = event.target.elements.pPrice.value;
+        let product = {
+                name: p_name,
+                price: p_price
+        }
+        products.push(product);
+        renderApp()
 }
 
 function renderApp(){
@@ -32,13 +44,18 @@ function renderApp(){
         <div>
                <h1 id="header1">My First React Application!</h1>
                <h2> { secilenUrun.length} ürün seçilmiştir </h2>
+               <form onSubmit = { addProduct } >
+                        <input type="text" id = "productName" name = "pName"></input>
+                        <input type="text" id = "productPrice" name = "pPrice"></input>
+                        <button type="submit">Ürün Bilgilerini Giriniz... </button>
+               </form>
 
                { products.map((product,index) => ( 
                        <div className = "product_details" key={index}>
                        <ul>
                                <li>{ <h2> { product.name } </h2> }</li>
                                <li>{ product.price }</li> 
-                               <button type="button" onClick = {((event)=> {addProduct(event, product.name)})}  >Ekle</button>                    
+                               <button type="button" onClick = {((event)=> {showProduct(event, product.name)})}  >Ekle</button>                    
                        </ul>
                </div>               
                ))}
@@ -46,10 +63,10 @@ function renderApp(){
        
         </div>//her zaman kapsayıcı bir root eleman olmalıdır
         
-        return template;
+        rootReact.render(template)
 }
 
-rootReact.render(renderApp())   
+renderApp()
 
 
 
