@@ -60,9 +60,15 @@ var TodoItem = /*#__PURE__*/function (_React$Component2) {
 var NewItem = /*#__PURE__*/function (_React$Component3) {
   _inherits(NewItem, _React$Component3);
   var _super3 = _createSuper(NewItem);
-  function NewItem() {
+  function NewItem(props) {
+    var _this;
     _classCallCheck(this, NewItem);
-    return _super3.apply(this, arguments);
+    _this = _super3.call(this, props);
+    _this.onFormSubmit = _this.onFormSubmit.bind(_assertThisInitialized(_this));
+    _this.state = {
+      errorMessage: ""
+    };
+    return _this;
   }
   _createClass(NewItem, [{
     key: "onFormSubmit",
@@ -70,21 +76,24 @@ var NewItem = /*#__PURE__*/function (_React$Component3) {
       e.preventDefault();
       var item = e.target.elements.txtItem.value.trim();
       if (item) {
-        console.log(item);
+        var err = this.props.addItem(item);
+        this.setState({
+          errorMessage: err
+        });
       }
       e.target.elements.txtItem.value = "";
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("form", {
+      return /*#__PURE__*/React.createElement("div", null, this.state.errorMessage && /*#__PURE__*/React.createElement("p", null, this.state.errorMessage), /*#__PURE__*/React.createElement("form", {
         onSubmit: this.onFormSubmit
       }, /*#__PURE__*/React.createElement("input", {
         type: "text",
         name: "txtItem"
       }), /*#__PURE__*/React.createElement("button", {
         type: "submit"
-      }, "Ekle"));
+      }, "Ekle")));
     }
   }]);
   return NewItem;
@@ -93,20 +102,33 @@ var TodoApp = /*#__PURE__*/function (_React$Component4) {
   _inherits(TodoApp, _React$Component4);
   var _super4 = _createSuper(TodoApp);
   function TodoApp(props) {
-    var _this;
+    var _this2;
     _classCallCheck(this, TodoApp);
-    _this = _super4.call(this, props);
-    _this.state = {
+    _this2 = _super4.call(this, props);
+    _this2.state = {
       task: ["Gorev1", "Gorev2", "Gorev3"]
     };
-    _this.clearItems = _this.clearItems.bind(_assertThisInitialized(_this));
-    return _this;
+    _this2.clearItems = _this2.clearItems.bind(_assertThisInitialized(_this2));
+    _this2.addItem = _this2.addItem.bind(_assertThisInitialized(_this2));
+    return _this2;
   }
   _createClass(TodoApp, [{
     key: "clearItems",
     value: function clearItems() {
       this.setState({
         task: []
+      });
+    }
+  }, {
+    key: "addItem",
+    value: function addItem(value) {
+      if (this.state.task.indexOf(value) > -1) {
+        return "Aynı görev bilgisi girilemez";
+      }
+      this.setState(function (prevState) {
+        return {
+          task: prevState.task.concat(value)
+        };
       });
     }
   }, {
@@ -123,7 +145,9 @@ var TodoApp = /*#__PURE__*/function (_React$Component4) {
       }), /*#__PURE__*/React.createElement(TodoList, {
         items: this.state.task,
         clear: this.clearItems
-      }), /*#__PURE__*/React.createElement(NewItem, null));
+      }), /*#__PURE__*/React.createElement(NewItem, {
+        addItem: this.addItem
+      }));
     }
   }]);
   return TodoApp;

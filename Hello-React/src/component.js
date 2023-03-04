@@ -9,6 +9,7 @@ function ShowMessage(props){
         <p>{ props.message}</p>
     );
 }
+
 class TodoList extends React.Component{
     render(){
         return(
@@ -21,8 +22,7 @@ class TodoList extends React.Component{
                    )}
                 </ul>
                 <button onClick = {this.props.clear}>Veriyi Temizle</button>
-            </div>
-            
+            </div>            
         )
     }
 }
@@ -36,20 +36,34 @@ class TodoItem extends React.Component{
 }
 
 class NewItem extends React.Component{
+    constructor(props){
+        super(props)
+        this.onFormSubmit = this.onFormSubmit.bind(this)
+        this.state={
+            errorMessage: ""
+        }
+    }
     onFormSubmit(e){
         e.preventDefault();
         const item = e.target.elements.txtItem.value.trim();
         if(item){
-            console.log(item);
+           const err = this.props.addItem(item)
+           this.setState({
+              errorMessage:err
+            })
         }
+    
         e.target.elements.txtItem.value = ""
     }
     render(){
         return(
+            <div>
+            {this.state.errorMessage && <p>{this.state.errorMessage}</p>}
             <form onSubmit={this.onFormSubmit}>
                 <input type="text" name="txtItem" />
                 <button type="submit">Ekle</button>
             </form>
+            </div>
         )
     }
 }
@@ -61,10 +75,19 @@ class TodoApp extends React.Component {
             task:["Gorev1","Gorev2","Gorev3"]
         }
         this.clearItems = this.clearItems.bind(this)
+        this.addItem = this.addItem.bind(this)
     }
     clearItems(){
         this.setState({
             task : []
+        })
+    }
+    addItem(value){
+        if(this.state.task.indexOf(value)>-1){
+            return "Aynı görev bilgisi girilemez"
+        }
+        this.setState((prevState)=>{
+            return {task:prevState.task.concat(value)}
         })
     }
     render(){
@@ -78,7 +101,7 @@ class TodoApp extends React.Component {
                 <Header title = {data.header}/>
                 <ShowMessage message = {data.description}/>
                 <TodoList items = {this.state.task}  clear ={this.clearItems} />
-                <NewItem></NewItem>
+                <NewItem addItem = {this.addItem}></NewItem>
             </div>
         );
     }
