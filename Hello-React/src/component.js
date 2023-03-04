@@ -10,25 +10,17 @@ function ShowMessage(props){
     );
 }
 class TodoList extends React.Component{
-    constructor(props){
-        super(props);
-        this.clearItems = this.clearItems.bind(this)
-    }
-    clearItems(){
-        console.log("İtemler Temizlendi")
-        console.log(this.props.items)
-    }
     render(){
         return(
             <div>
                 <ul>{
                    this.props.items.map((element, index)=>{
                     return(
-                            <TodoItem key = {index} item = {element}/>
+                            <TodoItem key= {index} item= {element}/>
                         )}
                    )}
                 </ul>
-                <button onClick = {this.clearItems}>Veriyi Temizle</button>
+                <button onClick = {this.props.clear}>Veriyi Temizle</button>
             </div>
             
         )
@@ -63,19 +55,29 @@ class NewItem extends React.Component{
 }
 
 class TodoApp extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            task:["Gorev1","Gorev2","Gorev3"]
+        }
+        this.clearItems = this.clearItems.bind(this)
+    }
+    clearItems(){
+        this.setState({
+            task : []
+        })
+    }
     render(){
         const data = {
          header: "Todo Application",
          description: "Bekleyen Görevler",
-         task:["Gorev1","Gorev2","Gorev3"]
 
         }
         return(
-   
             <div>
                 <Header title = {data.header}/>
                 <ShowMessage message = {data.description}/>
-                <TodoList items = {data.task} />
+                <TodoList items = {this.state.task}  clear ={this.clearItems} />
                 <NewItem></NewItem>
             </div>
         );
