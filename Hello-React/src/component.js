@@ -9,11 +9,6 @@ function ShowMessage(props){
         <p>{ props.message}</p>
     );
 }
-
-// function clearItems(){
-//     console.log("Sınıf dışı fonksiyon")
-// }
-
 class TodoList extends React.Component{
     constructor(props){
         super(props);
@@ -23,14 +18,14 @@ class TodoList extends React.Component{
         console.log("İtemler Temizlendi")
         console.log(this.props.items)
     }
-    render(){//Sınıf içindeki fonk metot denir ve function ile tanımlanmaz
+    render(){
         return(
             <div>
                 <ul>{
                    this.props.items.map((element, index)=>{
                     return(
                             <TodoItem key = {index} item = {element}/>
-                    )}
+                        )}
                    )}
                 </ul>
                 <button onClick = {this.clearItems}>Veriyi Temizle</button>
