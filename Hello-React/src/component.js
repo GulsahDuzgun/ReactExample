@@ -10,16 +10,32 @@ function ShowMessage(props){
     );
 }
 
+// function clearItems(){
+//     console.log("Sınıf dışı fonksiyon")
+// }
+
 class TodoList extends React.Component{
-    render(){
+    constructor(props){
+        super(props);
+        this.clearItems = this.clearItems.bind(this)
+    }
+    clearItems(){
+        console.log("İtemler Temizlendi")
+        console.log(this.props.items)
+    }
+    render(){//Sınıf içindeki fonk metot denir ve function ile tanımlanmaz
         return(
-            <ul>{
+            <div>
+                <ul>{
                    this.props.items.map((element, index)=>{
                     return(
-                            <TodoItem key={index} item ={element}/>
+                            <TodoItem key = {index} item = {element}/>
                     )}
                    )}
-            </ul>
+                </ul>
+                <button onClick = {this.clearItems}>Veriyi Temizle</button>
+            </div>
+            
         )
     }
 }
@@ -29,6 +45,25 @@ class TodoItem extends React.Component{
         return(
             <p>{ this.props.item }</p>
         );
+    }
+}
+
+class NewItem extends React.Component{
+    onFormSubmit(e){
+        e.preventDefault();
+        const item = e.target.elements.txtItem.value.trim();
+        if(item){
+            console.log(item);
+        }
+        e.target.elements.txtItem.value = ""
+    }
+    render(){
+        return(
+            <form onSubmit={this.onFormSubmit}>
+                <input type="text" name="txtItem" />
+                <button type="submit">Ekle</button>
+            </form>
+        )
     }
 }
 
@@ -46,7 +81,7 @@ class TodoApp extends React.Component {
                 <Header title = {data.header}/>
                 <ShowMessage message = {data.description}/>
                 <TodoList items = {data.task} />
-
+                <NewItem></NewItem>
             </div>
         );
     }

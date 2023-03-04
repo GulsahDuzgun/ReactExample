@@ -13,6 +13,10 @@ var products = [
 },
 {
         name: "Iphone 17",
+        price: "80000",
+},
+{
+        name: "Iphone 18",
         price: "4500",
 }]
 
@@ -39,35 +43,65 @@ function addProduct(event){
         renderApp()
 }
 
-function renderApp(){
-        var template =
-        <div>
-               <h1 id="header1">My First React Application!</h1>
-               <h2> { secilenUrun.length} ürün seçilmiştir </h2>
-               <form onSubmit = { addProduct } >
+class Header extends React.Component{
+        render(){
+                return(
+                <div>
+                        <h1 id="header1">My First React Application!</h1>
+                        <h2> {   secilenUrun.length} ürün seçilmiştir </h2>
+                </div>
+                );
+        }
+}
+
+class NewProduct extends React.Component{
+        render(){
+                return(
+                  <form onSubmit = { addProduct } >
                         <input type="text" id = "productName" name = "pName"></input>
                         <input type="text" id = "productPrice" name = "pPrice"></input>
                         <button type="submit">Ürün Bilgilerini Giriniz... </button>
-               </form>
+                  </form>
+                )
+        }
+}
+class ProductList extends React.Component{
+        render(){
+                return(
+                        this.props.products.map((product,index) => ( 
+                                <Product key = { index} item={product}/>
+                        ))
 
-               { products.map((product,index) => ( 
-                       <div className = "product_details" key={index}>
-                       <ul>
-                               <li>{ <h2> { product.name } </h2> }</li>
-                               <li>{ product.price }</li> 
-                               <button type="button" onClick = {((event)=> {showProduct(event, product.name)})}  >Ekle</button>                    
-                       </ul>
-               </div>               
-               ))}
-               
-       
-        </div>//her zaman kapsayıcı bir root eleman olmalıdır
-        
-        rootReact.render(template)
+                )
+        }
 }
 
-renderApp()
+class Product extends React.Component{
+        render(){
+                return(
+                        <div className = "product_details">
+                                <ul>
+                                        <li>{ <h2> {this.props.item.name } </h2> }</li>
+                                        <li>{ this.props.item.price }</li> 
+                                        <button type="button" onClick = {((event)=> {showProduct(event, this.props.item.name)})}  >Ekle</button>                    
+                                </ul>
+                        </div>
+                )
+        }
+}
 
+function App(props){
+        return(
+                <div>
+
+                <Header/>
+                <NewProduct/>
+                <ProductList products={ products }/>
+                 </div>//her zaman kapsayıcı bir root eleman olmalıdır
+        )
+}
+
+rootReact.render(<App/>)
 
 
     

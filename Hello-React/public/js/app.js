@@ -20,22 +20,38 @@ function Header(props) {
 function ShowMessage(props) {
   return /*#__PURE__*/React.createElement("p", null, props.message);
 }
+
+// function clearItems(){
+//     console.log("Sınıf dışı fonksiyon")
+// }
 var TodoList = /*#__PURE__*/function (_React$Component) {
   _inherits(TodoList, _React$Component);
   var _super = _createSuper(TodoList);
-  function TodoList() {
+  function TodoList(props) {
+    var _this;
     _classCallCheck(this, TodoList);
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.clearItems = _this.clearItems.bind(_assertThisInitialized(_this));
+    return _this;
   }
   _createClass(TodoList, [{
+    key: "clearItems",
+    value: function clearItems() {
+      console.log("İtemler Temizlendi");
+      console.log(this.props.items);
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("ul", null, this.props.items.map(function (element, index) {
+      //Sınıf içindeki fonk metot denir ve function ile tanımlanmaz
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, this.props.items.map(function (element, index) {
         return /*#__PURE__*/React.createElement(TodoItem, {
           key: index,
           item: element
         });
-      }));
+      })), /*#__PURE__*/React.createElement("button", {
+        onClick: this.clearItems
+      }, "Veriyi Temizle"));
     }
   }]);
   return TodoList;
@@ -55,12 +71,44 @@ var TodoItem = /*#__PURE__*/function (_React$Component2) {
   }]);
   return TodoItem;
 }(React.Component);
-var TodoApp = /*#__PURE__*/function (_React$Component3) {
-  _inherits(TodoApp, _React$Component3);
-  var _super3 = _createSuper(TodoApp);
+var NewItem = /*#__PURE__*/function (_React$Component3) {
+  _inherits(NewItem, _React$Component3);
+  var _super3 = _createSuper(NewItem);
+  function NewItem() {
+    _classCallCheck(this, NewItem);
+    return _super3.apply(this, arguments);
+  }
+  _createClass(NewItem, [{
+    key: "onFormSubmit",
+    value: function onFormSubmit(e) {
+      e.preventDefault();
+      var item = e.target.elements.txtItem.value.trim();
+      if (item) {
+        console.log(item);
+      }
+      e.target.elements.txtItem.value = "";
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("form", {
+        onSubmit: this.onFormSubmit
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "text",
+        name: "txtItem"
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "submit"
+      }, "Ekle"));
+    }
+  }]);
+  return NewItem;
+}(React.Component);
+var TodoApp = /*#__PURE__*/function (_React$Component4) {
+  _inherits(TodoApp, _React$Component4);
+  var _super4 = _createSuper(TodoApp);
   function TodoApp() {
     _classCallCheck(this, TodoApp);
-    return _super3.apply(this, arguments);
+    return _super4.apply(this, arguments);
   }
   _createClass(TodoApp, [{
     key: "render",
@@ -76,7 +124,7 @@ var TodoApp = /*#__PURE__*/function (_React$Component3) {
         message: data.description
       }), /*#__PURE__*/React.createElement(TodoList, {
         items: data.task
-      }));
+      }), /*#__PURE__*/React.createElement(NewItem, null));
     }
   }]);
   return TodoApp;
