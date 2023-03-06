@@ -30,10 +30,12 @@ var TodoList = /*#__PURE__*/function (_React$Component) {
   _createClass(TodoList, [{
     key: "render",
     value: function render() {
+      var _this = this;
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, this.props.items.map(function (element, index) {
         return /*#__PURE__*/React.createElement(TodoItem, {
           key: index,
-          item: element
+          item: element,
+          "delete": _this.props.deleteItem
         });
       })), /*#__PURE__*/React.createElement("button", {
         onClick: this.props.clear
@@ -45,14 +47,24 @@ var TodoList = /*#__PURE__*/function (_React$Component) {
 var TodoItem = /*#__PURE__*/function (_React$Component2) {
   _inherits(TodoItem, _React$Component2);
   var _super2 = _createSuper(TodoItem);
-  function TodoItem() {
+  function TodoItem(props) {
+    var _this2;
     _classCallCheck(this, TodoItem);
-    return _super2.apply(this, arguments);
+    _this2 = _super2.call(this, props);
+    _this2.deleteIt = _this2.deleteIt.bind(_assertThisInitialized(_this2));
+    return _this2;
   }
   _createClass(TodoItem, [{
+    key: "deleteIt",
+    value: function deleteIt() {
+      this.props["delete"](this.props.item);
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("p", null, this.props.item);
+      return /*#__PURE__*/React.createElement("li", null, this.props.item, /*#__PURE__*/React.createElement("button", {
+        onClick: this.deleteIt
+      }, "X"));
     }
   }]);
   return TodoItem;
@@ -61,14 +73,14 @@ var NewItem = /*#__PURE__*/function (_React$Component3) {
   _inherits(NewItem, _React$Component3);
   var _super3 = _createSuper(NewItem);
   function NewItem(props) {
-    var _this;
+    var _this3;
     _classCallCheck(this, NewItem);
-    _this = _super3.call(this, props);
-    _this.onFormSubmit = _this.onFormSubmit.bind(_assertThisInitialized(_this));
-    _this.state = {
+    _this3 = _super3.call(this, props);
+    _this3.onFormSubmit = _this3.onFormSubmit.bind(_assertThisInitialized(_this3));
+    _this3.state = {
       errorMessage: ""
     };
-    return _this;
+    return _this3;
   }
   _createClass(NewItem, [{
     key: "onFormSubmit",
@@ -102,15 +114,16 @@ var TodoApp = /*#__PURE__*/function (_React$Component4) {
   _inherits(TodoApp, _React$Component4);
   var _super4 = _createSuper(TodoApp);
   function TodoApp(props) {
-    var _this2;
+    var _this4;
     _classCallCheck(this, TodoApp);
-    _this2 = _super4.call(this, props);
-    _this2.state = {
+    _this4 = _super4.call(this, props);
+    _this4.state = {
       task: ["Gorev1", "Gorev2", "Gorev3"]
     };
-    _this2.clearItems = _this2.clearItems.bind(_assertThisInitialized(_this2));
-    _this2.addItem = _this2.addItem.bind(_assertThisInitialized(_this2));
-    return _this2;
+    _this4.clearItems = _this4.clearItems.bind(_assertThisInitialized(_this4));
+    _this4.addItem = _this4.addItem.bind(_assertThisInitialized(_this4));
+    _this4.deleteItem = _this4.deleteItem.bind(_assertThisInitialized(_this4));
+    return _this4;
   }
   _createClass(TodoApp, [{
     key: "clearItems",
@@ -132,6 +145,18 @@ var TodoApp = /*#__PURE__*/function (_React$Component4) {
       });
     }
   }, {
+    key: "deleteItem",
+    value: function deleteItem(item) {
+      this.setState(function (prevState) {
+        var resultArray = prevState.task.filter(function (element) {
+          return element != item;
+        });
+        return {
+          task: resultArray
+        };
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var data = {
@@ -144,7 +169,8 @@ var TodoApp = /*#__PURE__*/function (_React$Component4) {
         message: data.description
       }), /*#__PURE__*/React.createElement(TodoList, {
         items: this.state.task,
-        clear: this.clearItems
+        clear: this.clearItems,
+        deleteItem: this.deleteItem
       }), /*#__PURE__*/React.createElement(NewItem, {
         addItem: this.addItem
       }));

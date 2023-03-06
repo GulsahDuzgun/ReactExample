@@ -17,7 +17,7 @@ class TodoList extends React.Component{
                 <ul>{
                    this.props.items.map((element, index)=>{
                     return(
-                            <TodoItem key= {index} item= {element}/>
+                            <TodoItem key= {index} item= {element} delete ={this.props.deleteItem}/>
                         )}
                    )}
                 </ul>
@@ -28,9 +28,18 @@ class TodoList extends React.Component{
 }
 
 class TodoItem extends React.Component{
+    constructor(props){
+        super(props)
+        this.deleteIt = this.deleteIt.bind(this)
+    }
+    deleteIt(){
+        this.props.delete(this.props.item)
+    }
     render(){
         return(
-            <p>{ this.props.item }</p>
+            <li>{ this.props.item }
+            <button onClick = {this.deleteIt}>X</button>
+            </li>
         );
     }
 }
@@ -76,6 +85,7 @@ class TodoApp extends React.Component {
         }
         this.clearItems = this.clearItems.bind(this)
         this.addItem = this.addItem.bind(this)
+        this.deleteItem = this.deleteItem.bind(this)
     }
     clearItems(){
         this.setState({
@@ -90,6 +100,13 @@ class TodoApp extends React.Component {
             return {task:prevState.task.concat(value)}
         })
     }
+    deleteItem(item){
+        this.setState((prevState)=>{
+            let resultArray = prevState.task.filter((element)=> element != item )
+            return { task : resultArray}
+        })
+        
+    }
     render(){
         const data = {
          header: "Todo Application",
@@ -100,7 +117,7 @@ class TodoApp extends React.Component {
             <div>
                 <Header title = {data.header}/>
                 <ShowMessage message = {data.description}/>
-                <TodoList items = {this.state.task}  clear ={this.clearItems} />
+                <TodoList items = {this.state.task}  clear ={this.clearItems} deleteItem ={this.deleteItem} />
                 <NewItem addItem = {this.addItem}></NewItem>
             </div>
         );
