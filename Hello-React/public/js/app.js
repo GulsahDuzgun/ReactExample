@@ -174,12 +174,21 @@ var TodoApp = /*#__PURE__*/function (_React$Component4) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log("Component DOM içerisine yüklendi");
+      var jsonTask = JSON.parse(localStorage.getItem("items"));
+      console.log(_typeof(jsonTask));
+      if (jsonTask) {
+        this.setState({
+          task: jsonTask
+        });
+      }
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      console.log("Component güncellendi");
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.task.length !== this.state.task.length) {
+        var taskArr = JSON.stringify(this.state.task);
+        localStorage.setItem("items", taskArr);
+      }
     }
   }, {
     key: "render",
