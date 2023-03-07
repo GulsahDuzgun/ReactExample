@@ -1,34 +1,46 @@
 var root = ReactDOM.createRoot(document.querySelector("#content"));
 
 function Header(props){
-    return (<h1>{ props.title}</h1>);
+    return (<h1 className="text-center h3">{ props.title}</h1>);
 }
 
 function ShowMessage(props){
     return(
-        <p>{ props.message}</p>
+        <p className="m-2 h6 ">{ props.message}</p>
     );
 }
 
 function TodoList(props){
     return(
         <div>
-            <ul>{
+            <ul className ="list-group">{
                props.items.map((element, index)=>{
                 return(
                         <TodoItem key= {index} item= {element} delete ={props.deleteItem}/>
                     )}
                )}
             </ul>
-            <button onClick = {props.clear}>Veriyi Temizle</button>
+            {
+                props.items.length > 0
+                ?
+                <p>
+                <button className="btn btn-outline-danger float-end m-2"  onClick = {props.clear}>Veriyi Temizle</button>
+                </p>   
+                :
+                <div className="alert alert-warning">
+                    Görev Ekleyiniz
+                </div>
+
+            }
+          
         </div>            
     )        
 }
 
 const TodoItem = (props)=>{
     return(
-        <li>{props.item }
-        <button onClick = {()=> props.delete(props.item)}>X</button>
+        <li className="list-group-item" >{props.item }
+        <button className ="btn btn-sn btn-danger float-end" onClick = {()=> props.delete(props.item)}>X</button>
         </li>
     );    
 }
@@ -61,8 +73,10 @@ class NewItem extends React.Component{
             <div>
             {this.state.errorMessage && <p>{this.state.errorMessage}</p>}
             <form onSubmit={this.onFormSubmit}>
-                <input type="text" name="txtItem" />
-                <button type="submit">Ekle</button>
+                <div className="input-group">
+                    <input className="form-control" type="text" name="txtItem" />
+                    <button className="btn btn-primary" type="submit">Ekle</button>
+                </div> 
             </form>
             </div>
         )
@@ -122,11 +136,19 @@ class TodoApp extends React.Component {
 
         }
         return(
-            <div>
-                <Header title = {data.header}/>
-                <ShowMessage message = {data.description}/>
-                <TodoList items = {this.state.task}  clear ={this.clearItems} deleteItem ={this.deleteItem} />
-                <NewItem addItem = {this.addItem}></NewItem>
+            <div className = "container my-3">
+                <div className="card">
+                    <div className="card-header">
+                        <Header title = {data.header}/>
+                    </div>
+                    <div className="car-body">
+                        <ShowMessage message = {data.description}/>
+                        <TodoList items = {this.state.task}  clear ={this.clearItems} deleteItem ={this.deleteItem} />
+                    </div>
+                    <div className="card-footer">
+                        <NewItem addItem = {this.addItem}></NewItem>
+                    </div>
+                </div>
             </div>
         );
     }

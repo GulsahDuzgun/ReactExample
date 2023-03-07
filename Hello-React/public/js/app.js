@@ -15,24 +15,36 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 var root = ReactDOM.createRoot(document.querySelector("#content"));
 function Header(props) {
-  return /*#__PURE__*/React.createElement("h1", null, props.title);
+  return /*#__PURE__*/React.createElement("h1", {
+    className: "text-center h3"
+  }, props.title);
 }
 function ShowMessage(props) {
-  return /*#__PURE__*/React.createElement("p", null, props.message);
+  return /*#__PURE__*/React.createElement("p", {
+    className: "m-2 h6 "
+  }, props.message);
 }
 function TodoList(props) {
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, props.items.map(function (element, index) {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", {
+    className: "list-group"
+  }, props.items.map(function (element, index) {
     return /*#__PURE__*/React.createElement(TodoItem, {
       key: index,
       item: element,
       "delete": props.deleteItem
     });
-  })), /*#__PURE__*/React.createElement("button", {
+  })), props.items.length > 0 ? /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-outline-danger float-end m-2",
     onClick: props.clear
-  }, "Veriyi Temizle"));
+  }, "Veriyi Temizle")) : /*#__PURE__*/React.createElement("div", {
+    className: "alert alert-warning"
+  }, "G\xF6rev Ekleyiniz"));
 }
 var TodoItem = function TodoItem(props) {
-  return /*#__PURE__*/React.createElement("li", null, props.item, /*#__PURE__*/React.createElement("button", {
+  return /*#__PURE__*/React.createElement("li", {
+    className: "list-group-item"
+  }, props.item, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sn btn-danger float-end",
     onClick: function onClick() {
       return props["delete"](props.item);
     }
@@ -74,12 +86,16 @@ var NewItem = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/React.createElement("div", null, this.state.errorMessage && /*#__PURE__*/React.createElement("p", null, this.state.errorMessage), /*#__PURE__*/React.createElement("form", {
         onSubmit: this.onFormSubmit
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "input-group"
       }, /*#__PURE__*/React.createElement("input", {
+        className: "form-control",
         type: "text",
         name: "txtItem"
       }), /*#__PURE__*/React.createElement("button", {
+        className: "btn btn-primary",
         type: "submit"
-      }, "Ekle")));
+      }, "Ekle"))));
     }
   }]);
   return NewItem;
@@ -157,17 +173,27 @@ var TodoApp = /*#__PURE__*/function (_React$Component2) {
         header: "Todo Application",
         description: "Bekleyen Görevler"
       };
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
+      return /*#__PURE__*/React.createElement("div", {
+        className: "container my-3"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "card"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "card-header"
+      }, /*#__PURE__*/React.createElement(Header, {
         title: data.header
-      }), /*#__PURE__*/React.createElement(ShowMessage, {
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "car-body"
+      }, /*#__PURE__*/React.createElement(ShowMessage, {
         message: data.description
       }), /*#__PURE__*/React.createElement(TodoList, {
         items: this.state.task,
         clear: this.clearItems,
         deleteItem: this.deleteItem
-      }), /*#__PURE__*/React.createElement(NewItem, {
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "card-footer"
+      }, /*#__PURE__*/React.createElement(NewItem, {
         addItem: this.addItem
-      }));
+      }))));
     }
   }]);
   return TodoApp;
