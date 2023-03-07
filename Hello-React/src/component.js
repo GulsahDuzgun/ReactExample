@@ -10,44 +10,27 @@ function ShowMessage(props){
     );
 }
 
-class TodoList extends React.Component{
-    render(){
-        return(
-            <div>
-                <ul>{
-                   this.props.items.map((element, index)=>{
-                    return(
-                            <TodoItem key= {index} item= {element} delete ={this.props.deleteItem}/>
-                        )}
-                   )}
-                </ul>
-                <button onClick = {this.props.clear}>Veriyi Temizle</button>
-            </div>            
-        )
-    }
+function TodoList(props){
+    return(
+        <div>
+            <ul>{
+               props.items.map((element, index)=>{
+                return(
+                        <TodoItem key= {index} item= {element} delete ={props.deleteItem}/>
+                    )}
+               )}
+            </ul>
+            <button onClick = {props.clear}>Veriyi Temizle</button>
+        </div>            
+    )        
 }
 
-class TodoItem extends React.Component{
-    constructor(props){
-        super(props)
-        this.deleteIt = this.deleteIt.bind(this)
-    }
-    deleteIt(){
-        this.props.delete(this.props.item)
-    }
-    render(){
-        return(
-            <li>{ this.props.item }
-            <button onClick = {this.deleteIt}>X</button>
-            </li>
-        );
-    }
-    componentDidUpdate(){
-        console.log("TodoItem Güncellendi")
-    }
-    componentWillUnmount(){
-        console.log("TodoItem Compoent ile TodoApp arasındaki bağ koptu")
-    }
+const TodoItem = (props)=>{
+    return(
+        <li>{props.item }
+        <button onClick = {()=> props.delete(props.item)}>X</button>
+        </li>
+    );    
 }
 
 class NewItem extends React.Component{
@@ -128,6 +111,7 @@ class TodoApp extends React.Component {
     componentDidUpdate(prevProps, prevState){
         if(prevState.task.length !== this.state.task.length){
             const taskArr = JSON.stringify(this.state.task)
+            //console.log(taskArr, typeof taskArr)
             localStorage.setItem("items",taskArr)
         }
     }

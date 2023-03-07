@@ -20,77 +20,36 @@ function Header(props) {
 function ShowMessage(props) {
   return /*#__PURE__*/React.createElement("p", null, props.message);
 }
-var TodoList = /*#__PURE__*/function (_React$Component) {
-  _inherits(TodoList, _React$Component);
-  var _super = _createSuper(TodoList);
-  function TodoList() {
-    _classCallCheck(this, TodoList);
-    return _super.apply(this, arguments);
-  }
-  _createClass(TodoList, [{
-    key: "render",
-    value: function render() {
-      var _this = this;
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, this.props.items.map(function (element, index) {
-        return /*#__PURE__*/React.createElement(TodoItem, {
-          key: index,
-          item: element,
-          "delete": _this.props.deleteItem
-        });
-      })), /*#__PURE__*/React.createElement("button", {
-        onClick: this.props.clear
-      }, "Veriyi Temizle"));
+function TodoList(props) {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, props.items.map(function (element, index) {
+    return /*#__PURE__*/React.createElement(TodoItem, {
+      key: index,
+      item: element,
+      "delete": props.deleteItem
+    });
+  })), /*#__PURE__*/React.createElement("button", {
+    onClick: props.clear
+  }, "Veriyi Temizle"));
+}
+var TodoItem = function TodoItem(props) {
+  return /*#__PURE__*/React.createElement("li", null, props.item, /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      return props["delete"](props.item);
     }
-  }]);
-  return TodoList;
-}(React.Component);
-var TodoItem = /*#__PURE__*/function (_React$Component2) {
-  _inherits(TodoItem, _React$Component2);
-  var _super2 = _createSuper(TodoItem);
-  function TodoItem(props) {
-    var _this2;
-    _classCallCheck(this, TodoItem);
-    _this2 = _super2.call(this, props);
-    _this2.deleteIt = _this2.deleteIt.bind(_assertThisInitialized(_this2));
-    return _this2;
-  }
-  _createClass(TodoItem, [{
-    key: "deleteIt",
-    value: function deleteIt() {
-      this.props["delete"](this.props.item);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/React.createElement("li", null, this.props.item, /*#__PURE__*/React.createElement("button", {
-        onClick: this.deleteIt
-      }, "X"));
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      console.log("TodoItem Güncellendi");
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      console.log("TodoItem Compoent ile TodoApp arasındaki bağ koptu");
-    }
-  }]);
-  return TodoItem;
-}(React.Component);
-var NewItem = /*#__PURE__*/function (_React$Component3) {
-  _inherits(NewItem, _React$Component3);
-  var _super3 = _createSuper(NewItem);
+  }, "X"));
+};
+var NewItem = /*#__PURE__*/function (_React$Component) {
+  _inherits(NewItem, _React$Component);
+  var _super = _createSuper(NewItem);
   function NewItem(props) {
-    var _this3;
+    var _this;
     _classCallCheck(this, NewItem);
-    _this3 = _super3.call(this, props);
-    _this3.onFormSubmit = _this3.onFormSubmit.bind(_assertThisInitialized(_this3));
-    _this3.state = {
+    _this = _super.call(this, props);
+    _this.onFormSubmit = _this.onFormSubmit.bind(_assertThisInitialized(_this));
+    _this.state = {
       errorMessage: ""
     };
-    return _this3;
+    return _this;
   }
   _createClass(NewItem, [{
     key: "onFormSubmit",
@@ -125,20 +84,20 @@ var NewItem = /*#__PURE__*/function (_React$Component3) {
   }]);
   return NewItem;
 }(React.Component);
-var TodoApp = /*#__PURE__*/function (_React$Component4) {
-  _inherits(TodoApp, _React$Component4);
-  var _super4 = _createSuper(TodoApp);
+var TodoApp = /*#__PURE__*/function (_React$Component2) {
+  _inherits(TodoApp, _React$Component2);
+  var _super2 = _createSuper(TodoApp);
   function TodoApp(props) {
-    var _this4;
+    var _this2;
     _classCallCheck(this, TodoApp);
-    _this4 = _super4.call(this, props);
-    _this4.state = {
+    _this2 = _super2.call(this, props);
+    _this2.state = {
       task: ["Gorev1", "Gorev2", "Gorev3"]
     };
-    _this4.clearItems = _this4.clearItems.bind(_assertThisInitialized(_this4));
-    _this4.addItem = _this4.addItem.bind(_assertThisInitialized(_this4));
-    _this4.deleteItem = _this4.deleteItem.bind(_assertThisInitialized(_this4));
-    return _this4;
+    _this2.clearItems = _this2.clearItems.bind(_assertThisInitialized(_this2));
+    _this2.addItem = _this2.addItem.bind(_assertThisInitialized(_this2));
+    _this2.deleteItem = _this2.deleteItem.bind(_assertThisInitialized(_this2));
+    return _this2;
   }
   _createClass(TodoApp, [{
     key: "clearItems",
@@ -187,6 +146,7 @@ var TodoApp = /*#__PURE__*/function (_React$Component4) {
     value: function componentDidUpdate(prevProps, prevState) {
       if (prevState.task.length !== this.state.task.length) {
         var taskArr = JSON.stringify(this.state.task);
+        //console.log(taskArr, typeof taskArr)
         localStorage.setItem("items", taskArr);
       }
     }
