@@ -66,6 +66,16 @@ var TodoItem = /*#__PURE__*/function (_React$Component2) {
         onClick: this.deleteIt
       }, "X"));
     }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      console.log("TodoItem Güncellendi");
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      console.log("TodoItem Compoent ile TodoApp arasındaki bağ koptu");
+    }
   }]);
   return TodoItem;
 }(React.Component);
@@ -94,6 +104,11 @@ var NewItem = /*#__PURE__*/function (_React$Component3) {
         });
       }
       e.target.elements.txtItem.value = "";
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      console.log("Component güncellendi New Item");
     }
   }, {
     key: "render",
@@ -155,6 +170,16 @@ var TodoApp = /*#__PURE__*/function (_React$Component4) {
           task: resultArray
         };
       });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log("Component DOM içerisine yüklendi");
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      console.log("Component güncellendi");
     }
   }, {
     key: "render",

@@ -42,6 +42,12 @@ class TodoItem extends React.Component{
             </li>
         );
     }
+    componentDidUpdate(){
+        console.log("TodoItem Güncellendi")
+    }
+    componentWillUnmount(){
+        console.log("TodoItem Compoent ile TodoApp arasındaki bağ koptu")
+    }
 }
 
 class NewItem extends React.Component{
@@ -63,6 +69,9 @@ class NewItem extends React.Component{
         }
     
         e.target.elements.txtItem.value = ""
+    }
+    componentDidUpdate(){
+        console.log("Component güncellendi New Item")
     }
     render(){
         return(
@@ -106,6 +115,12 @@ class TodoApp extends React.Component {
             return { task : resultArray}
         })
         
+    }
+    componentDidMount(){
+        console.log("Component DOM içerisine yüklendi")
+    }
+    componentDidUpdate(){
+        console.log("Component güncellendi")
     }
     render(){
         const data = {
