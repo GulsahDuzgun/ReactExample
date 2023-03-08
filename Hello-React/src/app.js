@@ -2,64 +2,86 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 var rootReact = ReactDOM.createRoot(document.querySelector("#content"));
-var secilenUrun = [];
-
-var products = [
-{
-        name: "Iphone 15",
-        price: "400",
-},
-{
-        name: "Iphone 16",
-        price: "80000",
-},
-{
-        name: "Iphone 17",
-        price: "80000",
-},
-{
-        name: "Iphone 18",
-        price: "4500",
-}]
-
-
-function showProduct(event, name){
-        console.log(name, event.target);
-
-        if(!secilenUrun.includes(name)){
-                secilenUrun.push(name);
-                renderApp()
-
+class App extends React.Component{
+        constructor(props){
+                super(props)
+                this.state= {
+                        products : [
+                                {
+                                        name: "Iphone 15",
+                                        price: "400",
+                                },
+                                {
+                                        name: "Iphone 16",
+                                        price: "80000",
+                                },
+                                {
+                                        name: "Iphone 17",
+                                        price: "80000",
+                                },
+                                {
+                                        name: "Iphone 18",
+                                        price: "4500",
+                                }
+                        ],
+                        secilenUrun : []
+                }      
+                this.showProduct = this.showProduct.bind(this)
+                this.addProduct = this.addProduct.bind(this)
         }
-}
-
-function addProduct(event){
-        event.preventDefault();
-        let p_name = event.target.elements.pName.value;
-        let p_price = event.target.elements.pPrice.value;
-        let product = {
-                name: p_name,
-                price: p_price
+        showProduct(product){
+                this.setState((prevState)=>{                    
+                        if(!prevState.secilenUrun.includes(product)){
+                                return{secilenUrun: prevState.secilenUrun.concat(product)}
+                        }
+                })
         }
-        products.push(product);
-        renderApp()
+        addProduct(product){
+                this.setState((prevState =>{
+                        return{ products:prevState.products.concat(product)}
+                }))
+        }
+        render(){
+                return(
+                        <div>
+                          <Header length= {this.state.secilenUrun.length}/>
+                          <NewProduct addProduct={this.addProduct}/>
+                          <ProductList products={ this.state.products } show={this.showProduct}/>
+                        </div>//her zaman kapsayıcı bir root eleman olmalıdır
+                )
+        }
+        
 }
-
 class Header extends React.Component{
         render(){
                 return(
                 <div>
                         <h1 id="header1">My First React Application!</h1>
-                        <h2> {   secilenUrun.length} ürün seçilmiştir </h2>
+                        <h2> {this.props.length} ürün seçilmiştir </h2>
                 </div>
                 );
         }
 }
-
 class NewProduct extends React.Component{
+        constructor(props){
+                super(props)
+                this.addProduct = this.addProduct.bind(this)
+        }
+        addProduct(event){
+                event.preventDefault()
+                const name = event.target.elements.pName.value;
+                const price = event.target.elements.pPrice.value;
+                const item = {
+                        name:name,
+                        price:price
+                }
+                this.props.addProduct(item);
+                event.target.elements.pName.value = "";
+                event.target.elements.pPrice.value = ""; 
+        }
         render(){
                 return(
-                  <form onSubmit = { addProduct } >
+                  <form onSubmit = { this.addProduct } >
                         <input type="text" id = "productName" name = "pName"></input>
                         <input type="text" id = "productPrice" name = "pPrice"></input>
                         <button type="submit">Ürün Bilgilerini Giriniz... </button>
@@ -71,7 +93,7 @@ class ProductList extends React.Component{
         render(){
                 return(
                         this.props.products.map((product,index) => ( 
-                                <Product key = { index} item={product}/>
+                                <Product key = {index} item={product} showProduct={this.props.show}/>
                         ))
 
                 )
@@ -85,22 +107,11 @@ class Product extends React.Component{
                                 <ul>
                                         <li>{ <h2> {this.props.item.name } </h2> }</li>
                                         <li>{ this.props.item.price }</li> 
-                                        <button type="button" onClick = {((event)=> {showProduct(event, this.props.item.name)})}  >Ekle</button>                    
+                                        <button type="button" onClick = {()=>this.props.showProduct(this.props.item)} >Ekle</button>                    
                                 </ul>
                         </div>
                 )
         }
-}
-
-function App(props){
-        return(
-                <div>
-
-                <Header/>
-                <NewProduct/>
-                <ProductList products={ products }/>
-                 </div>//her zaman kapsayıcı bir root eleman olmalıdır
-        )
 }
 
 rootReact.render(<App/>)
