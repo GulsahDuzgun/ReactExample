@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
+import style from './css/style.scss'
 import Header from './components/Header'
 import NewProduct from './components/NewProduct';
 import ProductList from './components/ProductList';
