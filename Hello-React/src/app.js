@@ -1,6 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
+import Header from './components/Header'
+import NewProduct from './components/NewProduct';
+import ProductList from './components/ProductList';
+
 var rootReact = ReactDOM.createRoot(document.querySelector("#content"));
 class App extends React.Component{
         constructor(props){
@@ -52,68 +56,6 @@ class App extends React.Component{
         }
         
 }
-class Header extends React.Component{
-        render(){
-                return(
-                <div>
-                        <h1 id="header1">My First React Application!</h1>
-                        <h2> {this.props.length} ürün seçilmiştir </h2>
-                </div>
-                );
-        }
-}
-class NewProduct extends React.Component{
-        constructor(props){
-                super(props)
-                this.addProduct = this.addProduct.bind(this)
-        }
-        addProduct(event){
-                event.preventDefault()
-                const name = event.target.elements.pName.value;
-                const price = event.target.elements.pPrice.value;
-                const item = {
-                        name:name,
-                        price:price
-                }
-                this.props.addProduct(item);
-                event.target.elements.pName.value = "";
-                event.target.elements.pPrice.value = ""; 
-        }
-        render(){
-                return(
-                  <form onSubmit = { this.addProduct } >
-                        <input type="text" id = "productName" name = "pName"></input>
-                        <input type="text" id = "productPrice" name = "pPrice"></input>
-                        <button type="submit">Ürün Bilgilerini Giriniz... </button>
-                  </form>
-                )
-        }
-}
-class ProductList extends React.Component{
-        render(){
-                return(
-                        this.props.products.map((product,index) => ( 
-                                <Product key = {index} item={product} showProduct={this.props.show}/>
-                        ))
-
-                )
-        }
-}
-
-class Product extends React.Component{
-        render(){
-                return(
-                        <div className = "product_details">
-                                <ul>
-                                        <li>{ <h2> {this.props.item.name } </h2> }</li>
-                                        <li>{ this.props.item.price }</li> 
-                                        <button type="button" onClick = {()=>this.props.showProduct(this.props.item)} >Ekle</button>                    
-                                </ul>
-                        </div>
-                )
-        }
-}
-
 rootReact.render(<App/>)
 
 
