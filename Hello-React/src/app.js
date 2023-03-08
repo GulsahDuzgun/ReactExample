@@ -1,4 +1,6 @@
-//Babelın çevirim yapması için tek bir root element olmalı
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+
 var rootReact = ReactDOM.createRoot(document.querySelector("#content"));
 var secilenUrun = [];
 

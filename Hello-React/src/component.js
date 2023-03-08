@@ -1,3 +1,6 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+
 var root = ReactDOM.createRoot(document.querySelector("#content"));
 
 function Header(props){
