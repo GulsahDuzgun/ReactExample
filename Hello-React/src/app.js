@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import style from './css/style.scss'
+import style from './css/main.scss'
 import Header from './components/Header'
 import NewProduct from './components/NewProduct';
 import ProductList from './components/ProductList';
 
+//devdependencies kısmı projeyi geliştirmek için gerekli toollar, dependencies ise kütüphanelerdir
 var rootReact = ReactDOM.createRoot(document.querySelector("#content"));
 class App extends React.Component{
         constructor(props){
