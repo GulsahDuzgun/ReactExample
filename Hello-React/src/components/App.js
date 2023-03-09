@@ -40,7 +40,30 @@ class App extends React.Component{
             this.showProduct = this.showProduct.bind(this)
             this.addProduct = this.addProduct.bind(this)
  
-       }
+    }
+
+    componentDidMount(){
+        let jsonData = JSON.parse(localStorage.getItem("items"))
+        if(jsonData){
+            this.setState({
+            secilenUrun:jsonData
+            })
+        }
+        let productsItem = JSON.parse(localStorage.getItem("allProducts"));
+        if((productsItem))[
+            this.setState({
+                products:productsItem
+            })
+        ]
+    }
+    componentDidUpdate(){
+        let json_string = JSON.stringify(this.state.secilenUrun)
+        localStorage.setItem("items", json_string);
+
+        let allProducts = JSON.stringify(this.state.products)
+        localStorage.setItem("allProducts",allProducts)
+    }
+
     showProduct(product){
         this.setState((prevState)=>{
             //secilenUrin listesinde varsa -1 den yukarı değilse -1 döndürür
