@@ -24,24 +24,43 @@ class App extends React.Component{
                                     price: "80000",
                                     image:"3.jpg"
                             },
-                            {
-                                    name: "Iphone 18",
-                                    price: "4500",
-                                    image:"2.jpg"
-                            }
+                            
                     ],
-                    secilenUrun : []
+                    secilenUrun : [
+                        {
+                            counter:1,
+                            product:{
+                                name: "Iphone 17",
+                                price: "80000",
+                                image:"3.jpg"
+                            }                    
+                        }
+                    ]
             }      
             this.showProduct = this.showProduct.bind(this)
             this.addProduct = this.addProduct.bind(this)
  
        }
     showProduct(product){
-            this.setState((prevState)=>{                    
-                    if(!prevState.secilenUrun.includes(product)){
-                            return{secilenUrun: prevState.secilenUrun.concat(product)}
+        this.setState((prevState)=>{
+            //secilenUrin listesinde varsa -1 den yukarı değilse -1 döndürür
+            const index =this.state.secilenUrun.findIndex(element => element.product.name == product.name)
+            
+            if(index > -1){
+                let arr = this.state.secilenUrun.map((item)=>{
+                    if(item.product.name === product.name){
+                        item.counter+=1;
                     }
-            })
+                    return item;//map ile her dizi elemanı döndürülerek return ile dizi elemanının yeni değeri return edilir
+                })
+                return{secilenUrun:arr}
+            }
+             let tempItem={
+                counter:1,
+                product:product
+             }
+             return{ secilenUrun: prevState.secilenUrun.concat(tempItem)}
+        })
     }
     addProduct(product){
             this.setState((prevState =>{
