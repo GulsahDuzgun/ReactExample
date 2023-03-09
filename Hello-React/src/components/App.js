@@ -67,6 +67,15 @@ class App extends React.Component{
                     return{ products:prevState.products.concat(product)}
             }))
     }
+    deleteItem = (item) => {
+       this.setState((prevState)=>{
+        const index = prevState.secilenUrun.findIndex(i => i.product.name = item.name)
+        if(index > -1){
+            prevState.secilenUrun.splice(index,1)
+            return{secilenUrun:prevState.secilenUrun}
+        }
+       })
+    }
     render(){
             return(
                     <div className="container mt-3">
@@ -79,7 +88,7 @@ class App extends React.Component{
                               <ProductList products={ this.state.products } show={this.showProduct}/>
                             </div>
                             <div className="col-4">
-                                <SelectedProduct products= {this.state.secilenUrun}/>
+                                <SelectedProduct products= {this.state.secilenUrun} delete={this.deleteItem}/>
                             </div>
 
                         </div>
