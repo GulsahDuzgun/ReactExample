@@ -2,6 +2,7 @@ import React from "react"
 import Header from './Header'
 import NewProduct from './NewProduct';
 import ProductList from './ProductList';
+import SelectedProduct from "./SelectedProduct";
 
 class App extends React.Component{
     constructor(props){
@@ -58,7 +59,9 @@ class App extends React.Component{
                             <div className="col-4">
                               <ProductList products={ this.state.products } show={this.showProduct}/>
                             </div>
-                            <div className="col-4"></div>
+                            <div className="col-4">
+                                <SelectedProduct products= {this.state.secilenUrun}/>
+                            </div>
 
                         </div>
                     </div>//her zaman kapsayıcı bir root eleman olmalıdır
