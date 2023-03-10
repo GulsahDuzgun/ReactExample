@@ -6,21 +6,26 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state={
+      loadingFlag:false,
       users:[]
     }
   }
+  //componentDidMount yüklenme aşamasıdır aslında bittiğinde virtual Dom -> DOM'a yüklenmiş olur
   componentDidMount(){
-    fetch("https://api.github.com/users").then(response=>response.json())
-    .then(data => this.setState({users:data})
-      //console.log(this.state.users)
-      )
+    this.setState({loadingFlag:true})//istek atıldı->Spinner gösterilir
+    setTimeout(()=>{
+      fetch("https://api.github.com/users").then(response=>response.json())
+      .then(data => this.setState({users:data,loadingFlag:false})//data geldi spinner kaldırılır
+        //console.log(this.state.users)
+        )
+    },1000)
   }
   render(){
     return (
       <div className="">
         <Navbar title="Github Finder" />
         <div className="container mt-3 ">
-            <UserList users ={this.state.users}/>
+            <UserList users ={this.state.users} loading={this.state.loadingFlag}/>
         </div>
       </div>
     );
