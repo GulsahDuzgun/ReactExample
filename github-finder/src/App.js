@@ -20,10 +20,15 @@ class App extends React.Component {
         )
     },1000)
   }
+  searchResult=(searchKey)=>{
+    fetch(`https://api.github.com/search/users?q=${searchKey}`)
+    .then(response =>response.json())
+    .then((data)=>this.setState({users:data.items}))
+  }
   render(){
     return (
-      <div className="">
-        <Navbar title="Github Finder" />
+      <div>
+        <Navbar title="Github Finder" onSearch={this.searchResult} />
         <div className="container mt-3 ">
             <UserList users ={this.state.users} loading={this.state.loadingFlag}/>
         </div>
