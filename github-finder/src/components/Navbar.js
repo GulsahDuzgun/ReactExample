@@ -10,7 +10,7 @@ export class Navbar extends Component {
             <a href='#' className='navbar-brand'>
                 <i className={this.props.icon}></i> {this.props.title}
             </a>
-            <Search onSearch={this.props.onSearch}/>
+            <Search onSearch={this.props.onSearch} deleteUsers={this.props.delete}/>
         </div>       
       </nav>
     )

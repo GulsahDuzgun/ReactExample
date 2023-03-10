@@ -25,10 +25,16 @@ class App extends React.Component {
     .then(response =>response.json())
     .then((data)=>this.setState({users:data.items}))
   }
+  userDelete=()=>{
+    fetch('https://api.github.com/users')
+    .then(response=> response.json())
+    .then(data => this.setState({users:data}))
+    console.log(this.state.users)
+  }
   render(){
     return (
       <div>
-        <Navbar title="Github Finder" onSearch={this.searchResult} />
+        <Navbar title="Github Finder" onSearch={this.searchResult} delete={this.userDelete} />
         <div className="container mt-3 ">
             <UserList users ={this.state.users} loading={this.state.loadingFlag}/>
         </div>

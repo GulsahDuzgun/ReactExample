@@ -27,6 +27,7 @@ export class Search extends Component {
             <div className='input-group'>
                 <input type="text" className='form-control'value={this.state.keyword}  onChange={this.onChange} placeholder="Search" />
                 <button className="btn btn-secondary"  type="submit" >Ara</button>
+                <button className="btn btn-dark btn-sm" onClick={this.props.deleteUsers}  type="button" >Verileri Temizle</button>
             </div>
          </form>
       </div>
