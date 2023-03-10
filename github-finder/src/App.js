@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import UserList from'./components/UserList';
+import Alert from './components/Alert';
 //http isteğini component oluşmadan hemen önce atmamız için life-cycle hooks yapısına ihtiyacımız var . Bunun için class yapısına dönüyoruz
 class App extends React.Component {
   constructor(props){
@@ -28,6 +29,11 @@ class App extends React.Component {
         color:color
       }
     })
+    setTimeout(()=>{
+      this.setState({error:null})
+      this.userDelete()
+    },1000)
+
   }
   searchResult=(searchKey)=>{
     fetch(`https://api.github.com/search/users?q=${searchKey}`)
@@ -45,6 +51,7 @@ class App extends React.Component {
       <div>
         <Navbar title="Github Finder" onSearch={this.searchResult} delete={this.userDelete} displayAlert={this.displayAlert} />
         <div className="container mt-3 ">
+            <Alert error={this.state.error}/>
             <UserList users ={this.state.users} loading={this.state.loadingFlag}/>
         </div>
       </div>
