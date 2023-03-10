@@ -7,7 +7,8 @@ class App extends React.Component {
     super(props)
     this.state={
       loadingFlag:false,
-      users:[]
+      users:[],
+      error:null
     }
   }
   //componentDidMount yüklenme aşamasıdır aslında bittiğinde virtual Dom -> DOM'a yüklenmiş olur
@@ -20,6 +21,14 @@ class App extends React.Component {
         )
     },1000)
   }
+  displayAlert=(msg,color)=>{
+    this.setState({
+      error:{
+        message:msg,
+        color:color
+      }
+    })
+  }
   searchResult=(searchKey)=>{
     fetch(`https://api.github.com/search/users?q=${searchKey}`)
     .then(response =>response.json())
@@ -29,12 +38,12 @@ class App extends React.Component {
     fetch('https://api.github.com/users')
     .then(response=> response.json())
     .then(data => this.setState({users:data}))
-    console.log(this.state.users)
+    //console.log(this.state.users)
   }
   render(){
     return (
       <div>
-        <Navbar title="Github Finder" onSearch={this.searchResult} delete={this.userDelete} />
+        <Navbar title="Github Finder" onSearch={this.searchResult} delete={this.userDelete} displayAlert={this.displayAlert} />
         <div className="container mt-3 ">
             <UserList users ={this.state.users} loading={this.state.loadingFlag}/>
         </div>

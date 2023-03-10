@@ -14,10 +14,17 @@ export class Search extends Component {
   }
   onSubmit(e){
     //Submit ile yenilenen sayfada veri kaybını engellemek için e.preventDefault kullanılır
-    e.preventDefault();//Submit edilen sayfa yenilenir ve server tarafına gidip gelerek tekrardan ekranda görünür
+
+    //Submit edilen sayfa yenilenir ve server tarafına gidip gelerek tekrardan ekranda görünür
+    e.preventDefault();
+
    // console.log(this.state.keyword) onChange ile her değişiklik keyworde aktarılır click edildiğinde keyword zaten günceldir.
-   this.props.onSearch(this.state.keyword);
-   this.setState({keyword:''});
+   if(this.state.keyword === ''){
+    this.props.displayAlert("Arama alanı boş!!","danger")
+   }else{
+    this.props.onSearch(this.state.keyword);
+    this.setState({keyword:''});
+   }
   }
     
   render() {
