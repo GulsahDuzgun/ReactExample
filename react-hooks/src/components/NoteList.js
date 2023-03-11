@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import AddNote from "./AddNote"
 
 const NoteList = ()=>{
@@ -10,6 +10,17 @@ const NoteList = ()=>{
     const addItem =(title)=>{
         setNotes([...noteList ,{id:(noteList.length+1), title:title}])
     }
+    useEffect(()=>{//mount işleminde sayfa görüntülenirken veriler çekileceği için localStroge.getItem ile  veriler çekilir varsa atama yapılır
+        const data = JSON.parse(localStorage.getItem("noteItems"))
+        if(data){
+            setNotes(data)
+        }
+    },[]);
+
+    useEffect(()=>{//İlgili değişkende herhangi bir değişiklik yapılırsa yeni hali localStorage içerisine set edilir
+        localStorage.setItem("noteItems",JSON.stringify(noteList))
+    },[noteList]);
+
     return(
         <div>
             <ul>

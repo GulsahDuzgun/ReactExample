@@ -6,9 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App text="React Hooks" val={9} />
-  </React.StrictMode>
+    <App text="React Hooks" />
 );
 
 // If you want to start measuring performance in your app, pass a function
