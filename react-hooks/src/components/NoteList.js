@@ -1,26 +1,28 @@
 import { useState } from "react"
-const NodeList = ()=>{
-    const [nodeList,setNodes] = useState([
+import AddNote from "./AddNote"
+
+const NoteList = ()=>{
+    const [noteList,setNotes] = useState([
         {id:1, title:"Node 1"},
         {id:2, title:"Node 2"},
         {id:3, title:"Node 3"}
     ])
-    const addItem =()=>{
-        setNodes([...nodeList ,{id:4, title:"Node 4"}])
+    const addItem =(title)=>{
+        setNotes([...noteList ,{id:(noteList.length+1), title:title}])
     }
     return(
         <div>
             <ul>
                 {
-                nodeList.map((item, index)=>{
+                noteList.map((item, index)=>{
                     return(
                         <li key={index}>{item.title}</li>
                         )
                     })
                 }
             </ul>
-            <button className="btn" onClick={addItem}>Node Ekle</button>
+            <AddNote addNoteItem={addItem}/>
         </div>
     )
 }
-export default NodeList;
+export default NoteList;
