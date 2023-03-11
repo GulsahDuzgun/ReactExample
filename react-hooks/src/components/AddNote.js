@@ -12,7 +12,7 @@ const AddNote = ({addNoteItem})=>{
         <form onSubmit={addNote}>
             <input type="text" value={title} placeholder="name" onChange={(e)=>setTitle(e.target.value)} />
             <input type="text" value={description} placeholder="Description" onChange={(e)=>{setDescription(e.target.value)}}/>
-            <button className="btn" type="submit">Note Ekle</button>
+            <button className="btn" type="submit"> Add Note</button>
         </form>
     )
 
