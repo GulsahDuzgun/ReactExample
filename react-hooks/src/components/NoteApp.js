@@ -8,15 +8,7 @@ const NoteApp = ()=>{
     //useReducer içerisine verilen ilk parametre kendi kullanacağı dosya iken ikincisi ise state içerisine gönderilecek başlangıç değeridir
     //dispatch ise birden fazla fonks. içinde bulunduran bir fonksiyondur, action yerine kullanılan bir metottur
     const [noteList,dispatch] = useReducer(notesReducer,[])
-    const addItem =(title,description)=>{
-        dispatch({
-            type:"ADD_NOTE",
-            id:(noteList.length)+1,
-            title:title,
-            description:description
-        })
-       // setNotes([...noteList ,{id:(noteList.length+1), title:title, description:description}])
-    }
+
     useEffect(()=>{//mount işleminde sayfa görüntülenirken veriler çekileceği için localStroge.getItem ile  veriler çekilir varsa atama yapılır
         const data = JSON.parse(localStorage.getItem("noteItems"))
         if(data){
@@ -31,19 +23,11 @@ const NoteApp = ()=>{
         localStorage.setItem("noteItems",JSON.stringify(noteList))
     },[noteList]);
 
-    const deleteItem=(id)=>{
-        //setNotes(noteList.filter(i=>i.id!==id))
-        dispatch({
-            type:"REMOVE_NOTE",
-            id:id
-        })
-
-    }
     return(
         <div className="container">
             <Navbar notes ={noteList.length}/>
-            <NoteList noteList={noteList} deleteNote={deleteItem}/>
-            <AddNote addNoteItem={addItem}/>
+            <NoteList noteList={noteList} dispatch={dispatch}/>
+            <AddNote dispatch={dispatch} lengthNotes={noteList.length}/>
         </div>
     )
 }

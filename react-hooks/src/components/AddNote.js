@@ -1,10 +1,15 @@
 import { useState } from "react";
-const AddNote = ({addNoteItem})=>{
+const AddNote = ({dispatch,lengthNotes})=>{
     const [title, setTitle] = useState('')
     const [description, setDescription]=useState('')
     const addNote=(e)=>{
         e.preventDefault();
-        addNoteItem(title,description)
+          dispatch({
+            type:"ADD_NOTE",
+            id:(lengthNotes)+1,
+            title:title,
+            description:description
+        })
         setTitle("")
         setDescription("")
     }
