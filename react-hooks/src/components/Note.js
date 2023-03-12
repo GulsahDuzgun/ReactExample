@@ -1,4 +1,8 @@
-const Note = ({item,dispatch}) => {
+import { useContext } from "react"
+import notesContext from "../contexts/notesContext"
+
+const Note = ({item}) => {
+    const {dispatch} = useContext(notesContext)
     const deleteNote=(id)=>{
         dispatch({
             type:"REMOVE_NOTE",
