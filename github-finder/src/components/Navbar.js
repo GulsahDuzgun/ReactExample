@@ -1,20 +1,18 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Search from './Search'
 
-export class Navbar extends Component {
-  render() {
+const Navbar = (props) => {
     return (
       <nav className='navbar navbar-dark bg-primary'>
         <div className="container d-flex justif-content-between">
-            <a href='#' className='navbar-brand'>
-                <i className={this.props.icon}></i> {this.props.title}
+            <a href='https://www.google.com/search?q=translate&rlz=1C1GCEU_enTR1001TR1001&oq=tra&aqs=chrome.1.69i60j69i59j69i57j69i59l2j0i67j69i61l2.2282j0j7&sourceid=chrome&ie=UTF-8' className='navbar-brand'>
+                <i className={ props.icon}></i> {props.title}
             </a>
-            <Search onSearch={this.props.onSearch} deleteUsers={this.props.delete} displayAlert={this.props.displayAlert}/>
+            <Search onSearch={props.onSearch} deleteUser={props.delete} displayAlert={props.displayAlert}/>
         </div>       
       </nav>
     )
-  }
 }
 
 Navbar.defaultProps={
