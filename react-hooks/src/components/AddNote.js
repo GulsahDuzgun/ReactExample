@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import notesContext from "../contexts/notesContext";
+import {NotesContext} from "../contexts/notesContext";
 
 const AddNote = ()=>{
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const {noteList, dispatch} = useContext(notesContext)
+    const {noteList, dispatch} = useContext(NotesContext)
     const addNote=(e)=>{
         e.preventDefault();
           dispatch({

@@ -1,8 +1,8 @@
 import Note from "./Note";
-import notesContext from "../contexts/notesContext";
+import {NotesContext} from "../contexts/notesContext";
 import { useContext } from "react";
 const NoteList =()=>{
-    const {noteList} = useContext(notesContext)
+    const {noteList} = useContext(NotesContext)
     return noteList.length > 0 ?
     (
         <div className="note-list">
