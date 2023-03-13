@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react'
+import { AlertContext } from '../context/alertContext'
 import {UsersContext} from '../context/usersContext'
 
-const Search = ({displayAlert}) => {
+const Search = () => {
+  const {displayAlert} = useContext(AlertContext)
    const [keyword, setKeyword] = useState("")
    const {searchResult,userDelete} = useContext(UsersContext)
     //arrow fonks. ile bir kapsam tanımlanmadığından dolayı oluşan this objesine bind edilir

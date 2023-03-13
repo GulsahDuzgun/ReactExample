@@ -1,37 +1,21 @@
-import React, { useState,useContext } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import UserList from'./components/UserList';
 import Alert from './components/Alert';
-import { UsersContext } from './context/usersContext';
+import  AlertContextProvider  from './context/alertContext';
 
 //http isteğini component oluşmadan hemen önce atmamız için life-cycle hooks yapısına ihtiyacımız var . Bunun için class yapısına dönüyoruz
 const App = () => {
-  const [error, setError] = useState(null)
-  const {userDelete} = useContext(UsersContext)
-  
-
-  const displayAlert=(msg,color)=>{
-    setError({
-      message:msg,
-      color:color
-    })
-    setTimeout(()=>{
-      setError(null)
-      userDelete()
-    },1000)
-
-  }
   return (
     <>
-      <Navbar title="Github Finder"  displayAlert={displayAlert} />
-      <div className="container mt-3 ">
-          <Alert error={error}/>
-          <UserList />
-      </div>
+      <AlertContextProvider>
+          <Navbar title="Github Finder" />
+          <div className="container mt-3 ">
+              <Alert/>
+              <UserList />
+          </div>
+        </AlertContextProvider>
       </>
   )
-    
-  
 }
-
 export default App;
