@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Loading from './Loading'
 import User from './User'
+import { UsersContext } from '../context/usersContext'
 
-const UserList = ({loading, users})=> {
+const UserList = ()=> {
+  const {loading, users} = useContext(UsersContext)
     if(loading){
        return <Loading/>;
     }

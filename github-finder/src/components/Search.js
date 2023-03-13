@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import {UsersContext} from '../context/usersContext'
 
-const Search = ({displayAlert, onSearch, deleteUser}) => {
+const Search = ({displayAlert}) => {
    const [keyword, setKeyword] = useState("")
+   const {searchResult,userDelete} = useContext(UsersContext)
     //arrow fonks. ile bir kapsam tanımlanmadığından dolayı oluşan this objesine bind edilir
   const onChange=(event)=>{
     setKeyword(event.target.value)
@@ -16,7 +18,7 @@ const Search = ({displayAlert, onSearch, deleteUser}) => {
    if(keyword === ''){
    displayAlert("Arama alanı boş!!","danger")
    }else{
-    onSearch(keyword);
+    searchResult(keyword);
     setKeyword('');
    }
   }
@@ -26,7 +28,7 @@ const Search = ({displayAlert, onSearch, deleteUser}) => {
           <div className='input-group'>
               <input type="text" className='form-control' value={keyword}  onChange={onChange} placeholder="Search" />
               <button className="btn btn-secondary"  type="submit" >Ara</button>
-              <button className="btn btn-dark btn-sm" onClick={deleteUser}  type="button" >Verileri Temizle</button>
+              <button className="btn btn-dark btn-sm" onClick={userDelete}  type="button" >Verileri Temizle</button>
           </div>
        </form>
     </div>

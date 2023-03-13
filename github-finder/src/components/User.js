@@ -1,7 +1,6 @@
 import React from "react";
-
-const User=(props)=>{
-    const {avatar_url,login,html_url} = props.userItem
+const User=({userItem})=>{
+    const {avatar_url,login,html_url} = userItem
     return(
         <div className="card mb-3 col-8 offset-2">
             <div className="row g-0">
