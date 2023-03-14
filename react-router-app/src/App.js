@@ -8,6 +8,7 @@ import { UserDetails, UserDetailsLoader } from './pages/UserDetails'
 import { MainLayout } from './layout/MainLayout'
 import { HelpLayout } from './layout/HelpLayout'
 import { UserList, userLoading } from './pages/UserList'
+import { UsersLayout } from './layout/UsersLayout'
 const routes = createBrowserRouter ([
   { 
     path: "/", 
@@ -23,8 +24,10 @@ const routes = createBrowserRouter ([
         { path:"Faq", element:<Faq/> }
       ]
     },
-  { path: "/Users", element:<UserList/>, loader: userLoading },
-  { path: "/Users/:userId", element:<UserDetails/>, loader: UserDetailsLoader }
+    {path: "/Users" ,element:<UsersLayout/>, children: [
+      { index:true, element:<UserList/>, loader: userLoading },
+      { path: ":userId", element:<UserDetails/>, loader: UserDetailsLoader }
+    ]}
   ]}
 ])
 

@@ -9,6 +9,7 @@ export const MainLayout = () => {
                     <NavLink to="Home">Home</NavLink>
                     <NavLink to="About">About</NavLink>
                     <NavLink to="Help">Help</NavLink>
+                    <NavLink to="Users">Users</NavLink>
                 </nav>
             </header>
             <main className="container">
