@@ -24,7 +24,7 @@ const routes = createBrowserRouter ([
       ]
     },
   { path: "/Users", element:<UserList/>, loader: userLoading },
-  { path: "/Users/:userId", element:<UserDetails/> }
+  { path: "/Users/:userId/:role", element:<UserDetails/> }
   ]}
 ])
 
