@@ -4,7 +4,7 @@ import { Home } from './pages/Home'
 import { Contact } from './pages/help/Contact'
 import { Faq } from './pages/help/Faq'
 import { About } from './pages/About'
-import { UserDetails } from './pages/UserDetails'
+import { UserDetails, UserDetailsLoader } from './pages/UserDetails'
 import { MainLayout } from './layout/MainLayout'
 import { HelpLayout } from './layout/HelpLayout'
 import { UserList, userLoading } from './pages/UserList'
@@ -24,7 +24,7 @@ const routes = createBrowserRouter ([
       ]
     },
   { path: "/Users", element:<UserList/>, loader: userLoading },
-  { path: "/Users/:userId/:role", element:<UserDetails/> }
+  { path: "/Users/:userId", element:<UserDetails/>, loader: UserDetailsLoader }
   ]}
 ])
 

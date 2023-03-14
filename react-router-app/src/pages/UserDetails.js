@@ -1,11 +1,16 @@
-import { useParams } from "react-router-dom"
-
+import { useLoaderData } from "react-router-dom"
 export const UserDetails = () => {
-const { userId, role } = useParams()
-return (
-    <div>
-        <p>{userId}</p>
-        <p>{role}</p>
-    </div>
+    const userDetails = useLoaderData()
+    return (
+        <div>
+            <p>{userDetails.name}</p>
+            <p>{userDetails.username}</p>
+        </div>
 )
+}
+
+export const UserDetailsLoader = async ({params}) => {
+    const { userId } = params;
+    const UserDetailsData = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+    return UserDetailsData.json()
 }
