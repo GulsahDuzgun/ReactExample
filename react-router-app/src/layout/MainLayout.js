@@ -7,6 +7,7 @@ export const MainLayout = () => {
                 <nav>
                     <NavLink to="Home">Home</NavLink>
                     <NavLink to="About">About</NavLink>
+                    <NavLink to="Help">Help</NavLink>
                 </nav>
             </header>
             <main>
