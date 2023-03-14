@@ -6,7 +6,7 @@ import { Faq } from './pages/help/Faq'
 import { About } from './pages/About'
 import { MainLayout } from './layout/MainLayout'
 import { HelpLayout } from './layout/HelpLayout'
-
+import { UserList, userLoading } from './pages/UserList'
 const routes = createBrowserRouter ([
   { 
     path: "/", 
@@ -21,8 +21,9 @@ const routes = createBrowserRouter ([
         { path:"Contact", element:<Contact/> },
         { path:"Faq", element:<Faq/> }
       ]
-    }]
-  }
+    },
+  { path: "/Users", element:<UserList/>, loader: userLoading }
+  ]}
 ])
 
 function App() {

@@ -103,7 +103,20 @@ form button {
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
-  background-color: black
+  background-color: var(--primary)
 }
 
+.users .card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  background-color: var(--secondary);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.users .card a {
+  font-size: 20px;
+}
 
