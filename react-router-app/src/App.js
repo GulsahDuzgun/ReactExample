@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Home } from './pages/Home'
-import { Contact } from './pages/help/Contact'
+import { Contact, contactAction } from './pages/help/Contact'
 import { Faq } from './pages/help/Faq'
 import { About } from './pages/About'
 import { UserDetails, UserDetailsLoader } from './pages/UserDetails'
@@ -20,7 +20,7 @@ const routes = createBrowserRouter ([
     { path:"Faq", element:<Faq/> },
     { path:"Help", element:<HelpLayout/>,
       children: [
-        { path:"Contact", element:<Contact/> },
+        { path:"Contact", element:<Contact/>, action: contactAction },
         { path:"Faq", element:<Faq/> }
       ]
     },
