@@ -2,6 +2,11 @@ import { Link, useLoaderData } from "react-router-dom";
 
 export const userLoading = async () => {
     const user = await fetch('https://jsonplaceholder.typicode.com/users')
+
+    if(user.status === 404) {
+        throw new Response ("Hatalı kullanıcı bilgisi alındı", {status: 404})
+    }
+
     return user.json();
 }
 

@@ -23,5 +23,9 @@ export const UserDetails = () => {
 export const UserDetailsLoader = async ({params}) => {
     const { userId } = params;
     const UserDetailsData = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+
+    if( UserDetailsData.status === 404 ) {
+        throw new Response( "Kullanıcı Bilgisi yok", { status: 404 })
+    }
     return UserDetailsData.json()
 }
