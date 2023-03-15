@@ -34,14 +34,13 @@ export const contactAction = async ( {request} ) => {
         err.emailErr = "e-mail bilginiz hatalı!!"
     }
 
-    if(typeof message !=="string" || message.length < 10) {
+    if(typeof message !== "string" || message.length < 10) {
         err.messageErr = "Mesaj uzunluğu 10 karakterden az olamaz"
     }
 
     if(Object.keys(err).length) {
         return err ;
     }
-
 
     return redirect("/")
 

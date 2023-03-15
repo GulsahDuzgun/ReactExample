@@ -4,11 +4,13 @@ import { Home } from './pages/Home'
 import { Contact, contactAction } from './pages/help/Contact'
 import { Faq } from './pages/help/Faq'
 import { About } from './pages/About'
-import { UserDetails, UserDetailsLoader } from './pages/UserDetails'
+import { NotFound } from './pages/NotFound'
+import { UserDetails, UserDetailsLoader } from './pages/users/UserDetails'
 import { MainLayout } from './layout/MainLayout'
 import { HelpLayout } from './layout/HelpLayout'
-import { UserList, userLoading } from './pages/UserList'
+import { UserList, userLoading } from './pages/users/UserList'
 import { UsersLayout } from './layout/UsersLayout'
+
 const routes = createBrowserRouter ([
   { 
     path: "/", 
@@ -18,6 +20,7 @@ const routes = createBrowserRouter ([
     { path:"About", element: <About/> },
     { index:true, element: <Home/> },
     { path:"Faq", element:<Faq/> },
+    { path:"*", element: <NotFound/>},
     { path:"Help", element:<HelpLayout/>,
       children: [
         { path:"Contact", element:<Contact/>, action: contactAction },
@@ -28,7 +31,7 @@ const routes = createBrowserRouter ([
       { index:true, element:<UserList/>, loader: userLoading },
       { path: ":userId", element:<UserDetails/>, loader: UserDetailsLoader }
     ]}
-  ]}
+  ]},
 ])
 
 function App() {

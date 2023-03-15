@@ -1,6 +1,8 @@
 import { useLoaderData, Link } from "react-router-dom"
+
 export const UserDetails = () => {
     const user = useLoaderData()
+    
     return (
         <div className="user-details">
             <h3>
