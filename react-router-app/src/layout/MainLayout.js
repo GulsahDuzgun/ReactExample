@@ -1,6 +1,9 @@
-import { isRouteErrorResponse, NavLink, Outlet } from "react-router-dom"
+import { NavLink, Outlet, useNavigation } from "react-router-dom"
+import { Loading } from "../pages/Loading"
 
 export const MainLayout = () => {
+
+    const loadingRoutes = useNavigation()
 
     return (
         <div className="main-layout">
@@ -14,6 +17,7 @@ export const MainLayout = () => {
                 </nav>
             </header>
             <main className="container">
+                { loadingRoutes.state === "loading" && <Loading/>}
                 <Outlet/>
             </main>
         </div>

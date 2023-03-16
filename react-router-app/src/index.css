@@ -133,3 +133,9 @@ form button {
 .error {
   color: red;
 }
+
+.loadingComp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
