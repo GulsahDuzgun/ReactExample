@@ -3,51 +3,54 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import AppRouter from './routers/AppRouter';
 import './App.css'
-import { createStore } from 'redux'
+import { combineReducers, createStore } from 'redux'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const initalStore = {
-    count:8
+const state = {
+    blogs: [
+        {
+            id: 1,
+            title: "Blog Title 1",
+            description: "Blog1 description",
+            dateAdded: 0
+        },
+    ],
+    auth: {
+        userId: 1,
+        userName: "GulsahDuzgun",
+        email: "establish@gmail.com"
+    }
 }
 
-const store = createStore((state = initalStore, action) => { 
-    
-    switch(action.type){
-        case "INCREASE":
-            const amount = typeof action.increaseAmount === "number" ? action.increaseAmount : 1
-            return {
-                count: state.count + amount
-            }
-        case "DECREASE":
-            return {
-                count: state.count -1
-            }
-        case "RESET":
-            return {
-                count: 0
-            }
+const blogState = []
+const authState = {
+    userId: 1,
+    userName: "GulsahDuzgun",
+    email: "establish@gmail.com"
+}
+
+const authReducer = (state = authState, action) => {
+   
+    switch(action.type) {
         default:
             return state;
     }
- });
+}
 
-store.subscribe(() => {
-    console.log(store.getState());
- })
+const blogReducer = (state = blogState, action) => {
+   
+    switch(action.type) {
+        default:
+            return state;
+    }
+}
 
-store.dispatch({
-    type: "INCREASE",
-    increaseAmount: 12
-})
+const store = createStore(combineReducers({
+    auth: authReducer,
+    blogs: blogReducer
+}))
 
-store.dispatch({
-    type: "DECREASE"
-})
-
-store.dispatch({
-    type: "RESET"
-})
-
+console.log(store.getState())
 
 root.render(<AppRouter />);
 reportWebVitals();
