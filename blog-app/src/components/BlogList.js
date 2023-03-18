@@ -1,17 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
+import BlogListItem from "./BlogListItem";
 
 const BlogList = ( props ) => {
     return (
-        <div>
-            { props.blogs[0].title }
-        </div>
+        <ul>
+            {
+                props.a.map((item) => {
+                    return <BlogListItem {...item} key={item.id}/>
+                })
+            }
+        </ul>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        blogs: state.blogs
+        a: state.blogs
     }
 }
 

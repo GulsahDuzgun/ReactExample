@@ -17,6 +17,9 @@ const a =store.dispatch( addBlog({title:"Blog1", description:"BLOG1 Description"
 store.dispatch( removeBlog({id: a.blog.id}))
 const b = store.dispatch( addBlog({title:"Blog2", description:"BLOG2 Description"}) )
 store.dispatch(updateBlog(b.blog.id,{title:"Update Title", description:"Update Description"}))
+store.dispatch( addBlog({title:"Blog3", description:"BLOG3 Description"}) )
+store.dispatch( addBlog({title:"Blog4", description:"BLOG4 Description"}) )
+
 
 
 root.render(
