@@ -31,8 +31,18 @@ const blogReducer = (state = blogState, action) => {
                 action.blog
             ]
         case 'Remove_Blog':
-            return state.filter( ({id}) => {
+            return state.filter( ({id }) => {
                 return id !== action.id    
+            })
+        case 'Update_Blog':
+           return state.map((item) => {
+                if( item.id === action.id){
+                    return {
+                        ...item, ...action.updateObject
+                    }
+                }else{
+                    return item
+                }
             })
         default:
             return state;
@@ -50,7 +60,13 @@ const addBlog = ({title = "", description = "", dateAdded = 0}) => {
         } 
     }
 }
-
+const updateBlog = (id, updateObject) => {
+    return {
+        type:'Update_Blog',
+        id,
+        updateObject
+    }
+}
 const removeBlog = ({id}) => {
     return {
         type: "Remove_Blog",
@@ -69,7 +85,9 @@ store.subscribe(()=>{
 
 const a =store.dispatch( addBlog({title:"Blog1", description:"BLOG1 Description", dateAdded:3}) )
 store.dispatch( removeBlog({id: a.blog.id}))
-store.dispatch( addBlog({title:"Blog2", description:"BLOG2 Description"}) )
+const b = store.dispatch( addBlog({title:"Blog2", description:"BLOG2 Description"}) )
+store.dispatch(updateBlog(b.blog.id,{title:"Update Title", description:"Update Description"}))
+
 
 root.render(<AppRouter />);
 reportWebVitals();
