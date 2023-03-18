@@ -30,6 +30,10 @@ const blogReducer = (state = blogState, action) => {
                 ...state ,
                 action.blog
             ]
+        case 'Remove_Blog':
+            return state.filter( ({id}) => {
+                return id !== action.id    
+            })
         default:
             return state;
     }
@@ -47,19 +51,25 @@ const addBlog = ({title = "", description = "", dateAdded = 0}) => {
     }
 }
 
+const removeBlog = ({id}) => {
+    return {
+        type: "Remove_Blog",
+        id: id
+    }
+}
+
 const store = createStore(combineReducers({
     auth: authReducer,
     blogs: blogReducer
 }))
 
-
 store.subscribe(()=>{
     console.log(store.getState())
 })
 
-store.dispatch( addBlog({title:"Blog1", description:"BLOG1 Description", dateAdded:3}) )
-addBlog("Blog2", "BLOG2 Description")
-
+const a =store.dispatch( addBlog({title:"Blog1", description:"BLOG1 Description", dateAdded:3}) )
+store.dispatch( removeBlog({id: a.blog.id}))
+store.dispatch( addBlog({title:"Blog2", description:"BLOG2 Description"}) )
 
 root.render(<AppRouter />);
 reportWebVitals();
