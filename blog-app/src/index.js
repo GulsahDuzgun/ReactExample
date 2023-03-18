@@ -3,82 +3,11 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import AppRouter from './routers/AppRouter';
 import './App.css'
-import { combineReducers, createStore } from 'redux'
-import { v4 as uuid } from 'uuid'
+import { addBlog, removeBlog, updateBlog } from './actions/blog'
+import createStore from './store/configureStore'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const blogState = []
-const authState = {
-    userId: 1,
-    userName: "GulsahDuzgun",
-    email: "establish@gmail.com"
-}
-
-const authReducer = (state = authState, action) => {
-   
-    switch(action.type) {
-        default:
-            return state;
-    }
-}
-
-const blogReducer = (state = blogState, action) => {
-   
-    switch(action.type) {
-        case 'Add_Blog':
-            return [
-                ...state ,
-                action.blog
-            ]
-        case 'Remove_Blog':
-            return state.filter( ({id }) => {
-                return id !== action.id    
-            })
-        case 'Update_Blog':
-           return state.map((item) => {
-                if( item.id === action.id){
-                    return {
-                        ...item, ...action.updateObject
-                    }
-                }else{
-                    return item
-                }
-            })
-        default:
-            return state;
-    }
-}
-
-const addBlog = ({title = "", description = "", dateAdded = 0}) => {
-    return {
-        type: "Add_Blog",
-        blog: {
-            id: uuid(),
-            title: title,
-            description: description,
-            dateAdded: dateAdded
-        } 
-    }
-}
-const updateBlog = (id, updateObject) => {
-    return {
-        type:'Update_Blog',
-        id,
-        updateObject
-    }
-}
-const removeBlog = ({id}) => {
-    return {
-        type: "Remove_Blog",
-        id: id
-    }
-}
-
-const store = createStore(combineReducers({
-    auth: authReducer,
-    blogs: blogReducer
-}))
-
+const store = createStore()
 store.subscribe(()=>{
     console.log(store.getState())
 })
