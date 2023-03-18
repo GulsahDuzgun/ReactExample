@@ -5,6 +5,7 @@ import AppRouter from './routers/AppRouter';
 import './App.css'
 import { addBlog, removeBlog, updateBlog } from './actions/blog'
 import createStore from './store/configureStore'
+import { Provider } from 'react-redux' 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = createStore()
@@ -18,5 +19,8 @@ const b = store.dispatch( addBlog({title:"Blog2", description:"BLOG2 Description
 store.dispatch(updateBlog(b.blog.id,{title:"Update Title", description:"Update Description"}))
 
 
-root.render(<AppRouter />);
+root.render(
+    <Provider store={store}>
+        <AppRouter />
+    </Provider> );
 reportWebVitals();
