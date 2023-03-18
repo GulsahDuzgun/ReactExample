@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BLogDetailItem = ({ id, title, description }) => {
+const BlogDetailItem = ({ id, title, description }) => {
   return (
     <div>
         <p> id:{ id }</p>
@@ -10,4 +10,4 @@ const BLogDetailItem = ({ id, title, description }) => {
   )
 }
 
-export default BLogDetailItem
+export default BlogDetailItem

@@ -6,7 +6,7 @@ import ContactPage from '../components/ContactPage'
 import Header from '../components/Header'
 import HomePage from '../components/HomePage'
 import NotFoundPage from '../components/NotFoundPage'
-
+import AddBlogPage from '../components/AddBlogPage'
 const AppRouter = () => {
 
   return (
@@ -18,6 +18,7 @@ const AppRouter = () => {
                 <Route path="/blogs" component= { BlogListPage } exact/>
                 <Route path="/blogs/:id" component= { BlogDetailsPage }/>
                 <Route path="/contact" component= { ContactPage }/>
+                <Route path="/create" component={AddBlogPage} />
                 <Route component= { NotFoundPage }/>
             </Switch>
         </div>

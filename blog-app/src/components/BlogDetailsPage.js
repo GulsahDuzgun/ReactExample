@@ -1,11 +1,11 @@
 import React from 'react'
-import BLogDetailItem from './BLogDetailItem'
+import BlogDetailItem from './BlogDetailItem'
 import { connect } from 'react-redux'
 
 const BlogDetailsPage = (props) => {
   //console.log(props)
   return (
-    <BLogDetailItem {...props.blog} />
+    <BlogDetailItem {...props.blog} />
   )
 }
 
