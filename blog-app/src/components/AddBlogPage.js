@@ -7,7 +7,8 @@ const AddBlogPage = ( props ) => {
     return (
         <div>
             <h1>Add Blog</h1>
-            <BlogForm addBlogInfo={ (blog) => {
+            <BlogForm onSubmit={ (blog) => {
+                   // console.log(props)
                         props.dispatch(addBlog(blog))
                         props.history.push("/blogs")  
                     }}/>

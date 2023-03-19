@@ -7,6 +7,7 @@ const BlogListItem = ( props ) => {
         <>
             <li> { props.title } { props.description } 
                 <Link to={`/blogs/${props.id}`}>Detail</Link>
+                <Link to={`/edit/${props.id}`}>Edit</Link>
             </li>
         </>
     )

@@ -6,8 +6,9 @@ export default class BlogForm extends Component  {
         super(props)
         
         this.state = {
-            title: "",
-            description: "",
+            title: props.blog ? props.blog.title : "",
+            description: props.blog ? props.blog.description : "",
+            dateAdded: props.blog ? props.blog.dateAdded : "2014-02-09",
             error: ""
         }
         this.onTitleChange = this.onTitleChange.bind(this)
@@ -35,7 +36,7 @@ export default class BlogForm extends Component  {
         }else {
             
             this.setState({ error: "" })
-            this.props.addBlogInfo({
+            this.props.onSubmit({
                 title: this.state.title,
                 description: this.state.description,
                 dateAdded: Date.now
