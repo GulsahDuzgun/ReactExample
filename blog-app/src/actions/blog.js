@@ -22,7 +22,7 @@ export const updateBlog = (id, updateObject) => {
     }
 }
 
-export const removeBlog = ({id}) => {
+export const removeBlog = ( id ) => {
 
     return {
         type: "Remove_Blog",

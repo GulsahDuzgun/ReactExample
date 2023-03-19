@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateBlog } from '../actions/blog'
+import { removeBlog, updateBlog } from '../actions/blog'
 import BlogForm from './BlogForm'
 
 const EditBlogPage = ( props ) => {
@@ -12,6 +12,10 @@ const EditBlogPage = ( props ) => {
                 props.history.push('/blogs')
             }}
             />
+        <button type='button' onClick={() => {
+          props.dispatch(removeBlog(props.blog.id))
+          props.history.push('/blogs')
+          }} >Delete</button>
     </div>
   )
 }
@@ -19,7 +23,7 @@ const EditBlogPage = ( props ) => {
 const matchBlog = (state, props) => {
     return {
         blog: state.blogs.find((item) => {
-            return item.id === props.match.params.id    
+            return item.id === props.match.params.id  
         })
     }
 }
