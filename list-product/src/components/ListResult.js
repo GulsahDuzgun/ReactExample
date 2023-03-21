@@ -8,8 +8,8 @@ const ListResult = (props) => {
         {props.filterList.length > 0 ?
             <ShowList filterList={props.filterList}/>
             :
-            <tr>
-                <NoProduct/>
+            <tr className='alert alert-warning'>
+                <NoProduct  />
             </tr>           
         }
     </>

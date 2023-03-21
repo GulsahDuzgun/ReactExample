@@ -3,7 +3,7 @@ import React from 'react'
 const NoProduct = () => {
   return (
     <>
-        <td className='alert alert-warning'>
+        <td>
             Eşleşen ürün bulunamadı
         </td>
     </>

@@ -13,7 +13,7 @@ const ProductList = (props) =>{
             </tr>
           </thead>
           <tbody className='mx-auto'>
-            {props.filterList.lenght >= 0 &&
+            {(props.filterList.length >= 0 && props.searchText) &&
              <ListResult filterList={props.filterList} />
             } 
             <Product vegetables={props.vegetables} fruits={props.fruits} />     

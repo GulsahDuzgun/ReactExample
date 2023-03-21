@@ -17,7 +17,7 @@ function App() {
   let fruits =  []
   let vegetables = []
 
-  const [filterList, setFilterList] = useState([])
+  let filterList = []
   const [searchText, setSearchText] = useState("")
   const [isCheck, setCheck] = useState(false)
 
@@ -28,33 +28,28 @@ function App() {
       vegetables = [...vegetables, item]
     }
   })
-
-  const onChange = (e) => {
-   setSearchText(e.target.value)
-    if(searchText.length>0 && isCheck) {
+   console.log(searchText)
+  
+   
+   if(searchText.length>0 && isCheck) {
       let filterArr = products.filter( item => {
         return(item.name.includes(searchText) && item.stocked === true) 
       })
-      setFilterList(filterArr)
-     console.log(filterArr)
+
+      filterList = filterArr
+      console.log(filterArr)
+
     }else if(searchText.length>0) {
       let filterArr = products.filter((item) => {
         return item.name.includes(searchText)
       })
       
-      setFilterList(filterArr)
+      filterList = filterArr
       console.log(filterArr)  
     }else {
-      setFilterList([])
+      filterList = []
     }
-
-  }
-
-  const getCheck = (e) => {
-    setCheck(e.target.checked)
-    console.log(isCheck)
-  }   
-
+  
   return (
     <div className="App">
       <header>
@@ -62,7 +57,7 @@ function App() {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossOrigin="anonymous"></script>
       </header>
       <div className="container offset-3 col-6">
-        <Search onChange={onChange} getCheck={getCheck}/>
+        <Search onChange={setSearchText} getCheck={setCheck}/>
         <ProductList filterList={filterList} vegetables={vegetables} fruits={fruits} searchText={searchText}/>
       </div>
     </div>
