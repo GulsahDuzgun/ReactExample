@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import  './App.css'
+import ProductList from './components/ProductList'
+import Search from './components/Search'
 
 function App() {
 
@@ -13,7 +16,11 @@ function App() {
   
   let fruits =  []
   let vegetables = []
-   
+
+  const [filterList, setFilterList] = useState([])
+  const [searchText, setSearchText] = useState("")
+  const [isCheck, setCheck] = useState(false)
+
   products.forEach( item => {
     if( item.category === "Fruits") {
       fruits = [...fruits, item]
@@ -22,35 +29,29 @@ function App() {
     }
   })
 
-  let isCheck = false;
-  let searchText = "";
-  let filterList = []
-
   const onChange = (e) => {
-
-    searchText = e.target.value
-   
-    if(searchText.length>0 && isCheck){
-      filterList = products.filter( item => {
+   setSearchText(e.target.value)
+    if(searchText.length>0 && isCheck) {
+      let filterArr = products.filter( item => {
         return(item.name.includes(searchText) && item.stocked === true) 
       })
-      
-      console.log(filterList)
-    }
-    else if(searchText.length>0) {
-      filterList = products.filter((item) => {
+      setFilterList(filterArr)
+     console.log(filterArr)
+    }else if(searchText.length>0) {
+      let filterArr = products.filter((item) => {
         return item.name.includes(searchText)
       })
-    
-      console.log(filterList)
-    }else{
-      filterList= []
-      console.log(filterList)
+      
+      setFilterList(filterArr)
+      console.log(filterArr)  
+    }else {
+      setFilterList([])
     }
+
   }
 
   const getCheck = (e) => {
-    isCheck = e.target.checked;
+    setCheck(e.target.checked)
     console.log(isCheck)
   }   
 
@@ -61,63 +62,8 @@ function App() {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossOrigin="anonymous"></script>
       </header>
       <div className="container offset-3 col-6">
-        <div className="search container mt-5 mb-2">
-          <input type="text" className='my-2' onChange={onChange} placeholder="Search..." /><br/>
-          <input type="checkbox" onChange={getCheck}/> Only show products in stock
-        </div>
-        <div className="ListProduct">
-          <table className='table'>
-            <thead>
-              <tr>
-                <th scope='column'>Name</th>
-                <th scope='column'>Price</th>
-              </tr>
-            </thead>
-              { filterList.length > 0 ? 
-                <tbody className='mx-auto'>
-                  {
-                    filterList.map((item, index) => {
-                      return(
-                        <tr className='d-flex justify-content-between' key={index} style={ item.stocked ? { color:'black'} : {color:"red", textDecoration:"underline"}}>
-                          <td>{item.name}</td>
-                          <td>{item.price}</td>
-                        </tr>
-                      )
-                    })
-                  }
-                </tbody>
-               :
-               <tbody className='mx-auto'>
-                    <tr>
-                  <th scope='row'className='text-center'>Vegetables</th>
-                </tr>
-                {
-                  vegetables.map( ( item, index ) => { 
-                    return (
-                      <tr className='d-flex justify-content-between' key={index} style={ item.stocked ? { color:'black'} : {color:"red", textDecoration:"underline"}}>
-                        <td>{item.name}</td>
-                        <td>{item.price}</td>
-                      </tr>
-                      )
-                    })
-                  }
-                  <tr>
-                    <th scope='row'className='text-center'>Fruits</th>
-                  </tr>
-                  {
-                      fruits.map((item, index) => {
-                        return (
-                          <tr className='d-flex justify-content-between' style={item.stocked ? {color:'black'}: {color:"red", textDecoration:"underline"}} key={index}>
-                          <td>{item.name}</td>
-                          <td>{item.price}</td>
-                        </tr>
-                        )
-                    })
-                  } 
-                </tbody>
-              }        
-          </table>
-        </div>
+        <Search onChange={onChange} getCheck={getCheck}/>
+        <ProductList filterList={filterList} vegetables={vegetables} fruits={fruits} searchText={searchText}/>
       </div>
     </div>
   );
