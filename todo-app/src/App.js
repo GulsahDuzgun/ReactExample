@@ -1,15 +1,35 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 function App() {
   
-  const todoList = []
   const todoRef = useRef(null)
-  
+  let list = JSON.parse(localStorage.getItem("TodoList"))
+  const [ todoList, setTodoList ] = useState(list)
+  const [checkFlag, setCheckFlag] = useState(false)
+
   const addItem = () => {
-    if(todoRef.current.value ) {
-       todoList.push(todoRef.current.value)
+    let tempTodo = todoRef.current.value;
+
+    if( tempTodo ) {
+      setTodoList([...todoList,{
+        id:new Date(),
+        mission:tempTodo,
+        isCheck: false
+       }])
+       localStorage.setItem("TodoList",JSON.stringify(todoList))
       }
-    //  console.log(todoList)
+  }
+
+  const setCheckbox = (item) => {
+    todoList.filter( i => {
+      if(i.id === item.id) {
+        i.isCheck = (!item.isCheck)
+        setCheckFlag(i.isCheck)
+      }
+      return i;
+    })
+    setTodoList(todoList)
+    localStorage.setItem("TodoList",JSON.stringify(todoList))
   }
 
   return (
@@ -20,10 +40,14 @@ function App() {
         <input type="text" className="form-control" placeholder="Add New" ref={todoRef} />
         </div>
         <ul>
-          <li className="p-3">
-            <input className="form-check-input me-3" type="checkbox" id="doneCheck" />
-            <label className="form-check-label" htmlFor="doneCheck">item</label>
-          </li>
+          {todoList.map((item, index) => {
+            return (
+              <li className="p-3" key={index}>
+                <input className="form-check-input me-3" type="checkbox" id={`doneCheck${index}`} checked={item.isCheck} value={checkFlag}  onChange={()=>setCheckbox(item)} />
+                <label className="form-check-label" htmlFor={`doneCheck${index}`} >{item.mission}</label>
+              </li>
+            )}
+          )}
         </ul>
         <div className="d-flex justify-content-between p-2 mx-3">
           <div>
