@@ -3,13 +3,18 @@ import { useRef, useState } from 'react'
 function App() {
   
   const todoRef = useRef(null)
-  let list = JSON.parse(localStorage.getItem("TodoList"))
-  const [ todoList, setTodoList ] = useState(list)
+  const [ todoList, setTodoList ] = useState([])
   const [checkFlag, setCheckFlag] = useState(false)
 
   const addItem = () => {
     let tempTodo = todoRef.current.value;
+    let list = JSON.parse(localStorage.getItem("TodoList"))
     
+    if(!list) {
+       localStorage.setItem("TodoList", JSON.stringify([]))
+       list = []
+    }
+
     if( tempTodo ) {
 
         let newTodo = {
@@ -17,9 +22,9 @@ function App() {
           mission:tempTodo,
           isCheck: false
         }
-      
-        setTodoList([...list, newTodo])
-        localStorage.setItem("TodoList",JSON.stringify(todoList))
+        let newList= [...list, newTodo]
+        setTodoList(newList)
+        localStorage.setItem("TodoList",JSON.stringify(newList))
 
       }      
   }
@@ -37,6 +42,7 @@ function App() {
   }
 
   const onSearch = () => {
+    let list = JSON.parse(localStorage.getItem("TodoList"))
     let searchText = todoRef.current.value
     let searchList = list.filter( (item) =>{
       return item.mission.includes(searchText) === true
@@ -45,15 +51,26 @@ function App() {
   }
 
   const listAllTodos = () => {
-    setTodoList(list)
+    let list = JSON.parse(localStorage.getItem("TodoList"))
+    if(list.length > 0) {
+      setTodoList(list)
+    }
   }
 
   const activeTodos = () => {
-    setTodoList(list.filter( i => i.isCheck === false))
+    let list = JSON.parse(localStorage.getItem("TodoList"))
+    if(list.length > 0) {
+      let activeList = list.filter(i => i.isCheck === false)
+      setTodoList(activeList)
+    }
   }
 
   const completeTodos = () => {
-    setTodoList(list.filter( i=> i.isCheck === true))
+    let list = JSON.parse(localStorage.getItem("TodoList"))
+    if(list.length > 0) {
+      let completeList = list.filter( i => i.isCheck === true)
+      setTodoList(completeList)
+    }
   }
 
   return (
