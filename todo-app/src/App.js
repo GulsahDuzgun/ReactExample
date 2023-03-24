@@ -9,15 +9,19 @@ function App() {
 
   const addItem = () => {
     let tempTodo = todoRef.current.value;
-
+    
     if( tempTodo ) {
-      setTodoList([...todoList,{
-        id:new Date(),
-        mission:tempTodo,
-        isCheck: false
-       }])
-       localStorage.setItem("TodoList",JSON.stringify(todoList))
-      }
+
+        let newTodo = {
+          id:new Date(),
+          mission:tempTodo,
+          isCheck: false
+        }
+      
+        setTodoList([...list, newTodo])
+        localStorage.setItem("TodoList",JSON.stringify(todoList))
+
+      }      
   }
 
   const setCheckbox = (item) => {
@@ -30,6 +34,26 @@ function App() {
     })
     setTodoList(todoList)
     localStorage.setItem("TodoList",JSON.stringify(todoList))
+  }
+
+  const onSearch = () => {
+    let searchText = todoRef.current.value
+    let searchList = list.filter( (item) =>{
+      return item.mission.includes(searchText) === true
+    })
+    setTodoList(searchList)
+  }
+
+  const listAllTodos = () => {
+    setTodoList(list)
+  }
+
+  const activeTodos = () => {
+    setTodoList(list.filter( i => i.isCheck === false))
+  }
+
+  const completeTodos = () => {
+    setTodoList(list.filter( i=> i.isCheck === true))
   }
 
   return (
@@ -52,12 +76,12 @@ function App() {
         <div className="d-flex justify-content-between p-2 mx-3">
           <div>
             <button className="btn btn-outline-success me-1" htmlFor="todo"  onClick={addItem} >Ekle</button>
-            <button className="btn btn-outline-primary">Search</button>  |  length items left
+            <button className="btn btn-outline-primary" onClick={onSearch} >Search</button>  |  {todoList.length} items left
           </div>
           <div>
-            <button className="btn btn-secondary me-1">All</button>
-            <button className="btn btn-success me-1">Active</button>
-            <button className="btn btn-danger">Completed</button>
+            <button className="btn btn-secondary me-1" onClick={listAllTodos}>All</button>
+            <button className="btn btn-success me-1" onClick={activeTodos}>Active</button>
+            <button className="btn btn-danger" onClick={completeTodos}>Completed</button>
           </div>
         </div>
       </div>
