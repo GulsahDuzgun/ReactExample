@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import PageTitle from './components/PageTitle'
 
 function App() {
   
@@ -76,7 +77,7 @@ function App() {
   return (
     <div className="App">
       <div className="container offset-3 col-6  my-5 todo">
-        <h1 className="text-center">THINGS TO DO</h1>
+        <PageTitle><h1 className="text-center">THINGS TO DO</h1></PageTitle>
         <div className="my-3">
         <input type="text" className="form-control" placeholder="Add New" ref={todoRef} />
         </div>
