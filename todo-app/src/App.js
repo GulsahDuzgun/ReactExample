@@ -1,5 +1,7 @@
-import { useRef, useState } from 'react'
-import PageTitle from './components/PageTitle'
+import { useRef, useState } from 'react';
+import PageTitle from './components/PageTitle';
+import AppHeader from './components/AppHeader';
+import style from './styles/modules/app.module.scss'
 
 function App() {
   
@@ -77,7 +79,10 @@ function App() {
   return (
     <div className="App">
       <div className="container offset-3 col-6  my-5 todo">
-        <PageTitle><h1 className="text-center">THINGS TO DO</h1></PageTitle>
+        <PageTitle>THINGS TO DO</PageTitle>
+        <div className={style.app__wrapper}>
+          <AppHeader/>
+        </div>
         <div className="my-3">
         <input type="text" className="form-control" placeholder="Add New" ref={todoRef} />
         </div>
