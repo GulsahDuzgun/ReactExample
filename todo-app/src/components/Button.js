@@ -11,7 +11,7 @@ const Button = ({children, variant = 'primary', type, ...rest}) => {
   return (
     <button 
     type= {type === 'submit' ? 'submit' :'button'}
-     className= {getClasses([styles.button, styles[`button--${buttonTypes[variant]}`]])}>{children}</button>
+     className= {getClasses([styles.button, styles[`button--${buttonTypes[variant]}`]])} {...rest}>{children}</button>
   )
 }
 
