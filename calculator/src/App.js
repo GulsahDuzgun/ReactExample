@@ -3,6 +3,16 @@ import Display from '../src/components/Display';
 import ButtonPanel from '../src/components/ButtonPanel';
 
 class App extends React.Component {
+  
+  constructor(props){
+    super(props)
+    this.state = {
+      total: null,
+      next: null,
+      operation: null
+    }
+  }
+
   handleClick = (buttonName) => {
     console.log("click", buttonName)
   }
@@ -10,9 +20,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Display
-          value="117"
-        />
+        <Display value={ this.state.next || this.state.total || '0'}/>
         <ButtonPanel clickHandler={this.handleClick} />
       </div>
     );
