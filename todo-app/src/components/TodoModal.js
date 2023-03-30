@@ -39,14 +39,14 @@ function TodoModal({modalOpen, setModalOpen}) {
                     <form className={styles.form} onSubmit={ (e) => handleSubmit(e) } >
                         <h1 className={styles.formTitle}>Add Task</h1>
                         <label htmlFor="title">Title
-                            <input type="text" id="title " value={title} onChange={ (e) => setTitle(e.target.value) } />
+                        <input type="text" id="title " value={title} onChange={ (e) => setTitle(e.target.value) } />
                         </label>
                         <label htmlFor='status'>Status
                             <select name='status' id='status' value={status} onChange={ (e) => setStatus(e.target.value) }>
                                 <option value="incomplete">Incomplete</option>
                                 <option vlaue="complete">Complete</option>
                             </select>
-                        </label>
+                        </label>  
                         <div className={styles.buttonContainer}>
                             <Button type="submit" variant="primary">Add Task</Button>
                             <Button type="button" tabIndex={0} variant="secondary" onClick={() => setModalOpen(false)} onKeyDown={() => setModalOpen(false)}>Cancel</Button>
