@@ -3,10 +3,15 @@ import styles from '../styles/modules/todoItem.module.scss';
 import { getClasses } from '../utils/getClasses'
 import React from 'react';
 import { format } from 'date-fns/esm'
+import { useDispatch } from 'react-redux';
+import { deleteTodo } from '../slices/todoSlice';
+import { toast } from 'react-hot-toast';
 
 function TodoItem ({ todo} ) {
+    const dispatch = useDispatch()
     const handleDelete = () => {
-        console.log("delete")
+        dispatch(deleteTodo(todo.id))
+        toast.success("Todo Deleted Successfully")
     }
 
     const handleUpdate = () => {
@@ -17,7 +22,7 @@ function TodoItem ({ todo} ) {
        <div className={styles.item}>
             <div className={styles.todoDetails}>
                 <div className={styles.texts}>
-                    <p className={getClasses([styles.todoText, todo.status === 'complete' && styles['todoText--completed']])}>
+                    <p className={getClasses([styles.todoText, todo.status === 'Complete' && styles['todoText--completed']])}>
                         {todo.title}
                     </p>
                     <p className={styles.time}>
