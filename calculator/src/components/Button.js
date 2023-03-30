@@ -1,15 +1,9 @@
 import React from 'react';
 
-class Button extends React.Component {
-  render() {
+function Button ({clickHandler, name}) {
     return (
-      <button>
-        {this.props.name}
-      </button>
+      <button onClick={()=>clickHandler(name)}>{name}</button>
     );
-  }
 }
-Button.propTypes = {
-  name: React.PropTypes.string,
-};
+
 export default Button;
