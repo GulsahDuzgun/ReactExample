@@ -5,17 +5,26 @@ import styles from '../styles/modules/app.module.scss'
 
 function AppContent() {
   const todoList = useSelector(state => state.todo.todoList)
-  //console.log(todoList)
   const sortedList = [...todoList]
-  sortedList.sort((a, b) => new Date(b.time)- new Date(a.time));
+  const filterStatus = useSelector((state) => state.todo.filterStatus)
   
+  sortedList.sort((a, b) => new Date(b.time)- new Date(a.time));
+
+  const filterArr = sortedList.filter((item) => {
+    if(filterStatus === "all") {
+      return true;
+    }
+    return item.status === filterStatus
+
+  })
+
   return (
     <div className={styles.content__wrapper}>
       {
-        sortedList && sortedList.length > 0 ?
-        sortedList.map((item) => <TodoItem todo={item} key={item.id}/>)
+        filterArr && filterArr.length > 0 ?
+        filterArr.map((item) => <TodoItem todo={item} key={item.id}/>)
         :
-        'not found'
+        <h3>Not found 404 </h3>
       }
     </div>
   )
