@@ -2,6 +2,7 @@ import React from 'react';
 import Display from '../src/components/Display';
 import ButtonPanel from '../src/components/ButtonPanel';
 import Calculate from './logic/Calculate'
+import './styles/App.css'
 
 class App extends React.Component {
   
