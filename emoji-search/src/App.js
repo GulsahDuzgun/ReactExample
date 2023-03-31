@@ -4,27 +4,37 @@ import Header from "./components/Header";
 import SearchInput from "./components/SearchInput";
 
 function App() {
+
+  const EmojiArr = [
+    {
+      title: 'Fire',
+      symbol: '🔥',
+    },
+    {
+      title: 'Grinning',
+      symbol: '😀',
+    },
+    {
+      title: 'Smile Cat',
+      symbol: '😺',
+    }
+  ]
   const [searchText, setText] = useState("")
-  //console.log(searchText)
+  const [showEmoji, setShowEmojiArr] = useState(EmojiArr)
+
+  const  handleSearch = (e) => {
+    let val= e.target.value;
+    setText(val)
+   
+    setShowEmojiArr(EmojiArr.filter(i => i.title.includes(val)===true))
+    
+  }
 
   return (
     <div className="App">
       <Header/>
-      <SearchInput search={setText}/>
-      <EmojiResults emojiData={[
-            {
-              title: 'Fire',
-              symbol: '🔥',
-            },
-            {
-              title: 'Grinning',
-              symbol: '😀',
-            },
-            {
-              title: 'Smile Cat',
-              symbol: '😺',
-            }
-          ]}/>
+      <SearchInput search={handleSearch}/>
+      <EmojiResults emojiData={showEmoji}/>
     </div>
   );
 }
