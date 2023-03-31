@@ -2,7 +2,7 @@ import React from "react";
 import ListResult from "./ListResult";
 import Product from "./Product";
 
-const ProductList = (props) =>{
+const ProductList = (props) => {
     return (
         <div className="ListProduct">
         <table className='table'>
@@ -14,14 +14,13 @@ const ProductList = (props) =>{
           </thead>
           <tbody className='mx-auto'>
             {(props.filterList.length >= 0 && props.searchText) &&
-             <ListResult filterList={props.filterList} />
+              <ListResult filterList={ props.filterList } />
             } 
-            <Product vegetables={props.vegetables} fruits={props.fruits} />     
+            <Product vegetables={ props.vegetables } fruits={ props.fruits } />     
           </tbody> 
         </table>
       </div>
     )
 }
-
 
 export default ProductList;

@@ -4,7 +4,6 @@ import ProductList from './components/ProductList'
 import Search from './components/Search'
 
 function App() {
-
   const products = [
     { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
     { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
@@ -16,8 +15,8 @@ function App() {
   
   let fruits =  []
   let vegetables = []
-
   let filterList = []
+
   const [searchText, setSearchText] = useState("")
   const [isCheck, setCheck] = useState(false)
 
@@ -28,9 +27,9 @@ function App() {
       vegetables = [...vegetables, item]
     }
   })
+
    console.log(searchText)
   
-   
    if(searchText.length>0 && isCheck) {
       let filterArr = products.filter( item => {
         return(item.name.includes(searchText) && item.stocked === true) 
@@ -46,6 +45,7 @@ function App() {
       
       filterList = filterArr
       console.log(filterArr)  
+      
     }else {
       filterList = []
     }
