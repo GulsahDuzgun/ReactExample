@@ -6,7 +6,7 @@ function EmojiResults(props) {
     return (
         <div className='component-emoji-results'>
             {props.emojiData.map((item, index) => 
-                <EmojiResultRow title={item.title} emoji={item.symbol} key={index}/>
+                <EmojiResultRow title={ item.title } emoji={ item.symbol } key={ index }/>
             )}
         </div>
     )

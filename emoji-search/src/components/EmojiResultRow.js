@@ -12,7 +12,7 @@ function EmojiResultRow (props) {
                 src={ src }
             />
             <span className='title'>
-                {props.title}
+                { props.title }
             </span>
         </div>
     )

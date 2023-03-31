@@ -11,10 +11,9 @@ function App() {
 
   const  handleSearch = (e) => {
     let val= e.target.value;
-    setText(val)
-   
-    setShowEmojiArr(EmojiArr.filter(i => i.title.includes(val)===true).slice(0,20))
     
+    setText(val)
+    setShowEmojiArr(EmojiArr.filter(i => i.title.includes(val)===true).slice(0,20))
   }
 
   return (
