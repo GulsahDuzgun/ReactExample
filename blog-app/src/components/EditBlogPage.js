@@ -27,4 +27,5 @@ const matchBlog = (state, props) => {
         })
     }
 }
+
 export default connect(matchBlog)(EditBlogPage)

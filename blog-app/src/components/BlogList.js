@@ -5,10 +5,8 @@ import BlogListItem from "./BlogListItem";
 const BlogList = ( props ) => {
     return (
         <ul>
-            {
-                props.a.map((item) => {
-                    return <BlogListItem {...item} key={item.id}/>
-                })
+            {props.a.map((item) => {
+                return <BlogListItem {...item} key={item.id}/>})
             }
         </ul>
     )

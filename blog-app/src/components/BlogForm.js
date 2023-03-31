@@ -1,7 +1,6 @@
 import React, { Component }  from "react";
 
 export default class BlogForm extends Component  {
-    
     constructor(props){
         super(props)
         
@@ -11,10 +10,11 @@ export default class BlogForm extends Component  {
             dateAdded: props.blog ? props.blog.dateAdded : "2014-02-09",
             error: ""
         }
+
         this.onTitleChange = this.onTitleChange.bind(this)
     }
 
-    onTitleChange(e) {
+    onTitleChange (e) {
         const title =  e.target.value;
         this.setState(() => ({ title }))
     }
@@ -28,14 +28,13 @@ export default class BlogForm extends Component  {
         e.preventDefault()
 
         if( !this.state.title || !this.state.description ) {
-            
             this.setState({
                 error: "Lütfen alanları doldurunuz"
             })           
 
         }else {
-            
             this.setState({ error: "" })
+            
             this.props.onSubmit({
                 title: this.state.title,
                 description: this.state.description,

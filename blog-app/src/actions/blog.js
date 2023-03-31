@@ -1,7 +1,6 @@
 import { v4 as uuid } from 'uuid'
 
-export const addBlog = ({title = "", description = "", dateAdded = 0}) => {
-
+export const addBlog = ({ title = "", description = "", dateAdded = 0 }) => {
     return {
         type: "Add_Blog",
         blog: {
@@ -14,7 +13,6 @@ export const addBlog = ({title = "", description = "", dateAdded = 0}) => {
 }
 
 export const updateBlog = (id, updateObject) => {
-
     return {
         type:'Update_Blog',
         id,
@@ -23,7 +21,6 @@ export const updateBlog = (id, updateObject) => {
 }
 
 export const removeBlog = ( id ) => {
-
     return {
         type: "Remove_Blog",
         id: id

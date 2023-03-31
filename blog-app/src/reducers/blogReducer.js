@@ -1,11 +1,10 @@
 const blogState = []
 
-const blogReducer = (state = blogState, action) => {
-   
+const blogReducer = (state = blogState, action) => {   
     switch(action.type) {
 
         case 'Add_Blog':
-             return [
+            return [
                 ...state, action.blog
             ]
 
@@ -17,10 +16,12 @@ const blogReducer = (state = blogState, action) => {
         case 'Update_Blog':
            return state.map((item) => {
                 if( item.id === action.id ) {
+            
                     return {
                         ...item, ...action.updateObject
                     }
                 }
+            
                 else {
                     return item;
                 }

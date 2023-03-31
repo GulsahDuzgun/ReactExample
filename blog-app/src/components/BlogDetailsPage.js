@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 const BlogDetailsPage = (props) => {
   //console.log(props)
   return (
-    <BlogDetailItem {...props.blog} />
+    <BlogDetailItem { ...props.blog } />
   )
 }
 

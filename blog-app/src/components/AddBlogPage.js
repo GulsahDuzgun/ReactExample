@@ -8,10 +8,10 @@ const AddBlogPage = ( props ) => {
         <div>
             <h1>Add Blog</h1>
             <BlogForm onSubmit={ (blog) => {
-                   // console.log(props)
-                        props.dispatch(addBlog(blog))
-                        props.history.push("/blogs")  
-                    }}/>
+            // console.log(props)
+                props.dispatch(addBlog(blog))
+                props.history.push("/blogs")  
+            }}/>
         </div>
     )
 }

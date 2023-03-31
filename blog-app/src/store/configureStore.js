@@ -5,11 +5,14 @@ import blogReducer from '../reducers/blogReducer'
 export default () => {
    
     const store = createStore(
+
         combineReducers({
             auth: authReducer,
             blogs: blogReducer
         }),
+
         window.__REDUX_DEVTOOLS_EXTENSION__&& window.__REDUX_DEVTOOLS_EXTENSION__()
     )
+    
     return store;
 }

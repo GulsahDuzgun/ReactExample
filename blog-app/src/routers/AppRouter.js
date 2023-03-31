@@ -8,8 +8,8 @@ import HomePage from '../components/HomePage'
 import NotFoundPage from '../components/NotFoundPage'
 import AddBlogPage from '../components/AddBlogPage'
 import EditBlogPage from '../components/EditBlogPage'
-const AppRouter = () => {
 
+const AppRouter = () => {
   return (
     <BrowserRouter>
         <div>
