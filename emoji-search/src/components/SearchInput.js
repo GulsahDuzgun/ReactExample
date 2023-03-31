@@ -1,9 +1,9 @@
 import React from 'react'
 
-function SearchInput() {
+function SearchInput({search}) {
   return (
     <div>
-      <input></input>
+      <input onChange={(e)=>search(e.target.value)}/>
     </div>
   )
 }

@@ -1,12 +1,16 @@
+import { useState } from "react";
 import EmojiResults from "./components/EmojiResults";
 import Header from "./components/Header";
 import SearchInput from "./components/SearchInput";
 
 function App() {
+  const [searchText, setText] = useState("")
+  //console.log(searchText)
+
   return (
     <div className="App">
       <Header/>
-      <SearchInput/>
+      <SearchInput search={setText}/>
       <EmojiResults emojiData={[
             {
               title: 'Fire',
