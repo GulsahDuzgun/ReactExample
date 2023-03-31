@@ -3,7 +3,7 @@ import Button from './Button';
 
 function ButtonPanel({clickHandler}) {
     return (
-      <div>
+      <div className='component-button-panel'>
         <div>
           <Button name="AC" clickHandler={clickHandler} />
           <Button name="+/-" clickHandler={clickHandler} />
