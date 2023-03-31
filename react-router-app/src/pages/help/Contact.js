@@ -2,7 +2,8 @@ import { Form, redirect, useActionData } from "react-router-dom"
 
 export const Contact = () => {
     const contactErr = useActionData()
-    return(
+
+    return (
         <div className="contact">
             <h3>Contact</h3>
             <Form method="post" action="/Help/Contact">
@@ -23,7 +24,6 @@ export const Contact = () => {
 }
 
 export const contactAction = async ( {request} ) => {
-
     const data = await request.formData()
     //console.log(data.get("message"))
     const email = data.get("email")
@@ -43,5 +43,4 @@ export const contactAction = async ( {request} ) => {
     }
 
     return redirect("/")
-
 }

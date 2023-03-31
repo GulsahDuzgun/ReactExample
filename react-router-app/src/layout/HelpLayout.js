@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom"
 
-export const HelpLayout = () =>{
+export const HelpLayout = () => {
     return (
         <div className="help-layout">
             <h1>Help Layout</h1>
@@ -11,6 +11,5 @@ export const HelpLayout = () =>{
             </nav>    
                 <Outlet/>
         </div>
-
     )
 }

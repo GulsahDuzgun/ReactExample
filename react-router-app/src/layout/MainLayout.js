@@ -2,7 +2,6 @@ import { NavLink, Outlet, useNavigation } from "react-router-dom"
 import { Loading } from "../pages/Loading"
 
 export const MainLayout = () => {
-
     const loadingRoutes = useNavigation()
 
     return (

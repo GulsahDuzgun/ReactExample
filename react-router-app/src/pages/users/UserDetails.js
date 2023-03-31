@@ -15,7 +15,6 @@ export const UserDetails = () => {
                 <li>{ user.company.name } / { user.address.city }</li>
             </ul>
             <Link to="/Users">Back To List</Link>
-            
         </div>
     )
 }
@@ -27,5 +26,6 @@ export const UserDetailsLoader = async ({params}) => {
     if( UserDetailsData.status === 404 ) {
         throw new Response( "Kullanıcı Bilgisi yok", { status: 404 })
     }
+    
     return UserDetailsData.json()
 }

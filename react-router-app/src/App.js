@@ -13,7 +13,6 @@ import { UserList, userLoading } from './pages/users/UserList'
 import { UsersLayout } from './layout/UsersLayout'
 import { Error } from './pages/Error'
 
-
 const routes = createBrowserRouter ([
   { 
     path: "/", 
@@ -33,7 +32,7 @@ const routes = createBrowserRouter ([
     {path: "/Users" ,element:<UsersLayout/>, errorElement: <UsersError/>,
      children: [
       { index:true, element:<UserList/>, loader: userLoading },
-      { path: ":userId", element:<UserDetails/>, loader: UserDetailsLoader }
+      { path:":userId", element:<UserDetails/>, loader: UserDetailsLoader }
     ]}
   ], errorElement: <Error/>},
 ])

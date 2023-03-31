@@ -15,14 +15,14 @@ export const UserList = () => {
     return (
         <div className="users">
             {
-            data.map((item) => (
-                <div className="card"  key={ item.id }>
-                    <h3><i className="fa-solid fa-caret-right"></i>{ item.name}</h3>
-                    <Link to={ item.id.toString() }>
-                        <i className="fa-regular fa-square-caret-right"></i>
-                    </Link>
-                </div>
-            ))
+                data.map((item) => (
+                    <div className="card"  key={ item.id }>
+                        <h3><i className="fa-solid fa-caret-right"></i>{ item.name }</h3>
+                        <Link to={ item.id.toString() }>
+                            <i className="fa-regular fa-square-caret-right"></i>
+                        </Link>
+                    </div>
+                ))
             }
         </div>
     )
