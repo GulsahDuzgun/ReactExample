@@ -1,9 +1,9 @@
 import React from "react";
 
-class SelectedProduct extends React.Component{
+class SelectedProduct extends React.Component {
+    render() {
 
-    render(){
-        return(
+        return (
             <div>
                 {
                     (this.props.products.length == 0) ?

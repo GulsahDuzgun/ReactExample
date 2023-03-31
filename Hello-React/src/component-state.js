@@ -1,23 +1,26 @@
 var root = ReactDOM.createRoot(document.querySelector("#content"))
 
-class User extends React.Component{
-    constructor(props){
+class User extends React.Component {
+    constructor(props) {
         super(props)
-        this.state ={
+        this.state = {
             name:"Rose",
             email:"rose.Info@gmail.com"
         }       
         this.changeEmail = this.changeEmail.bind(this)
     }
-    changeEmail(){
+
+    changeEmail() {
         //this.state.email = "rose.info@hotmail.com"
         this.setState({
             name:"Ash",
             email: "rose.info@hotmail.com"
         })
+
         console.log(this.state.email);
     }
-    render(){
+
+    render() {
         return(
             <div>
                 <h2> {this.state.name }</h2>
@@ -27,5 +30,6 @@ class User extends React.Component{
         )
     }
 }
+
 root.render(<User/>);
 

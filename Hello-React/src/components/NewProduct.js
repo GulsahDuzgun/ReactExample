@@ -1,10 +1,13 @@
 import React from "react";
-class NewProduct extends React.Component{
-        constructor(props){
+
+class NewProduct extends React.Component {
+        
+        constructor(props) {
                 super(props)
                 this.addProduct = this.addProduct.bind(this)
         }
-        addProduct(event){
+
+        addProduct(event) {
                 event.preventDefault()
                 const name = event.target.elements.pName.value;
                 const price = event.target.elements.pPrice.value;
@@ -14,12 +17,14 @@ class NewProduct extends React.Component{
                         price:price,
                         image:image
                 }
+
                 this.props.addProduct(item);
                 event.target.elements.pName.value = "";
                 event.target.elements.pPrice.value = ""; 
                 event.target.elements.pImage.value = "";
         }
-        render(){
+
+        render() {
                 return(
                   <form onSubmit = { this.addProduct } className="card card-body">
                         <div className="mb-3 ">
@@ -39,4 +44,5 @@ class NewProduct extends React.Component{
                 )
         }
 }
+
 export default NewProduct;

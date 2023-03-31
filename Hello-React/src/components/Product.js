@@ -1,6 +1,7 @@
 import React from "react"
-class Product extends React.Component{
-    render(){
+
+class Product extends React.Component {
+    render() {
         return(
             <div className="card mb-3">
                 <div className="row g-0">
@@ -19,4 +20,5 @@ class Product extends React.Component{
         )            
     }
 }
+
 export default Product;

@@ -4,10 +4,10 @@ import NewProduct from './NewProduct';
 import ProductList from './ProductList';
 import SelectedProduct from "./SelectedProduct";
 
-class App extends React.Component{
-    constructor(props){
+class App extends React.Component {
+    constructor(props) {
             super(props)
-            this.state= {
+            this.state = {
                 products : [
                         {
                                 name: "Iphone 15",
@@ -82,7 +82,7 @@ class App extends React.Component{
                     return item;//map ile her dizi elemanı döndürülerek return ile dizi elemanının yeni değeri return edilir
                 })
 
-                return{secilenUrun:arr}
+                return {secilenUrun:arr}
             }
 
             let tempItem = {
@@ -112,7 +112,7 @@ class App extends React.Component{
        })
     }
 
-    render(){
+    render() {
         return(
             <div className="container mt-3">
                 <Header length= {this.state.secilenUrun.length}/>

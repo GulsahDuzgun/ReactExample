@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom/client'
 
 var root = ReactDOM.createRoot(document.querySelector("#content"));
 
-function Header(props){
+function Header(props) {
     return (<h1 className="text-center h3">{ props.title}</h1>);
 }
 
-function ShowMessage(props){
+function ShowMessage(props) {
     return(
         <p className="m-2 h6 ">{ props.message}</p>
     );
 }
 
-function TodoList(props){
+function TodoList(props) {
     return(
         <div>
             <ul className ="list-group">{
@@ -40,26 +40,28 @@ function TodoList(props){
     )        
 }
 
-const TodoItem = (props)=>{
+const TodoItem = (props) => {
     return(
         <li className="list-group-item" >{props.item }
-        <button className ="btn btn-sn btn-danger float-end" onClick = {()=> props.delete(props.item)}>X</button>
+            <button className ="btn btn-sn btn-danger float-end" onClick = {()=> props.delete(props.item)}>X</button>
         </li>
     );    
 }
 
 class NewItem extends React.Component{
-    constructor(props){
+    constructor(props) {
         super(props)
         this.onFormSubmit = this.onFormSubmit.bind(this)
-        this.state={
+        this.state= {
             errorMessage: ""
         }
     }
-    onFormSubmit(e){
+    
+    onFormSubmit(e) {
         e.preventDefault();
         const item = e.target.elements.txtItem.value.trim();
-        if(item){
+       
+        if(item) {
            const err = this.props.addItem(item)
            this.setState({
               errorMessage:err
@@ -68,10 +70,12 @@ class NewItem extends React.Component{
     
         e.target.elements.txtItem.value = ""
     }
-    componentDidUpdate(){
+
+    componentDidUpdate() {
         console.log("Component güncellendi New Item")
     }
-    render(){
+
+    render() {
         return(
             <div>
             {this.state.errorMessage && <p>{this.state.errorMessage}</p>}
@@ -87,7 +91,7 @@ class NewItem extends React.Component{
 }
 
 class TodoApp extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             task:["Gorev1","Gorev2","Gorev3"]
@@ -96,27 +100,32 @@ class TodoApp extends React.Component {
         this.addItem = this.addItem.bind(this)
         this.deleteItem = this.deleteItem.bind(this)
     }
-    clearItems(){
+
+    clearItems() {
         this.setState({
             task : []
         })
     }
-    addItem(value){
-        if(this.state.task.indexOf(value)>-1){
+
+    addItem(value) {
+        if(this.state.task.indexOf(value)>-1) {
             return "Aynı görev bilgisi girilemez"
         }
-        this.setState((prevState)=>{
+
+        this.setState((prevState) => {
             return {task:prevState.task.concat(value)}
         })
     }
-    deleteItem(item){
-        this.setState((prevState)=>{
+
+    deleteItem(item) {
+        this.setState((prevState) => {
             let resultArray = prevState.task.filter((element)=> element != item )
             return { task : resultArray}
         })
         
     }
-    componentDidMount(){
+
+    componentDidMount(){ 
         const jsonTask = JSON.parse(localStorage.getItem("items"))
         console.log(typeof jsonTask)
         if(jsonTask){
@@ -125,19 +134,22 @@ class TodoApp extends React.Component {
             })
         }
     }
-    componentDidUpdate(prevProps, prevState){
+
+    componentDidUpdate(prevProps, prevState) {
         if(prevState.task.length !== this.state.task.length){
             const taskArr = JSON.stringify(this.state.task)
             //console.log(taskArr, typeof taskArr)
             localStorage.setItem("items",taskArr)
         }
     }
-    render(){
+
+    render() {
         const data = {
          header: "Todo Application",
          description: "Bekleyen Görevler",
 
         }
+        
         return(
             <div className = "container my-3">
                 <div className="card">
