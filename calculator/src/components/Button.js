@@ -12,11 +12,11 @@ function Button ({clickHandler, name, orange, wide}) {
     classStyle += " wide"
   }
 
-    return (
-      <div className={classStyle} >
-        <button onClick={()=>clickHandler(name)}>{name}</button>
-      </div>
-    );
+  return (
+    <div className={ classStyle } >
+      <button onClick={ ()=>clickHandler(name) }>{ name }</button>
+    </div>
+  );
 }
 
 export default Button;
