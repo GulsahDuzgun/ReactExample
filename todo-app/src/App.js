@@ -9,12 +9,12 @@ function App() {
     <div className="App">
       <div className="container offset-3 col-6  my-5 todo">
         <PageTitle>THINGS TO DO</PageTitle>
-        <div className={styles.app__wrapper}>
+        <div className={ styles.app__wrapper }>
           <AppHeader/>
           <AppContent/>
         </div>
       </div>
-      <Toaster toastOptions={{style:{fontSize:'1.4rem'}}}></Toaster>
+      <Toaster toastOptions={{ style:{fontSize:'1.4rem'} }}></Toaster>
     </div>
   );
 }

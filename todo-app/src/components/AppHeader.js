@@ -11,18 +11,18 @@ function AppHeader() {
     const dispatch = useDispatch()
 
     const updateFilter = (e) => {
-        dispatch(updateFilterStatus(e.target.value))
+        dispatch( updateFilterStatus(e.target.value) )
     }
 
     return (
-        <div className={styles.appHeader}>
-            <Button variant="primary" onClick={() => setModalOpen(true)} >Add Task</Button>
-            <SelectButton id="status" value={filterStatus} onChange={updateFilter}>
+        <div className={ styles.appHeader }>
+            <Button variant="primary" onClick={ () => setModalOpen(true) }>Add Task</Button>
+            <SelectButton id="status" value={ filterStatus } onChange={ updateFilter }>
                 <option value="all">All</option>
                 <option value="incomplete">Incomplete</option>
                 <option value="Complete"> Complete</option>
             </SelectButton>
-            <TodoModal modalOpen={modalOpen} setModalOpen={setModalOpen} type="add" />
+            <TodoModal modalOpen={ modalOpen } setModalOpen={ setModalOpen } type="add" />
         </div>
     )
 }

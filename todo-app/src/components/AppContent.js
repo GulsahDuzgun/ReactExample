@@ -14,15 +14,15 @@ function AppContent() {
     if(filterStatus === "all") {
       return true;
     }
-    return item.status === filterStatus
 
+    return item.status === filterStatus
   })
 
   return (
-    <div className={styles.content__wrapper}>
+    <div className={ styles.content__wrapper }>
       {
         filterArr && filterArr.length > 0 ?
-        filterArr.map((item) => <TodoItem todo={item} key={item.id}/>)
+        filterArr.map((item) => <TodoItem todo={ item } key={ item.id }/>)
         :
         <h3>Not found 404 </h3>
       }

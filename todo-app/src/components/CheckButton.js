@@ -24,20 +24,20 @@ function CheckButton({ checked, handleCheck }) {
 
   return (
     <motion.div
-      animate={checked ? 'checked' : 'unchecked'}
-      className={styles.svgBox}
-      variants={boxVariants}
-      onClick={() => handleCheck()}
+      animate={ checked ? 'checked' : 'unchecked' }
+      className={ styles.svgBox }
+      variants={ boxVariants }
+      onClick={ () => handleCheck() }
     >
       <motion.svg
-        className={styles.svg}
+        className={ styles.svg }
         viewBox="0 0 53 38"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <motion.path
-          variants={checkVariants}
-          animate={checked ? 'checked' : 'unchecked'}
+          variants={ checkVariants }
+          animate={ checked ? 'checked' : 'unchecked' }
           style={{ pathLength, opacity }}
           fill="none"
           strokeMiterlimit="10"

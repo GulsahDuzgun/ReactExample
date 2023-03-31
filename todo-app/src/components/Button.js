@@ -10,19 +10,18 @@ const buttonTypes = {
 const Button = ({children, variant = 'primary', type, ...rest}) => {
   return (
     <button 
-    type= {type === 'submit' ? 'submit' :'button'}
-     className= {getClasses([styles.button, styles[`button--${buttonTypes[variant]}`]])} {...rest}>{children}</button>
+    type={ type === 'submit' ? 'submit' :'button' }
+    className={ getClasses([styles.button, styles[`button--${buttonTypes[variant]}`]]) } { ...rest }>{ children }</button>
   )
 }
 
-function SelectButton ({children, ...rest}) {
+function SelectButton ({ children, ...rest }) {
   return(
-    <select className={getClasses([styles.button, styles.button__select])} {...rest}>
-      {children}
+    <select className={ getClasses([styles.button, styles.button__select]) } { ...rest }>
+      { children }
     </select>
   )
 }
 
 export {SelectButton}
-
 export default Button
