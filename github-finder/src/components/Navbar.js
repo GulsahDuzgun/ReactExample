@@ -14,11 +14,12 @@ const Navbar = (props) => {
     )
 }
 
-Navbar.defaultProps={
+Navbar.defaultProps = {
     icon:"bi bi-github",
     title:"Github Finder"
 }
-Navbar.propTypes={
+
+Navbar.propTypes = {
     icon: PropTypes.string.isRequired,
     title:PropTypes.string.isRequired
 }

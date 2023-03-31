@@ -1,7 +1,9 @@
 import React from "react";
-const User=({userItem})=>{
-    const {avatar_url,login,html_url} = userItem
-    return(
+
+const User = ({ userItem }) => {
+    const { avatar_url, login, html_url } = userItem
+    
+    return (
         <div className="card mb-3 col-8 offset-2">
             <div className="row g-0">
                 <div className="col-md-3">
@@ -15,7 +17,7 @@ const User=({userItem})=>{
                 </div>
             </div>
         </div>
-    )     
-    
+    )       
 }
+
 export default User;

@@ -1,29 +1,28 @@
 import React, { useContext, useState } from 'react'
 import { AlertContext } from '../context/alertContext'
-import {UsersContext} from '../context/usersContext'
+import { UsersContext } from '../context/usersContext'
 
 const Search = () => {
-  const {displayAlert} = useContext(AlertContext)
-   const [keyword, setKeyword] = useState("")
-   const {searchResult,userDelete} = useContext(UsersContext)
+  const { displayAlert } = useContext(AlertContext)
+  const [keyword, setKeyword] = useState("")
+  const {searchResult, userDelete} = useContext(UsersContext)
     //arrow fonks. ile bir kapsam tanımlanmadığından dolayı oluşan this objesine bind edilir
-  const onChange=(event)=>{
+  const onChange = (event) => {
     setKeyword(event.target.value)
   }
-  const onSubmit = (e)=>{
+  const onSubmit = (e) => {
     //Submit ile yenilenen sayfada veri kaybını engellemek için e.preventDefault kullanılır
-
     //Submit edilen sayfa yenilenir ve server tarafına gidip gelerek tekrardan ekranda görünür
     e.preventDefault();
-
    // console.log(this.state.keyword) onChange ile her değişiklik keyworde aktarılır click edildiğinde keyword zaten günceldir.
-   if(keyword === ''){
-   displayAlert("Arama alanı boş!!","danger")
-   }else{
+   if(keyword === '') { 
+    displayAlert("Arama alanı boş!!","danger")
+   }else {
     searchResult(keyword);
     setKeyword('');
    }
   }
+
   return (
     <div className='my-3 col-md-3 me-4'>
       <form onSubmit={onSubmit}>
@@ -35,7 +34,6 @@ const Search = () => {
        </form>
     </div>
   ) 
-  
 }
 
 export default Search
