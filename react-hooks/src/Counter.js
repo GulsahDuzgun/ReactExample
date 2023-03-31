@@ -30,31 +30,37 @@ function Counter(props) {
   const [counter,setCounter] = useState(0)
   const [text,setText] = useState(props.text)
   const [counter1,setCounter1] = useState(props.val)
-  useEffect(()=>{
+
+  useEffect( () => {
     console.log("update ve mount olaylarından biri useEffect ile oldu")
   })
-  useEffect(()=>{
+
+  useEffect( () => {
     console.log("Sadece Mount işlemi çalıştı")
-  },[])
-  useEffect(()=>{
+  }, [])
+
+  useEffect( () => {
     console.log("Update işlemi çalıştı") 
-  },[counter])
+  }, [counter])
+
   return (
     <div>
       <p>Bu butona {counter} kez basıldı</p>
-      <button className='btn' onClick={()=>setCounter(counter+1)}>+1</button><br></br>
+      <button className='btn' onClick={ ()=>setCounter(counter+1) }>+1</button><br></br>
       <hr></hr>
       <input type="text" value={text} onChange={(e)=>setText(e.target.value)} />
       <p>{text}</p>
       <hr></hr>
       <p>Propstan gelen veri {counter1}</p>
-      <button className='btn' onClick={()=>setCounter1(counter1+1)}>Veriyi arttır</button>
-      <button className='btn' onClick={()=>{setCounter1(counter1-1)}}>Veriyi azalt</button>
+      <button className='btn' onClick={ ()=>setCounter1(counter1+1) }>Veriyi arttır</button>
+      <button className='btn' onClick={ ()=>{setCounter1(counter1-1)} }>Veriyi azalt</button>
     </div>
   );
 }
-Counter.defaultProps={
+
+Counter.defaultProps= {
     text:"",
     val:1
 }
+
 export default Counter;

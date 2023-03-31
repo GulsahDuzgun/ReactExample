@@ -3,12 +3,13 @@ import {NotesContext} from "../contexts/notesContext"
 
 const Note = ({item}) => {
     const {dispatch} = useContext(NotesContext)
-    const deleteNote=(id)=>{
+    const deleteNote = (id) => {
         dispatch({
             type:"REMOVE_NOTE",
             id:id
         })
     }
+
     return(
         <li key={item.id} onClick={()=>deleteNote(item.id)}>
             <h1 className="title">{item.title}</h1>
@@ -17,4 +18,5 @@ const Note = ({item}) => {
     )
 
 }
+
 export default Note;

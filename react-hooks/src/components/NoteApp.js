@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import NoteList from './NoteList';
 import NotesContextProvider from "../contexts/notesContext";
 
-const NoteApp = ()=>{
+const NoteApp = () => {
     return(
         <NotesContextProvider>
             <div className="container">
@@ -12,7 +12,7 @@ const NoteApp = ()=>{
                 <AddNote/>
             </div>
         </NotesContextProvider>
-        
     )
 }
+
 export default NoteApp;
