@@ -20,7 +20,7 @@ class Container extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.searchTerm !== this.props.searchTerm) {
-          this.runSearch(this.props.searchTerm);
+             this.runSearch(this.props.searchTerm);
         }
     }
     //fetch data

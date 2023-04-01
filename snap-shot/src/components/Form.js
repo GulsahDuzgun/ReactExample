@@ -19,7 +19,7 @@ class Form extends React.Component {
         let history = this.props.history;
 
         return (
-            <form className='search-form' onSubmit={ e => this.props.handleSubmit(e, history, searchInput)}>
+            <form className='search-form' onSubmit={ e => {this.props.handleSubmit(e, history, searchInput)}}>
                 <input type="text" name='search' placeholder='Search...' onChange={(e) => this.setState({searchEntry:e.target.value})} />
                 <button type='submit' className='search-button'>
                     <svg height="32" width="32">
