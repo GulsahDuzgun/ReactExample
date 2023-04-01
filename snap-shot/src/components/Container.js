@@ -4,12 +4,13 @@ import { apiKey } from '../api/config.js'
 import Gallery from './Gallery';
 import Loader from './Loader';
 
-class Container extends React {
+class Container extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             images: [],
-            loading: true
+            loading: true,
+            searcText:props.searcText
         }
     }
 
@@ -18,8 +19,8 @@ class Container extends React {
     }
 
     componentDidUpdate(prevProps) {
-        if(prevProps.searchTerm !== this.props.searchTerm) {
-            this.runSearch(this.props.searchTerm)
+        if (prevProps.searchTerm !== this.props.searchTerm) {
+          this.runSearch(this.props.searchTerm);
         }
     }
     //fetch data
@@ -43,7 +44,7 @@ class Container extends React {
                     (this.state.loading)?
                     <Loader/>
                     :
-                    <Gallery/>
+                    <Gallery data={this.state.images}/>
                 }
             </div>
         )
