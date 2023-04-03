@@ -5,6 +5,7 @@ import { useState } from 'react';
 import apiKey from './api/config'
 import ShowData from './components/ShowData';
 import NoImage from './components/NoImage'
+import Categories from './components/Categories';
 
 function App() {
     let [searchText, setSearchText] = useState("")
@@ -23,7 +24,7 @@ function App() {
         console.log(val)
       setSearchText(searchText = val)
       if(typeof searchText === "string" ? searchText.trim() : "") {
-        console.log(val)
+        //console.log(val)
         callData(searchText)
       }else {
         setImages([])
@@ -34,6 +35,7 @@ function App() {
     return (
         <div className="App container">
             <Introduction handleSearch={handleSetText} />
+            <Categories handleSearch={handleSetText} />
             <div className='photo-container'>
                 {
                 loading && images.length === 0 ? 
