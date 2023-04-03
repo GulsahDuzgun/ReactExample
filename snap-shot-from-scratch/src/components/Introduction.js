@@ -1,11 +1,11 @@
 import Header from "./Header";
 import InputSection from "./InputSection"
 
-const Introduction = () => {
+const Introduction = ({handleSearch}) => {
     return (
         <>
             <Header/>
-            <InputSection/>
+            <InputSection handleText={handleSearch}/>
         </>
     )
 }
