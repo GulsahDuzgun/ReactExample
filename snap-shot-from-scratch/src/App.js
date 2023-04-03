@@ -7,25 +7,27 @@ import ShowData from './components/ShowData';
 import NoImage from './components/NoImage'
 
 function App() {
-    let [searchText, setSearchText] = useState()
+    let [searchText, setSearchText] = useState("")
     const [images, setImages] = useState([])
-    let loading = true
+    const [loading, setLoading] = useState(false)
     
     const callData = (tempVal) => {
         axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tempVal}&per_page=24&format=json&nojsoncallback=1`)
         .then(res => {
             setImages( () => res.data.photos.photo)
-            loading = false
-            console.log( res.data.photos.photo)
+            setLoading(true)
         }).catch((e)=> console.log(e))
     }
 
     const handleSetText = (val) => {
+        console.log(val)
       setSearchText(searchText = val)
-      if(searchText.trim()) {
+      if(typeof searchText === "string" ? searchText.trim() : "") {
+        console.log(val)
         callData(searchText)
       }else {
         setImages([])
+        setLoading(true)
       }
     }
 
@@ -33,7 +35,12 @@ function App() {
         <div className="App container">
             <Introduction handleSearch={handleSetText} />
             <div className='photo-container'>
-                <ShowData images={images} />
+                {
+                loading && images.length === 0 ? 
+                    <NoImage/>
+                     :
+                    <ShowData images={images} />
+                }
             </div>
         </div>
     );

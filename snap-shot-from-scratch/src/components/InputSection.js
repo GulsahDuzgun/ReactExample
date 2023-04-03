@@ -7,7 +7,7 @@ const InputSection = ({handleText}) => {
     }
 
     return (
-        <form className='search-form'>
+        <form className='search-form' onSubmit={ (e) => handleChange(e)}>
             <input type="text" onChange={handleChange}  placeholder="Search.."/>
             <button type='submit' className='search-button'>
                 <svg height="32" width="32">
