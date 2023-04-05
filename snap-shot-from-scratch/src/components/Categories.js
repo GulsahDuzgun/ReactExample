@@ -1,17 +1,14 @@
 import React from 'react'
-import Birds from './Bird'
-import Mountain from './Mountain'
-import Food from './Food'
-import Beach from './Beach'
+import { Link } from 'react-router-dom'
 
-const Categories = ({handleSearch}) => {
+const Categories = () => {
   return (
-    <div>
-        <Birds handleSearch={handleSearch}/>
-        <Mountain handleSearch={handleSearch}/>
-        <Food handleSearch={handleSearch}></Food>
-        <Beach handleSearch={handleSearch}/>
-    </div>
+      <>
+      <button><Link to="search/birds">Birds</Link></button>
+      <button><Link to="search/mountain">Mountain</Link></button>
+      <button><Link to="search/beach">Beach</Link></button>
+      <button><Link to="search/food">Food</Link></button>
+     </> 
   )
 }
 

@@ -1,12 +1,18 @@
+import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import InputSection from "./InputSection"
+import Categories from "./Categories";
 
-const Introduction = ({handleSearch}) => {
+const Introduction = () => {
     return (
-        <>
+        <div className="container">
             <Header/>
-            <InputSection handleText={handleSearch}/>
-        </>
+            <InputSection/>
+            <Categories/>
+            <div className="'photo-container'">
+                <Outlet/>
+            </div>
+        </div>
     )
 }
 
