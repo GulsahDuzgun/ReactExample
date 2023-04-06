@@ -2,6 +2,8 @@ import './App.css';
 import React, {Component} from 'react';
 import ShelfContainer from '../components/ShelfContainer'
 import FloatChart from '../components/FloatCart';
+import { Provider } from 'react-redux';
+import store from '../store'
 
 class App extends Component {
   constructor(props) {
@@ -31,13 +33,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <ShelfContainer openFloatCart={this.openFloatCart}/>
-        <FloatChart 
-          closeFloatChart={this.closeFloatChart}
-          isOpen={this.state.isFloatCartOpen}
-        />
-      </div>
+      <Provider store={store}>
+        <div className="App">
+          <ShelfContainer openFloatCart={this.openFloatCart}/>
+          <FloatChart 
+            closeFloatChart={this.closeFloatChart}
+            isOpen={this.state.isFloatCartOpen}
+          />
+        </div>
+      </Provider>
     );
   }
 }

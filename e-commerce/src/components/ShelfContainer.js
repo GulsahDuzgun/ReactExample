@@ -1,32 +1,14 @@
 import React, {Component} from "react";
 import Product from "./Product";
+import PropTypes from "prop-types";
+import { connect } from "react-redux"
+import  { fetchProducts } from "../actions/productActions";
 
 class ShelfContainer extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            products: []
-        }
-        this.addToChart = this.addToChart.bind(this)
-    }
-
-    componentDidMount() {
-        this.fetchProducts()
-        .then(json => {
-            const products = json.products;
-            this.setState({products})
-        }).catch( err => {
-            console.log(err);
-            throw new Error ('Não foi possível obter os prodtos. Tente novamente mais tarde.');
-        });
-    }
-
-    async fetchProducts(callback) {
-        const res = await fetch('//localhost:8080/api/products');
-        const json = await res.json();
-        
-        return json;
-    }
+  
+   componentWillMount() {
+    this.props.fetchProducts();
+   }
 
     addToChart (sku) {
         this.props.openFloatChart();
@@ -34,7 +16,7 @@ class ShelfContainer extends Component {
     }
 
     render() {
-        const products = this.state.products.map(p => {
+        const products = this.props.products.map(p => {
             return (
                 <Product product={p} addToChart={this.addToChart} key={p.sku} />
             );
@@ -48,4 +30,13 @@ class ShelfContainer extends Component {
     }
 }
 
-export default ShelfContainer;
+ShelfContainer.propTypes = {
+    fetchProducts: PropTypes.func.isRequired,
+    products: PropTypes.array.isRequired
+}
+
+const mapStateToProps = state => ({
+    products:state.products.items
+})
+
+export default connect (mapStateToProps, { fetchProducts })(ShelfContainer);
