@@ -16,12 +16,14 @@ class App extends Component {
   }
 
   openFloatCart() {
+    document.body.style.overflow = "hidden"
     this.setState({
       isFloatCartOpen: true
     })
   }
 
   closeFloatChart() {
+    document.body.style.overflow = "initial"
     this.setState({
       isFloatCartOpen: false
     })
