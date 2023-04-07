@@ -1,53 +1,94 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loadCart, removeProduct, addProduct } from '../actions/floatCardActions';
+import { loadCart, removeProduct } from '../actions/floatCardActions';
 import CartProduct from './CardProduct';
+import util from "../util";
 
 class FloatCart extends Component {
   constructor(props){
     super(props);
     //console.log(props)
     this.state = {
-      isOpen: false
+      isOpen: false,
+      cartTotals:{}
     }
 
     this.openFloatCart = this.openFloatCart.bind(this);
+    this.closeFloatCart = this.closeFloatCart.bind(this);
+    
 
   }
 
   componentWillMount() {
     this.props.loadCart();
+    this.updateCart();
+  }
+
+  updateCart() {
+    let productQuantity = this.props.cartProducts.reduce((sum, p) => {
+      sum += p.quantity; 
+      return sum;
+    },0);
+
+    let totalPrice = this.props.cartProducts.reduce((sum, p) => {
+      sum += p.price * p.quantity;
+      return sum;
+    },0);
+
+    let installments = this.props.cartProducts.reduce((greater, p) => {
+      greater = p.installments > greater ? p.installments : greater
+      return greater;
+    },0);
+
+    let cartTotals = {
+      productQuantity,
+      installments,
+      totalPrice
+    }
+
+    this.setState({cartTotals})
+    console.log('quant:', productQuantity);
+  }
+
+  addProduct(product) {
+    const cartProducts = this.props.cardProducts;
+    let productAlreadyInCart = false;
+
+    for(var i = 0; i < cartProducts.length; i++) {
+      if(cartProducts[i].sku === product.sku) {
+        cartProducts[i].quantity += product.quantity;
+        productAlreadyInCart = true;
+      }
+    }
+
+    if(!productAlreadyInCart) {
+      this.props.cartProducts.push(product);
+    }
+
+    this.updateCart();
+    this.openFloatCart();
+  }
+
+  removeProduct(product) {
+    const cartProducts = this.props.cartProducts;
+    const index = cartProducts.findIndex(p => p.sku === product.sku);
+    if(index >= 0) {
+      cartProducts.splice(index, 1);
+      this.updateCart();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     let cartProducts = this.props.cartProducts;
-
-    if (nextProps.newProduct) {
-      console.log("newProduct");
-      let newProduct = nextProps.newProduct;
-      let productAlreadyInCart = false;
-
-      // Procura se o produto já tem no carrinho e soma quantidade
-      for (var i = 0; i < cartProducts.length; i++) {
-        if (cartProducts[i].sku === newProduct.sku) {
-          cartProducts[i].quantity += newProduct.quantity;
-          productAlreadyInCart = true;
-        }
-      }
-
-      if (!productAlreadyInCart) {
-        cartProducts.push(newProduct);
-      }
-
-      this.openFloatCart();
+    
+    if(nextProps.newProduct !== this.props.newProduct) {
+      this.addProduct(nextProps.newProduct);
     }
 
-    if(nextProps.productToRemove){
-      let productToRemove = nextProps.productToRemove;
-      console.log('productToRemove: ', productToRemove);
+    if(nextProps.productToRemove !== this.props.productToRemove) {
+      this.removeProduct(nextProps.productToRemove);
     }
-
   }
 
   openFloatCart() {
@@ -61,6 +102,8 @@ class FloatCart extends Component {
   }
 
   render() {
+    const cartTotals = this.state.cartTotals;
+
     const cartProducts = this.props.cartProducts.map(p => {
       return <CartProduct
         product={p}
@@ -75,7 +118,6 @@ class FloatCart extends Component {
       classes.push("float-cart--open");
     }
 
-
     return (
       <div className={classes.join(" ")}>
         <div onClick={() => this.closeFloatCart()} className="float-cart__close-btn">
@@ -84,7 +126,7 @@ class FloatCart extends Component {
         <div className="float-cart__content">
           <div className="float-cart__header">
             <span className="bag">
-              <span className="bag__quantity">3</span>
+              <span className="bag__quantity">{cartTotals.productQuantity}</span>
             </span>
             <span className="header-title">SACOLA</span>
           </div>
@@ -92,9 +134,9 @@ class FloatCart extends Component {
           <div className="float-cart__footer">
             <div className="sub">SUBTOTAL</div>
             <div className="sub-price">
-              <p className="sub-price__val">R$ 379,70</p>
+              <p className="sub-price__val">R$ {cartTotals.totalPrice}</p>
               <small className="sub-price__installment">
-                OU EM ATÉ 10 x R$ 37,97
+                OU EM ATÉ {cartTotals.installments} x R$ {util(cartTotals.totalPrice/cartTotals.installments)}
               </small>
             </div>
             <div className="buy-btn">Finalizar Pedido</div>
