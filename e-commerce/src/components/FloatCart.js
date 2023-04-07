@@ -3,20 +3,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadCart, removeProduct } from '../actions/floatCardActions';
 import CartProduct from './CardProduct';
-import util from "../util";
+import formatPrice from '../util';
 
 class FloatCart extends Component {
-  constructor(props){
-    super(props);
-    //console.log(props)
+  constructor(){
+    super();
+
     this.state = {
       isOpen: false,
-      cartTotals:{}
+      cartTotals: {}
     }
 
     this.openFloatCart = this.openFloatCart.bind(this);
     this.closeFloatCart = this.closeFloatCart.bind(this);
-    
+
+    this.addProduct = this.addProduct.bind(this);
+    this.removeProduct = this.removeProduct.bind(this);
+
+    this.updateCart = this.updateCart.bind(this);
 
   }
 
@@ -25,21 +29,36 @@ class FloatCart extends Component {
     this.updateCart();
   }
 
-  updateCart() {
-    let productQuantity = this.props.cartProducts.reduce((sum, p) => {
-      sum += p.quantity; 
+  componentWillReceiveProps(nextProps) {
+    let cartProducts = this.props.cartProducts;
+
+    if (nextProps.newProduct !== this.props.newProduct) {
+      this.addProduct(nextProps.newProduct);
+    }
+
+    if(nextProps.productToRemove !== this.props.productToRemove){
+      this.removeProduct(nextProps.productToRemove);
+    }
+
+  }
+
+  updateCart(){
+    let productQuantity = this.props.cartProducts.reduce( (sum, p) => {
+      sum += p.quantity;
       return sum;
-    },0);
+    }, 0);
 
     let totalPrice = this.props.cartProducts.reduce((sum, p) => {
       sum += p.price * p.quantity;
       return sum;
-    },0);
+    }, 0);
 
     let installments = this.props.cartProducts.reduce((greater, p) => {
-      greater = p.installments > greater ? p.installments : greater
+      greater = p.installments > greater ? p.installments : greater;
       return greater;
-    },0);
+    }, 0);
+    
+    
 
     let cartTotals = {
       productQuantity,
@@ -47,22 +66,24 @@ class FloatCart extends Component {
       totalPrice
     }
 
-    this.setState({cartTotals})
+    this.setState({cartTotals});
+
+
     console.log('quant:', productQuantity);
   }
 
-  addProduct(product) {
-    const cartProducts = this.props.cardProducts;
+  addProduct(product){
+    const cartProducts = this.props.cartProducts;
     let productAlreadyInCart = false;
 
-    for(var i = 0; i < cartProducts.length; i++) {
-      if(cartProducts[i].sku === product.sku) {
+    for (var i = 0; i < cartProducts.length; i++) {
+      if (cartProducts[i].sku === product.sku) {
         cartProducts[i].quantity += product.quantity;
         productAlreadyInCart = true;
       }
     }
 
-    if(!productAlreadyInCart) {
+    if (!productAlreadyInCart) {
       this.props.cartProducts.push(product);
     }
 
@@ -70,39 +91,30 @@ class FloatCart extends Component {
     this.openFloatCart();
   }
 
-  removeProduct(product) {
+  removeProduct(product){
     const cartProducts = this.props.cartProducts;
-    const index = cartProducts.findIndex(p => p.sku === product.sku);
-    if(index >= 0) {
+
+    const index = cartProducts.findIndex( p => p.sku === product.sku );
+    if (index >= 0) {
       cartProducts.splice(index, 1);
       this.updateCart();
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    let cartProducts = this.props.cartProducts;
-    
-    if(nextProps.newProduct !== this.props.newProduct) {
-      this.addProduct(nextProps.newProduct);
-    }
-
-    if(nextProps.productToRemove !== this.props.productToRemove) {
-      this.removeProduct(nextProps.productToRemove);
-    }
-  }
-
   openFloatCart() {
-    document.body.style.overflow = "hidden";
+    // document.body.style.overflow = "hidden";
     this.setState({ isOpen: true });
   }
 
   closeFloatCart() {
-    document.body.style.overflow = "initial";
+    // document.body.style.overflow = "initial";
     this.setState({ isOpen: false });
   }
 
   render() {
     const cartTotals = this.state.cartTotals;
+
+    console.log(cartTotals.installments);
 
     const cartProducts = this.props.cartProducts.map(p => {
       return <CartProduct
@@ -111,6 +123,7 @@ class FloatCart extends Component {
         key={p.sku}
       />;
     });
+    
 
     let classes = ["float-cart"];
 
@@ -118,36 +131,56 @@ class FloatCart extends Component {
       classes.push("float-cart--open");
     }
 
-    return (
-      <div className={classes.join(" ")}>
-        <div onClick={() => this.closeFloatCart()} className="float-cart__close-btn">
-          X
-        </div>
+
+    return <div className={classes.join(" ")}>
+        {this.state.isOpen &&
+          <div onClick={() => this.closeFloatCart()} className="float-cart__close-btn">X</div>
+        }
+        
+        {!this.state.isOpen &&
+          <span onClick={() => this.openFloatCart()} className="bag bag--float-cart-closed">
+            <span className="bag__quantity">
+              {cartTotals.productQuantity}
+            </span>
+          </span>
+        }
         <div className="float-cart__content">
           <div className="float-cart__header">
             <span className="bag">
-              <span className="bag__quantity">{cartTotals.productQuantity}</span>
+              <span className="bag__quantity">
+                {cartTotals.productQuantity}
+              </span>
             </span>
             <span className="header-title">SACOLA</span>
           </div>
-          <div className="float-cart__shelf-container">{cartProducts}</div>
+
+          <div className="float-cart__shelf-container">
+            {cartProducts}
+            {!cartProducts.length &&
+              <p className="shelf-empty">Carrinho vazio <br/>:(</p>
+            }
+          </div>
+
           <div className="float-cart__footer">
             <div className="sub">SUBTOTAL</div>
             <div className="sub-price">
-              <p className="sub-price__val">R$ {cartTotals.totalPrice}</p>
+              <p className="sub-price__val">
+                R$ {formatPrice(cartTotals.totalPrice)}
+              </p>
               <small className="sub-price__installment">
-                OU EM ATÉ {cartTotals.installments} x R$ {util(cartTotals.totalPrice/cartTotals.installments)}
+                {!!cartTotals.installments &&
+                  <span>OU EM ATÉ {cartTotals.installments} x R$ {formatPrice(cartTotals.totalPrice / cartTotals.installments)}</span>
+                }
               </small>
             </div>
             <div className="buy-btn">Finalizar Pedido</div>
           </div>
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 
-FloatCart.prototypes = {
+FloatCart.propTypes = {
   loadCart: PropTypes.func.isRequired,
   cartProducts: PropTypes.array.isRequired,
   newProduct: PropTypes.object,
@@ -156,10 +189,10 @@ FloatCart.prototypes = {
 };
 
 const mapStateToProps = state => ({
-  cartProducts: state.cardProducts.items,
-  newProduct: state.cardProducts.item,
-  productToRemove: state.cardProducts.itemToRemove,
+  cartProducts: state.cartProducts.items,
+  newProduct: state.cartProducts.item,
+  productToRemove: state.cartProducts.itemToRemove
 });
 
-export default connect(mapStateToProps, {  loadCart, removeProduct })(FloatCart);
+export default connect(mapStateToProps, { loadCart, removeProduct })(FloatCart);
 

@@ -4,5 +4,5 @@ import cardReducer from "./cardReducer"
 
 export default combineReducers({
     products:productReducer,
-    cardProducts:cardReducer
+    cartProducts:cardReducer
 });
