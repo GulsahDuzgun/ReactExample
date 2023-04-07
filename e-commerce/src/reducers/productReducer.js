@@ -8,7 +8,6 @@ export default function (state = initialState, action) {
     
     switch(action.type) {
         case FETCH_PRODUCTS:
-            console.log(action.payload)
             return {
                 ...state,
                 items: action.payload

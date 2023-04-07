@@ -3,6 +3,7 @@ import formatPrice from '../util'
 
 const Product = (props) => {
     const product = props.product;
+    product.quantity = 1;
     let productInstallment;
     let formattedPrice = formatPrice(product.price)
 
@@ -33,7 +34,7 @@ const Product = (props) => {
                 </div>
                 {productInstallment}
             </div>
-            <div onClick={() => props.addToChart(product.sku)} className="shelf-item.__buy-btn">Adicionar ao carrinho</div>
+            <div onClick={() => props.addProduct(product)} className="shelf-item.__buy-btn">Adicionar ao carrinho</div>
         </div>
     )
 }
