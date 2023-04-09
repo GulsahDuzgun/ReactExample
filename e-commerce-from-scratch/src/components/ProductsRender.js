@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import  { Load_actions } from '../actions/productsActions'
-import { Load_data } from '../reducers/productsReducer';
+import { Load_data, Loading } from '../reducers/productsReducer';
 import { connect, useDispatch } from 'react-redux';
 import {FetchProducts} from './fetchData';
 
 const ProductsRender = (props) => {
     const dispatch = useDispatch()
     const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(false)
+
 
     useEffect(()=>{
         const loadData = async () =>{
             const data = await FetchProducts()
             setProducts(data)
+        dispatch(Load_data({items:data}))
+
         }
         loadData()
-        dispatch(Load_data({items:products}))
 
-    })
 
-    const handleOnClick = ( ) => {
-        dispatch(Load_data({items:[3,4]}))
-    }
+    },[])
 
     return (
-        <div onClick={handleOnClick}>ProductsRender</div>
+        <div></div>
     )
 }
 
