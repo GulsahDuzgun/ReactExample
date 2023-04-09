@@ -6,6 +6,9 @@ const productsReducer = {
     Load_data:( state, payload) => {
        // console.log(payload)
         state.items = payload.payload.items
+    },
+    Loading:(state, payload)=>{
+        state.isLoading = payload
     }
 }
 
@@ -15,5 +18,5 @@ const productsSlice = createSlice({
     reducers:productsReducer
 });
 
-export const {Load_data} = productsSlice.actions;
+export const {Load_data, Loading} = productsSlice.actions;
 export default productsSlice.reducer;
