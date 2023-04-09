@@ -1,26 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import  { Load_actions } from '../actions/productsActions'
+import { Load_data } from '../reducers/productsReducer';
 import { connect, useDispatch } from 'react-redux';
 
 const ProductsRender = (props) => {
-    const dispatch = useDispatch()
-    //const productList = fetch("http://localhost:8080/").then(data=> data.json())
+    const productList = fetch("http://localhost:8080/").then(data=> data.json())
+    const dispatch=useDispatch()
+    const [products, setProducts] = useState({})
 
-    console.log(props.state)
-
-    useEffect(()=>{
-        dispatch(Load_actions([1,2]))
-    })
- 
+    console.log(productList)
+    // useEffect(()=>{
+    //     dispatch(Load_data({items:[3,4]}))
+    // })
+    const handleOnClick = ( ) => {
+        dispatch(Load_data({items:[3,4]}))
+    }
     return (
-        <div>ProductsRender</div>
+        <div onClick={handleOnClick}>ProductsRender</div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
         state : {
-            ...state.productsReducer
+            ...state
         }
     }
 }

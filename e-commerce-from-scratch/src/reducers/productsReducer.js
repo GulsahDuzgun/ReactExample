@@ -1,25 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {}
 
-// const productsReducer = {
-
-//     Load_data:( state, payload) => {
-//         state.items =[...payload]
-//     }
-
-const productsReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case "Load_data":
-            console.log("geldi")
-            console.log(state)
-            return {
-              ... state.items=action.items
-            }
-        default:
-            console.log("geldi")
-            return state;
-    }       
+const productsReducer = {
+    Load_data:( state, payload) => {
+       // console.log(payload)
+        state.items = payload.payload.items
+    }
 }
 
 const productsSlice = createSlice({
@@ -28,5 +15,5 @@ const productsSlice = createSlice({
     reducers:productsReducer
 });
 
-export const {Load_data} = productsReducer
+export const {Load_data} = productsSlice.actions;
 export default productsSlice.reducer;
