@@ -1,15 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {a:2}
+const initialState = {}
 
 const productsReducer = {
     Load_data(state){
-        state = {...state, items:{...state.items}}
+        state = {...state, items:[...state.items]}
     },
 }
-
-// console.log( typeof productsReducer);
-// console.log(productsReducer)
 
 const productsSlice = createSlice({
     name:"productsStore",
