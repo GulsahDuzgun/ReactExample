@@ -16,7 +16,9 @@ const Product = ({product}) => {
                 <b>{getPriceParts(product.price).intPart}</b>
                 <span>,{getPriceParts(product.price).floatPart}</span>
             </div>
-            <div className="product-installment"> or 12 x $2.23</div>
+            { product.installments !== 0 &&
+                <div className="product-installment"> or {product.installments} x {(product.price / product.installments).toFixed(2)}</div>
+            }
             <div className="addBtn">Add to cart</div>
         </div>
     )
