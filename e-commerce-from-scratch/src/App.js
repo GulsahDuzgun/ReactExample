@@ -3,7 +3,7 @@ import './App.css';
 import ProductsRender from './components/ProductsRender';
 import ProductDetails from './components/ProductDetails';
 import FavoriteProducts from "./components/FavoriteProducts"
-import Sepetim from "./components/Sepetim"
+import ShoppingCart from "./components/ShoppingCart"
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
           <Route path="/" element={<ProductsRender/>} />
           <Route path="/productDetails/:productID" element={<ProductDetails/>} />
           <Route path="/favoriteProducts" element={<FavoriteProducts/>} />
-          <Route path="/sepetim" element={<Sepetim/>} />
+          <Route path="/ShoppingCart" element={<ShoppingCart/>} />
         </Routes>
       </div>
     </BrowserRouter>

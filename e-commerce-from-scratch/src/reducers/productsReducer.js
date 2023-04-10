@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {}
 
 const productsReducer = {
-    Load_data:( state, payload) => {
+    LoadData:( state, payload) => {
        // console.log(payload)
         state.items = payload.payload.items
     },
-    Loading:(state, payload)=>{
-        state.isLoading = payload
+    setLoading:(state, payload) => {
+        state.isLoading = payload.payload
     }
 }
 
@@ -18,5 +18,5 @@ const productsSlice = createSlice({
     reducers:productsReducer
 });
 
-export const {Load_data, Loading} = productsSlice.actions;
+export const {LoadData, setLoading} = productsSlice.actions;
 export default productsSlice.reducer;

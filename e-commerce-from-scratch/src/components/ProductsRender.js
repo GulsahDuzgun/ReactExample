@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from 'react'
-import  { Load_actions } from '../actions/productsActions'
-import { Load_data, Loading } from '../reducers/productsReducer';
+import { LoadData, setLoading } from '../reducers/productsReducer';
 import { connect, useDispatch } from 'react-redux';
-import {FetchProducts} from './fetchData';
+import { FetchProducts } from '../apiHelper/fetchData';
+import Product from "./Product"
 
 const ProductsRender = (props) => {
     const dispatch = useDispatch()
     const [products, setProducts] = useState([])
-    const [loading, setLoading] = useState(false)
-
 
     useEffect(()=>{
         const loadData = async () =>{
             const data = await FetchProducts()
             setProducts(data)
-        dispatch(Load_data({items:data}))
-
+            dispatch(LoadData({items:data}))
+            dispatch(setLoading(false))
         }
         loadData()
-
-
-    },[])
+    },[])//just first render 
 
     return (
-        <div></div>
-    )
+        !props.state.isLoading &&
+            products.map( (item) => {
+                <Product key={item.id} product={item}/>
+            }) 
+        )
 }
 
 const mapStateToProps = (state) => {

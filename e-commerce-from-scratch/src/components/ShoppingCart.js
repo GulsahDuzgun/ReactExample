@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Sepetim = () => {
+const ShoppingCart = () => {
   return (
     <div>Sepetim</div>
   )
 }
 
-export default Sepetim
+export default ShoppingCart
