@@ -18,13 +18,17 @@ const ProductsRender = (props) => {
         }
         loadData()
     },[])//just first render 
+
+    const handleFilter = (arr) => {
+        setProducts(arr)
+    }
    
     return (
         <div className='App'>
-            <div className='sizeSection'><SizeSection/></div>
+            <div className='sizeSection'><SizeSection setProducts={handleFilter}/></div>
             <div className='productsContainer'>
             {!props.state.isLoading &&
-                products.map( (item) => {
+                products?.map( (item) => {
                 return  <Product key={item.id} product={item}/>
                 }) 
             }
