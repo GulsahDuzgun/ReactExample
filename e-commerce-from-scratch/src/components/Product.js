@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import getPriceParts from '../utils/getPrice'
 
-const Product = ({product}) => {
+const Product = ({product}) => {   
     return(
         <div className="product" key={product.id}>
             <div className="productHeader">
@@ -12,12 +13,11 @@ const Product = ({product}) => {
             </div>
             <div className="product-price">
                 <small>$</small>  
-                <b>10</b>
-                <span>.90</span>
+                <b>{getPriceParts(product.price).intPart}</b>
+                <span>,{getPriceParts(product.price).floatPart}</span>
             </div>
             <div className="product-installment"> or 12 x $2.23</div>
             <div className="addBtn">Add to cart</div>
-        
         </div>
     )
 }
