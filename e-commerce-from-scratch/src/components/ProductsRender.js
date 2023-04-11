@@ -4,10 +4,11 @@ import { connect, useDispatch } from 'react-redux';
 import { FetchProducts } from '../apiHelper/fetchData';
 import Product from "./Product"
 import SizeSection from './SizeSection';
+import {Header} from "../components/Header"
 
 const ProductsRender = (props) => {
     const dispatch = useDispatch()
-    const [products, setProducts] = useState([])
+    let [products, setProducts] = useState([])
 
     useEffect(()=>{
         const loadData = async () =>{
@@ -15,6 +16,7 @@ const ProductsRender = (props) => {
             setProducts(data)
             dispatch(LoadData({items:data}))
             dispatch(setLoading(false))
+            products = data
         }
         loadData()
     },[])//just first render 
@@ -25,13 +27,18 @@ const ProductsRender = (props) => {
    
     return (
         <div className='App'>
-            <div className='sizeSection'><SizeSection setProducts={handleFilter}/></div>
-            <div className='productsContainer'>
-            {!props.state.isLoading &&
-                products?.map( (item) => {
-                return  <Product key={item.id} product={item}/>
-                }) 
-            }
+            <div className='sizeSection'>
+                <SizeSection setProducts={handleFilter}/>
+            </div>
+            <div className='contains'>
+                <Header/>
+                <div className='productsContainer'>
+                {!props.state.productsReducer.isLoading &&
+                    products?.map( (item) => {
+                     return <Product key={item.id} product={item}/>
+                    }) 
+                }
+                </div>  
             </div>
         </div>   
     )
@@ -40,7 +47,7 @@ const ProductsRender = (props) => {
 const mapStateToProps = (state) => {
     return {
         state : {
-            ...state.productsReducer
+            ...state
         }
     }
 }

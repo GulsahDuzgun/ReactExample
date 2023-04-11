@@ -10,7 +10,7 @@ font-family:'Roboto',sans-serif;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 20px 150px;
+  margin: 20px 100px;
 }
 
 .sizeSection {
@@ -21,8 +21,8 @@ font-family:'Roboto',sans-serif;
 }
 
 .productsContainer {
-  margin: 30px 0px ;
-  width: 1500px;
+  margin: 10px 0px ;
+  width: 1250px;
   height: 590px;
   display: flex;
   align-items: center;
@@ -103,6 +103,15 @@ font-family:'Roboto',sans-serif;
   width: 100%;
   transition: background-color 0.2s ease 0s;
 }
+.sizeFilterSection {
+  width: 100px;
+  padding: 0px;
+}
+
+.sizeFilterSection h3 {
+  padding:  5px;
+  margin: 0px 0px 25px 0px;
+}
 
 .sizeContainer div {
   display: inline-block;
@@ -145,3 +154,41 @@ font-family:'Roboto',sans-serif;
 .favoriteBtn:active {
   background-color: rgb(209, 89, 89);
 }
+
+.contains {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerClass {
+  display: inline-block;
+  width: 900px;
+  margin: 30px 0px 10px 20px ;
+  padding: 0px;
+  
+}
+
+.headerClass .list {
+  display: flex;
+  width: 700px;
+  height: auto;
+  margin: 0px 0px;
+  padding: 0px;
+  text-decoration: none;
+
+}
+
+.headerClass ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.headerClass ul li {
+margin-left: 10px;
+}
+
+.headerClass .list a{
+text-decoration: none;
+}
+

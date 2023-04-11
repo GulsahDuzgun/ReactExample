@@ -11,9 +11,12 @@ const favoriteProducts = createSlice({
                 ...state ,
                 favoriItems: state.favoriItems.push(actions.payload)
             }
+        },
+        getFavorites:(state, actions) => {
+           return state.favoriItems
         }
     }
 })
 
 export default favoriteProducts.reducer;
-export const { setFavoriList } = favoriteProducts.actions
+export const { setFavoriList, getFavorites } = favoriteProducts.actions

@@ -16,7 +16,7 @@ const SizeSection = (props) => {
   },[flag])
   
   return (
-    <div>
+    <div className="sizeFilterSection">
         <h3>Sizes:</h3>
         <div className="sizeContainer">
           <div onClick={() => handleClick ("S")}>XS</div>

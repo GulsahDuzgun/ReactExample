@@ -1,19 +1,18 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import ProductsRender from './components/ProductsRender';
-import ProductDetails from './components/ProductDetails';
-import FavoriteProducts from "./components/FavoriteProducts"
-import ShoppingCart from "./components/ShoppingCart"
+import ListProducts from "./components/ListProducts"
+import AllProduct from './components/AllProduct';
 
 function App() {
   return (
     <BrowserRouter>
       <div>
         <Routes>
-          <Route path="/" element={<ProductsRender/>} />
-          <Route path="/productDetails/:productID" element={<ProductDetails/>} />
-          <Route path="/favoriteProducts" element={<FavoriteProducts/>} />
-          <Route path="/ShoppingCart" element={<ShoppingCart/>} />
+          <Route path="/" element={<ProductsRender/>}>
+              <Route path="" element={<AllProduct/>} />,
+              <Route path="List/:pageName" element={<ListProducts/>} />
+            </Route>
         </Routes>
       </div>
     </BrowserRouter>
