@@ -2,6 +2,7 @@ import React from 'react'
 import getPriceParts from '../utils/getPrice'
 import { connect, useDispatch } from 'react-redux'
 import { setFavoriList } from '../reducers/favoriteProductsReducer'
+import { addToCart } from '../reducers/cartReducer'
 
 const Product = ({product , props}) => {   
     const dispatch =useDispatch()
@@ -10,6 +11,10 @@ const Product = ({product , props}) => {
         console.log(product)
         console.log(favoriteProduct)
         dispatch(setFavoriList(favoriteProduct))
+    }
+
+    const handleBuyBtnClick = (buyProduct) =>{
+        dispatch(addToCart(buyProduct))
     }
 
     return(
@@ -36,7 +41,7 @@ const Product = ({product , props}) => {
             { product.installments !== 0 &&
                 <div className="product-installment"> or {product.installments} x {(product.price / product.installments).toFixed(2)}</div>
             }
-            <div className="addBtn">Add to cart</div>
+            <div className="addBtn" onClick={() => handleBuyBtnClick(product)}>Add to cart</div>
         </div>
     )
 }
