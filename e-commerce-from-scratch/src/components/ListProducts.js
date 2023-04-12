@@ -2,21 +2,28 @@ import React, { useEffect, useState } from 'react'
 import Product from './Product'
 import { useParams } from 'react-router-dom'
 import { connect, useDispatch } from 'react-redux'
-import { getCart } from '../reducers/cartReducer'
-import { getFavorites } from '../reducers/favoriteProductsReducer'
 
 const ListProducts = (props) => {
     const {pageName} = useParams()
-    let [products, setProducts] = useState([])
-    const dispatch = useDispatch()
-    console.log( props.state)
-    pageName === ":ShoppingCart" ? products = props.state.buyProductState.buyList : products = props.state.favoriteState.favoriteItems
+    let [store, setStore] = useState([])
+    const [flag, setFlag] = useState(false)
+    
+    console.log("ListProducts")
+    console.log( props.state )
+
+    if(pageName == ":Favorites") 
+        {setFlag(true)}
+
+    
+    useEffect(()=>{
+        flag === true ? ()=>setStore(props.state.favoriteState.favoriItems) : ()=> setStore(props.state.buyProductState.buyList)
+    },[flag]) 
 
     return (
         <div className='productsContainer'>
-            { products.map(item => <Product key={item.id} product={item}/>) }
-        </div>
-    )
+            { store.map(item => {return <Product key={item.id} product={item}/>} )}
+        </div>      
+      )
 }
 
 const matStateToProps = (state) => {

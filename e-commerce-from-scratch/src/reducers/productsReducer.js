@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {}
 
 const productsReducer = {
-    LoadData:( state, payload) => {
+    LoadData:( state, action) => {
        // console.log(payload)
-        state.items = payload.payload.items
+        state.items =[...action.payload.items]
     },
     setLoading:(state, payload) => {
         state.isLoading = payload.payload

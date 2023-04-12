@@ -5,6 +5,7 @@ import { FetchProducts } from '../apiHelper/fetchData';
 import Product from "./Product"
 import SizeSection from './SizeSection';
 import {Header} from "../components/Header"
+import { Outlet } from 'react-router-dom';
 
 const ProductsRender = (props) => {
     const dispatch = useDispatch()
@@ -16,7 +17,7 @@ const ProductsRender = (props) => {
             setProducts(data)
             dispatch(LoadData({items:data}))
             dispatch(setLoading(false))
-            products = data
+            
         }
         loadData()
     },[])//just first render 
@@ -32,6 +33,7 @@ const ProductsRender = (props) => {
             </div>
             <div className='contains'>
                 <Header/>
+                <Outlet/>
                 <div className='productsContainer'>
                 {!props.state.productsReducer.isLoading &&
                     products?.map( (item) => {

@@ -10,7 +10,6 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<ProductsRender/>}>
-              <Route path="" element={<AllProduct/>} />,
               <Route path="List/:pageName" element={<ListProducts/>} />
             </Route>
         </Routes>
