@@ -1,32 +1,8 @@
 import React, { useEffect } from 'react'
 import getPriceParts from '../utils/getPrice'
 import { connect, useDispatch } from 'react-redux'
-import { setFavoriList } from '../reducers/favoriteProductsReducer'
-import { addToCart, setCart } from '../reducers/cartReducer'
-import { useState } from 'react'
 
-const Product = ({product, ...props}) => {   
-    const dispatch =useDispatch()
-    const [favoriteArr, setFavoriArr] = useState([])
-    const [buyList, setBuyList] = useState([])
-
-    const handleFavoriteBtn = (favoriteProduct) => {   
-        dispatch(setFavoriList(favoriteProduct))
-        setFavoriArr(props.state.favoriteState.favoriItems)
-        console.log(props.state)
-        console.log(favoriteArr)
-    }
-
-    const handleBuyBtnClick = (buyProduct) => {
-        dispatch(addToCart(buyProduct))
-        setBuyList([...props.state.buyProductState.buyList, buyProduct])
-        console.log(buyList)
-    }
-
-    useEffect(()=>{
-        dispatch(setCart(buyList))
-    },[])
-
+const Product = ({product, handleBuyBtnClick, handleFavoriteBtn}) => {   
     return(
         <div className="product" key={product.id}>
             <div className="productHeader">

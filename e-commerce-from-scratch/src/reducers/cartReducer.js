@@ -7,7 +7,7 @@ const cartReducer = createSlice({
         addToCart:(state, action) => {
            state = {
             ...state ,
-                buyList : [...state.buyList , {...action.payload}]
+                buyList : state.buyList.push(action.payload)
            }
         },
         setCart:(state, action) => {
