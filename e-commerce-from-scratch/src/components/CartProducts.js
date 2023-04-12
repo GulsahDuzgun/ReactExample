@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Product from './Product'
-import { connect, useDispatch } from 'react-redux'
-import { setCart } from '../reducers/cartReducer'
+import { connect } from 'react-redux'
 
 const CartProducts = (props) => {
     // console.log(props.state)
-    const dispatch = useDispatch()
     let [buyList, setBuyList] = useState([])
 
     useEffect(()=>{

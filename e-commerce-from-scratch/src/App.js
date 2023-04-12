@@ -3,15 +3,17 @@ import './App.css';
 import ProductsRender from './components/ProductsRender';
 import FavoriteProducts from './components/FavoriteProducts';
 import CartProducts from './components/CartProducts';
+import AllProduct from './components/AllProduct';
 
 function App() {
   return (
     <BrowserRouter>
       <div>
         <Routes>
-          <Route path="/products" exact element={<ProductsRender/>}>
-              <Route path="favorites" element={<FavoriteProducts/>} />
-              <Route path="cart" element={<CartProducts/>} />
+          <Route path="/" exact element={<ProductsRender/>}>
+              <Route path='products' element={<AllProduct/>} />
+              <Route path="products/favorites" element={<FavoriteProducts/>} />
+              <Route path="products/cart" element={<CartProducts/>} />
             </Route>
         </Routes>
       </div>

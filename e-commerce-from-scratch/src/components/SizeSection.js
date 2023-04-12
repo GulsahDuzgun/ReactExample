@@ -4,17 +4,14 @@ import { connect, useDispatch } from 'react-redux'
 
 const SizeSection = (props) => {
   const dispatch = useDispatch()
-  const [flag, setFlag] = useState(false)
+  const [flag, setFlag] = useState(true)
 
   const handleClick = (size) => {
     dispatch(filterSize(size))
+    props.setFixSize(flag)
     setFlag(!flag)
   }
 
-  useEffect(() => {
-    props.setProducts(props.state.filterList)
-  },[flag])
-  
   return (
     <div className="sizeFilterSection">
         <h3>Sizes:</h3>
@@ -30,10 +27,5 @@ const SizeSection = (props) => {
     </div>
   )
 }
-const mapstateToProps = (state) => {
-  return {
-    state : {
-      ...state.productsReducer }
-  } 
-}
-export default connect(mapstateToProps)(SizeSection)
+
+export default SizeSection;
