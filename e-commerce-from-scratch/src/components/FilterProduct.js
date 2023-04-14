@@ -8,18 +8,18 @@ const FilterProduct = (props) => {
     const dispatch = useDispatch()
     let [products, setProducts] = useState([])
     
-    useEffect(()=>{
+    useEffect(() => {
         setProducts([...props.state.productsReducer.filterList])
     },)
 
     const handleFavoriteBtn = (favoriteProduct) => {   
-        //console.log(favoriteProduct)
         dispatch(setFavoriList(favoriteProduct))
     }
 
     const handleBuyBtnClick = (buyProduct) => {
         dispatch(addToCart(buyProduct))
     }
+    
     return (
         <div className='productsContainer'>
         {!props.state.productsReducer.isLoading &&

@@ -9,12 +9,6 @@ const cartReducer = createSlice({
             ...state ,
                 buyList : state.buyList.push(action.payload)
            }
-        },
-        setCart:(state, action) => {
-            state = {
-                ...state,
-                buyList:[...action.payload]
-            }
         }
     } 
 })

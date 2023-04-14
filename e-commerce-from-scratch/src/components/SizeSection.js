@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { filterSize, setFilterList } from '../reducers/productsReducer'
-import { connect, useDispatch } from 'react-redux'
+import React, { useState } from 'react'
+import { filterSize } from '../reducers/productsReducer'
+import { useDispatch } from 'react-redux'
 
 const SizeSection = (props) => {
   const dispatch = useDispatch()

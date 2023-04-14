@@ -4,16 +4,14 @@ import { connect, useDispatch } from 'react-redux'
 import { setFovoriFromState } from '../reducers/favoriteProductsReducer'
 
 const FavoriteProducts = (props) => {
-    // console.log(props.state)
     const dispatch = useDispatch()
     let [favoriteArr, setFavoriArr] = useState([])
 
-
-    useEffect(()=>{
+    useEffect(() => {
         favoriteArr = [ ...props.state.favoriteState.favoriItems]
         console.log(favoriteArr)
         setFavoriArr(favoriteArr)
-    },[])
+    }, [])
 
   return (
     <div className='productsContainer'>
@@ -25,6 +23,7 @@ const FavoriteProducts = (props) => {
     </div>  
   )
 }
+
 const mapStateToProps = (state) => {
     return {
         state :{

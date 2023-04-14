@@ -6,13 +6,10 @@ const CartProducts = (props) => {
     // console.log(props.state)
     let [buyList, setBuyList] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
       let tempArr = [...props.state.buyProductState.buyList]
       setBuyList(tempArr)
-      //console.log(tempArr)
     },[])
-
-    console.log(buyList)
 
   return (
     <div className='productsContainer'>
@@ -24,6 +21,7 @@ const CartProducts = (props) => {
     </div>  
   )
 }
+
 const mapStateToProps = (state) => {
     return {
         state :{

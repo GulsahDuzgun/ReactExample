@@ -1,5 +1,5 @@
 const getPriceParts = (price) => {
-    let temp =price.toString()
+    let temp = price.toString()
     let index = temp.indexOf(".");
     const intPart = parseInt(price.toFixed(1));
     const floatPart = temp.slice(index+1) 

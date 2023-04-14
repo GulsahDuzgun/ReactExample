@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import getPriceParts from '../utils/getPrice'
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 
 const Product = ({product, handleBuyBtnClick, handleFavoriteBtn}) => {   
-    return(
+    return (
         <div className="product" key={product.id}>
             <div className="productHeader">
                 <div className="product-picture">
@@ -24,14 +24,13 @@ const Product = ({product, handleBuyBtnClick, handleFavoriteBtn}) => {
                 <b>{getPriceParts(product.price).intPart}</b>
                 <span>,{getPriceParts(product.price).floatPart}</span>
             </div>
-            { product.installments !== 0 &&
-                <div className="product-installment"> or {product.installments} x {(product.price / product.installments).toFixed(2)}</div>
-            }
+                { product.installments !== 0 &&
+                    <div className="product-installment"> or {product.installments} x {(product.price / product.installments).toFixed(2)}</div>
+                }
             <div className="addBtn" onClick={() => handleBuyBtnClick(product)}>Add to cart</div>
         </div>
     )
 }
-
 
 const mapStateToProps = (state) => {
     return {

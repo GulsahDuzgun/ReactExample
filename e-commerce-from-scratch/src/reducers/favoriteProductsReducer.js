@@ -9,15 +9,7 @@ const favoriteProducts = createSlice({
                 ...state ,
                 favoriItems: state.favoriItems.push(actions.payload)
             }
-        },
-        setFovoriFromState:(state, actions) => {
-            console.log(actions.payload)
-            console.log("geldi")
-            state = { ...state,
-                favoriItems:[...actions.payload]
-            }
         }
-
     }
 })
 

@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { connect, useDispatch } from 'react-redux'
-import { setFavoriList, setFovoriFromState } from '../reducers/favoriteProductsReducer'
-import { addToCart, setCart } from '../reducers/cartReducer'
+import { setFavoriList } from '../reducers/favoriteProductsReducer'
+import { addToCart } from '../reducers/cartReducer'
 import Product from "./Product"
 import { useEffect } from 'react'
 import { FetchProducts } from '../apiHelper/fetchData'
 import { LoadData, setLoading } from '../reducers/productsReducer'
-import { useOutletContext } from "react-router-dom";
 
 const AllProduct = (props) => {
     const dispatch = useDispatch()
