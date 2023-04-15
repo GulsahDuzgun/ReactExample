@@ -3,7 +3,6 @@ body {
 margin:0;
 color:#1b1a20;
 font-family:'Roboto',sans-serif;
-
 }
 
 .App {
@@ -18,6 +17,11 @@ font-family:'Roboto',sans-serif;
   width: 275px;
   height: 590px;
   margin: 30px 10px;
+}
+
+.sizeContainer div:hover {
+  border: #1b1a20 solid 1px;
+  cursor: pointer;
 }
 
 .productsContainer {
@@ -102,7 +106,14 @@ font-family:'Roboto',sans-serif;
   margin-top: 10px ;
   width: 100%;
   transition: background-color 0.2s ease 0s;
+  border-radius: 4%;  
 }
+
+.addBtn:hover {
+  background-color: #eabf00;
+  cursor: pointer;
+}
+
 .sizeFilterSection {
   width: 100px;
   padding: 0px;
@@ -143,17 +154,18 @@ font-family:'Roboto',sans-serif;
   position: absolute;
   top: 5px;
   right: 5px;
-  border: none;
+  border: black solid 1px;
   border-radius: 40%;
   padding: 5px;
-  text-align: center;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.favoriteBtn:active {
-  background-color: rgb(209, 89, 89);
+.favoriteBtn:hover {
+  background-color: #ec3030 !important;
 }
+
 
 .contains {
   display: flex;

@@ -1,25 +1,15 @@
 import React, { useState } from 'react'
 import { connect, useDispatch } from 'react-redux'
-import { setFavoriList } from '../reducers/favoriteProductsReducer'
-import { addToCart } from '../reducers/cartReducer'
+
 import Product from "./Product"
 import { useEffect } from 'react'
 import { FetchProducts } from '../apiHelper/fetchData'
 import { LoadData, setLoading } from '../reducers/productsReducer'
 
 const AllProduct = (props) => {
-    const dispatch = useDispatch()
     let [products, setProducts] = useState([])
+    const dispatch = useDispatch()
 
-    const handleFavoriteBtn = (favoriteProduct) => {   
-        //console.log(favoriteProduct)
-        dispatch(setFavoriList(favoriteProduct))
-    }
-
-    const handleBuyBtnClick = (buyProduct) => {
-        dispatch(addToCart(buyProduct))
-    }
-   
     useEffect(()=>{
         const loadData = async () =>{
             const data = await FetchProducts()
@@ -34,7 +24,7 @@ const AllProduct = (props) => {
         <div className='productsContainer'>
         {!props.state.productsReducer.isLoading &&
             products?.map( (item) => {
-            return <Product key={item.id} product={item} handleBuyBtnClick={handleBuyBtnClick} handleFavoriteBtn={handleFavoriteBtn}/>
+            return <Product key={item.id} product={item} />
             }) 
         }
         </div>  

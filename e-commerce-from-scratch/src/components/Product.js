@@ -1,8 +1,20 @@
 import React from 'react'
 import getPriceParts from '../utils/getPrice'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
+import { addToCart } from '../reducers/cartReducer'
+import { setFavoriList } from '../reducers/favoriteProductsReducer'
 
-const Product = ({product, handleBuyBtnClick, handleFavoriteBtn}) => {   
+const Product = ({product}) => {   
+    const dispatch = useDispatch()
+
+    const handleFavoriteBtn = (favoriteProduct) => {   
+        dispatch(setFavoriList(favoriteProduct))
+    }
+
+    const handleBuyBtnClick = (buyProduct) => {
+        dispatch(addToCart(buyProduct))
+    }
+
     return (
         <div className="product" key={product.id}>
             <div className="productHeader">

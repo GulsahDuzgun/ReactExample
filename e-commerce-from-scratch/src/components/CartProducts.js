@@ -3,7 +3,6 @@ import Product from './Product'
 import { connect } from 'react-redux'
 
 const CartProducts = (props) => {
-    // console.log(props.state)
     let [buyList, setBuyList] = useState([])
 
     useEffect(() => {

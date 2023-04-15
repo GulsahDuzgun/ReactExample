@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Product from './Product'
-import { connect, useDispatch } from 'react-redux'
-import { setFovoriFromState } from '../reducers/favoriteProductsReducer'
+import { connect } from 'react-redux'
 
 const FavoriteProducts = (props) => {
-    const dispatch = useDispatch()
     let [favoriteArr, setFavoriArr] = useState([])
 
     useEffect(() => {
