@@ -3,6 +3,7 @@ import SizeSection from './SizeSection';
 import {Header} from "../components/Header"
 import { Outlet } from 'react-router-dom';
 import FilterProduct from './FilterProduct';
+import ToggleBtn from './ToggleBtn';
 
 const ProductsRender = () => {
    const [isFixSize, setFixSize] = useState(false)
@@ -13,7 +14,10 @@ const ProductsRender = () => {
                 <SizeSection setFixSize={setFixSize} />
             </div>
             <div className='contains'>
-                <Header  />
+                <div className='navPart'>
+                    <Header  />
+                    <ToggleBtn/>
+                </div>
                 {!isFixSize ?
                     <Outlet context={isFixSize} /> :
                     <FilterProduct/>    
