@@ -195,6 +195,7 @@ line-height: center;
   justify-content: center;
   padding: 5px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .toggleDiv {
