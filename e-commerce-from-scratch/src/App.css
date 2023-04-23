@@ -204,7 +204,7 @@ line-height: center;
   margin-top: 20px;
 }
 
-.basketBtn svg {
+.svgBasket {
   width: 20px;
   height: auto;
   text-align: center;
@@ -242,3 +242,104 @@ margin-left: 10px;
 text-decoration: none;
 }
 
+.cartContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  justify-content: end;
+  z-index: 1;
+  padding: 5px;
+  width: 440px;
+  background-color: #1b1a20;
+
+}
+
+.cartContainer div:first-child {
+  width: 440px;
+  height: 90px;
+  padding: 45px 0px;
+  display: inline-block;
+  color: white;
+  box-sizing: border-box;
+}
+
+.itemCount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;;
+ 
+}
+
+.btnClose {
+  background-color: rgb(234, 191, 0);
+  border-radius: 25%;
+  padding: 5px 8px;
+  margin: 0px 10px;
+  cursor: pointer;
+}
+
+.itemCount .svgBasket {
+  width: 40px;
+  height: 40px;
+}
+
+.subtotal {
+  margin: 0px;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between !important;
+  width: 400px;
+  padding: 20px;
+  align-items: center;
+
+}
+
+.subtotal div {
+  display: flex;
+  margin: 0px;
+}
+
+.subtotal .title {
+  width: 50px; 
+  display: flex !important; 
+  flex-direction: column-reverse  ;
+  color:rgb(91, 90, 94);
+  margin-left: 15px;
+}
+
+.subtotal .price {
+  width:350px;
+  display: flex;
+  flex-direction: column;
+  color: rgb(234, 191, 0);
+}
+
+.price p {
+  margin: 5px 5px 15px auto;
+}
+
+.btnCheck {
+  display: block;
+  color: rgb(236, 236, 236);
+  text-transform: uppercase;
+  background-color: rgb(12, 11, 16);
+  text-align: center;
+  padding: 15px 0px;
+  margin-top: 40px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.total {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 5px;
+  height: 200px;
+  z-index: 2;
+  background-color: rgb(27, 26, 32);
+}

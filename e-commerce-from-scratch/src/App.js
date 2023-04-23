@@ -10,8 +10,8 @@ function App() {
     <BrowserRouter>
       <div>
         <Routes>
-          <Route path="/products" exact element={<ProductsRender/>}>
-              <Route index element={<AllProduct/>} />
+          <Route path="/" exact element={<ProductsRender/>}>
+              <Route path='products' element={<AllProduct/>} />
               <Route path="favorites" element={<FavoriteProducts/>} />
               <Route path="cart" element={<CartProducts/>} />
             </Route>
