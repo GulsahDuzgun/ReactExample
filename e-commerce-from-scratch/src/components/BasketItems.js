@@ -8,7 +8,7 @@ const BasketItems = ({product}) => {
       </div>
       <div className="productTitle">
         <p>{product.title}</p>
-        <p>{product.availableSizes[0]} ||{product.style}</p>
+        <p>{product.availableSizes[0]} || {product.style}</p>
       </div>
       <div className="productPrice">
         <p> $ {product.price}</p>  

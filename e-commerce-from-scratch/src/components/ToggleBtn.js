@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BasketItems from './BasketItems';
 import { connect } from 'react-redux';
+import { resultPrice } from './Product';
 
 const ToggleBtn = (props) => {
     const [isClick, setClick] = useState(false)  
@@ -20,7 +21,7 @@ const ToggleBtn = (props) => {
                         </svg>
                     </div>
                 </div>
-                <div>
+                <div className='cartProducts'>
                     {props.state.buyProductState.buyList.map((item, index) => {
                          return <BasketItems key={index} product={item}/>        
                     })}
@@ -31,7 +32,7 @@ const ToggleBtn = (props) => {
                             <p>SUBTOTAL</p>
                         </div>
                         <div className='price'>
-                            <p>$ total price</p>
+                            <p>$ {resultPrice} total price</p>
                             <p>OR UP TO 12 X $ 8.49</p>
                         </div>
                     </div>

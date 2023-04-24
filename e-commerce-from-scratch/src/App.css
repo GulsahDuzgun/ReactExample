@@ -261,17 +261,19 @@ text-decoration: none;
 .cartContainer div:first-child {
   width: 440px;
   height: 90px;
-  padding: 45px 0px;
+  box-sizing: border-box;
+  padding: 10px 0px;
   display: inline-block;
   color: white;
-  box-sizing: border-box;
 }
 
 .itemCount {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;;
+  color: white;
+  height: 60px;
+  padding: 20px;
  
 }
 
@@ -310,17 +312,19 @@ text-decoration: none;
   flex-direction: column-reverse  ;
   color:rgb(91, 90, 94);
   margin-left: 15px;
+  margin-top: 20px;
 }
 
 .subtotal .price {
   width:350px;
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
   color: rgb(234, 191, 0);
 }
 
 .price p {
-  margin: 5px 5px 15px auto;
+  margin: 15px 5px 0px auto;
 }
 
 .btnCheck {
@@ -347,8 +351,8 @@ text-decoration: none;
 .showBill  {
   box-sizing: border-box;
   width: 440px;
-  height: 130px;
-  margin: 5px 0px;
+  height: 90px;
+  margin: 0px 0px 15px 0px;
   border:5px solid rgb(27, 26, 32); ;
   display: flex !important;
   flex-direction: row !important;
@@ -380,7 +384,7 @@ text-decoration: none;
 
 .productTitle p {
   padding: 0px;
-  margin: 5px 0px;
+  margin: 0px 0px 15px 0px;
   text-align: start;
   color: white;
   word-wrap: break-word;
@@ -393,4 +397,10 @@ text-decoration: none;
   justify-content: end;
   margin-right: 10px;
 
+}
+
+.cartProducts {
+  overflow-y:scroll;
+  background-color: rgb(27, 26, 32);
+  height: 480px;
 }
