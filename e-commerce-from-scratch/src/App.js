@@ -12,8 +12,8 @@ function App() {
         <Routes>
           <Route path="/" exact element={<ProductsRender/>}>
               <Route path='products' element={<AllProduct/>} />
-              <Route path="favorites" element={<FavoriteProducts/>} />
-              <Route path="cart" element={<CartProducts/>} />
+              <Route path="/favorites" element={<FavoriteProducts/>} />
+              <Route path="/cart" element={<CartProducts/>} />
             </Route>
         </Routes>
       </div>

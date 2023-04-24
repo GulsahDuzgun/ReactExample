@@ -343,3 +343,54 @@ text-decoration: none;
   z-index: 2;
   background-color: rgb(27, 26, 32);
 }
+
+.showBill  {
+  box-sizing: border-box;
+  width: 440px;
+  height: 130px;
+  margin: 5px 0px;
+  border:5px solid rgb(27, 26, 32); ;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  position: relative;
+}
+
+.productCart {
+  margin:0px 0px;
+  width: 70px !important;
+  height: 90px !important;
+  padding: 0px !important;
+  align-items: center;
+}
+
+.productCart img{
+  width: 60px !important;
+  height: 70px;
+  margin: 0px 20px 0px 0px;
+}
+
+.productTitle {
+  width: 230px;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  align-content:end !important;
+}
+
+.productTitle p {
+  padding: 0px;
+  margin: 5px 0px;
+  text-align: start;
+  color: white;
+  word-wrap: break-word;
+}
+
+.productPrice {
+  width: 100px;
+  color: rgb(234, 191, 0);
+  display: flex;
+  justify-content: end;
+  margin-right: 10px;
+
+}

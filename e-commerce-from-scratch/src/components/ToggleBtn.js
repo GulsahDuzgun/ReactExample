@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import BasketItems from './BasketItems';
+import { connect } from 'react-redux';
 
-const ToggleBtn = () => {
+const ToggleBtn = (props) => {
     const [isClick, setClick] = useState(false)  
 
     const changeClickVal = () => {
@@ -19,7 +20,11 @@ const ToggleBtn = () => {
                         </svg>
                     </div>
                 </div>
-                <div><BasketItems/></div>
+                <div>
+                    {props.state.buyProductState.buyList.map((item, index) => {
+                         return <BasketItems key={index} product={item}/>        
+                    })}
+                </div>
                 <div className='total'>
                     <div  className='subtotal'>
                         <div className='title'>
@@ -49,4 +54,12 @@ const ToggleBtn = () => {
     
 }
 
-export default ToggleBtn
+const mapStateToProps = (state) => {
+    return {
+        state :{
+            ...state
+        }
+    }
+}
+
+export default connect(mapStateToProps)(ToggleBtn);

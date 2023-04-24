@@ -6,8 +6,8 @@ export const Header = () => {
     <div className='headerClass'>
         <ul className='list'>
             <li><Link to='/products'> All Products</Link></li>
-            <li><Link to='/products/cart'>Go To Cart</Link></li>
-            <li><Link to='/products/favorites'>Favorites Products</Link></li>
+            <li><Link to='/cart'>Go To Cart</Link></li>
+            <li><Link to='/favorites'>Favorites Products</Link></li>
         </ul>
     </div>
   )
