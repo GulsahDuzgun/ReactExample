@@ -1,14 +1,20 @@
-const totalPrice = (arr) => {
-    let temp = 0;
+const TotalPrice = (item) => {
+    let flag = false;
+    console.log(item)
+    if(!!item) {
+        let temp;
 
-    if(!!arr) {
-        arr?.map((item) => {
-            return temp = temp + item?.price
+        if(!flag) {
+            temp = 0;
+            flag = true
+        }
+        temp = temp + item?.price
+        console.log(temp)
+        return temp;
 
-        })
     } else {
         return 0;
     }
 }
 
-export default totalPrice;
+export default TotalPrice;

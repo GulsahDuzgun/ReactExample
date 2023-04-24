@@ -352,6 +352,7 @@ text-decoration: none;
   box-sizing: border-box;
   width: 440px;
   height: 90px;
+  padding: 0px;
   margin: 0px 0px 15px 0px;
   border:5px solid rgb(27, 26, 32); ;
   display: flex !important;

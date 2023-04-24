@@ -1,15 +1,10 @@
 import React from 'react'
 import getPriceParts from '../utils/getPrice'
 import { connect, useDispatch } from 'react-redux'
-import { addToCart } from '../reducers/cartReducer'
+import { addToCart, setResultPrice } from '../reducers/cartReducer'
 import { setFavoriList } from '../reducers/favoriteProductsReducer'
-import SubtotalPrice from '../utils/getBill'
 
-const result = (props) => {
-    return SubtotalPrice(props.state.buyProductState.buyList)
-}
-
-const Product = ({product, ...props}) => {   
+const Product = ({product}) => {   
     const dispatch = useDispatch()
 
     const handleFavoriteBtn = (favoriteProduct) => {
@@ -20,7 +15,7 @@ const Product = ({product, ...props}) => {
     }
 
     const handleBuyBtnClick = (buyProduct) => {
-        result(props)
+        dispatch(setResultPrice(buyProduct))
         dispatch(addToCart(buyProduct))
     }
 
@@ -62,4 +57,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Product)
-export const {resultPrice} = result
