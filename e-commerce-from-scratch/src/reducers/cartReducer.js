@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import TotalPrice from "../utils/getBill";
 
 const cartReducer = createSlice({
     name:"productsStore",
@@ -17,7 +18,7 @@ const cartReducer = createSlice({
         setResultPrice :(state, action) => {      
             state = {
                 ...state ,
-                result : state.result + action.payload.price 
+                result : TotalPrice(action.payload)
             }
         }
     } 
