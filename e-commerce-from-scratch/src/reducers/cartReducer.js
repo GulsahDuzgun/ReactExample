@@ -18,7 +18,7 @@ const cartReducer = createSlice({
         setResultPrice :(state, action) => {      
             state = {
                 ...state ,
-                result : TotalPrice(action.payload)
+                result : TotalPrice(action.payload, state.result)
             }
         }
     } 
