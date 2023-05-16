@@ -310,9 +310,13 @@ text-decoration: none;
   width: 50px; 
   display: flex !important; 
   flex-direction: column-reverse  ;
-  color:rgb(91, 90, 94);
   margin-left: 15px;
   margin-top: 20px;
+}
+
+.title p {
+  color:rgb(91, 90, 94);
+
 }
 
 .subtotal .price {
@@ -383,11 +387,16 @@ text-decoration: none;
   align-content:end !important;
 }
 
+
+.productTitle p:first-child { 
+  color: white !important;
+}
+
 .productTitle p {
   padding: 0px;
   margin: 0px 0px 15px 0px;
   text-align: start;
-  color: white;
+  color:rgb(91, 90, 94);
   word-wrap: break-word;
 }
 

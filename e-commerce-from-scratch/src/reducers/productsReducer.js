@@ -7,8 +7,8 @@ const productsReducer = {
        // console.log(payload)
         state.items =[...action.payload.items]
     },
-    setLoading:(state, payload) => {
-        state.isLoading = payload.payload
+    setLoading:(state, action) => {
+        state.isLoading = action.payload
     },
     filterSize:(state, action) => {
         return {

@@ -32,7 +32,7 @@ const ToggleBtn = (props) => {
                         </div>
                         <div className='price'>
                             <p>$ {props.state.buyProductState.result} total price</p>
-                            <p>OR UP TO 12 X $ 8.49</p>
+                            <p>OR UP TO 12 X $ {(props.state.buyProductState.result / 12).toFixed(2)}</p>
                         </div>
                     </div>
                     <button className='btnCheck'>CHECKOUT</button>

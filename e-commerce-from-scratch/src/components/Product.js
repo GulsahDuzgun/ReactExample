@@ -15,7 +15,7 @@ const Product = ({product}) => {
     }
 
     const handleBuyBtnClick = (buyProduct) => {
-        dispatch(setResultPrice(buyProduct))
+        dispatch(setResultPrice(buyProduct.price))
         dispatch(addToCart(buyProduct))
     }
 
