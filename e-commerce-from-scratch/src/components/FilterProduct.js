@@ -10,7 +10,7 @@ const FilterProduct = (props) => {
     
     useEffect(() => {
         setProducts([...props.state.productsReducer.filterList])
-    },)
+    },[])
 
     const handleFavoriteBtn = (favoriteProduct) => {   
         dispatch(setFavoriList(favoriteProduct))
