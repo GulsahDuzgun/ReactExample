@@ -12,6 +12,10 @@ const BasketItems = ({product}) => {
       </div>
       <div className="productPrice">
         <p> $ {product.price}</p>  
+        <div className='btnItemCount'>
+          <button >-</button>
+          <button >+</button>
+        </div>
       </div>
     </div>
   )
