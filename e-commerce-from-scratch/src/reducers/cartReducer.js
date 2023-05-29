@@ -8,18 +8,39 @@ const cartReducer = createSlice({
     },
     reducers : {
         addToCart:(state, action) => {
-           state = {
-            ...state ,
-                buyList : state.buyList.push(action.payload),
-           }
+            let tempIndex = state.buyList?.findIndex(i => i .id === action.payload.id);
+
+            if(tempIndex !== -1){
+                state.buyList[tempIndex].quantity += 1
+            }else {
+                state.buyList.push({...action.payload, quantity:1})
+            }
         },
 
-        setResultPrice :(state, action) => {      
+        setResultPrice :(state, action) => {
             //console.log(action.payload)
             state.result = state.result + action.payload
+        },
+
+        increaseCount :(state, action) => {
+            state.buyList = state.buyList.filter((item) => {
+                if(item.id === action.payload) {
+                    item.quantity += 1
+                }
+                return item;
+            })
+        },
+
+        decreaseCount : (state, action ) => {
+            state.buyList = state.buyList.filter((item) => {
+                    if(item.id === action.payload) {
+                        item.quantity -= 1
+                    }
+                    return item;
+            })
         }
-    } 
+    }
 })
 
 export default cartReducer.reducer
-export const {addToCart, setResultPrice} = cartReducer.actions
+export const {addToCart, setResultPrice, increaseCount, decreaseCount} = cartReducer.actions
