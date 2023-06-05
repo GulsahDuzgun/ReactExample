@@ -1,7 +1,7 @@
 import React from 'react'
 import getPriceParts from '../utils/getPrice'
 import { connect, useDispatch } from 'react-redux'
-import { addToCart, setResultPrice } from '../reducers/cartReducer'
+import { addToCart, numberOfItems, setResultPrice } from '../reducers/cartReducer'
 import { setFavoriList } from '../reducers/favoriteProductsReducer'
 
 const Product = ({product}) => {   

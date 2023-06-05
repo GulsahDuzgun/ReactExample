@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect, useDispatch } from 'react-redux'
-import { increaseCount, decreaseCount, setResultPrice } from '../reducers/cartReducer'
+import { increaseCount, decreaseCount, setResultPrice, numberOfItems} from '../reducers/cartReducer'
 
 const BasketItems = ({product}) => {
   const dispatch = useDispatch()

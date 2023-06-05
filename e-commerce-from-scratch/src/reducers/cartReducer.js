@@ -4,7 +4,8 @@ const cartReducer = createSlice({
     name:"productsStore",
     initialState : {
         buyList: [],
-        result : 0
+        result : 0,
+        itemCount : 0 
     },
     reducers : {
         addToCart:(state, action) => {
@@ -15,6 +16,7 @@ const cartReducer = createSlice({
             }else {
                 state.buyList.push({...action.payload, quantity:1})
             }
+            state.itemCount = ++state.itemCount 
         },
 
         setResultPrice :(state, action) => {
@@ -23,6 +25,7 @@ const cartReducer = createSlice({
         },
 
         increaseCount :(state, action) => {
+            state.itemCount = ++state.itemCount 
             state.buyList = state.buyList.filter((item) => {
                 if(item.id === action.payload) {
                     console.log(item.quantity)
@@ -39,6 +42,7 @@ const cartReducer = createSlice({
         },
 
         decreaseCount : (state, action ) => {
+            state.itemCount = --state.itemCount 
             state.buyList = state.buyList.filter((item) => {
                     if(item.id === action.payload && item.quantity > 1) {
                         return {
@@ -54,9 +58,14 @@ const cartReducer = createSlice({
                         return item
                     }
             })
+        },
+
+        numberOfItems:(state, action) => {
+            console.log( action.payload)
+            state.itemCount = state.itemCount + action.payload
         }
     }
 })
 
 export default cartReducer.reducer
-export const {addToCart, setResultPrice, increaseCount, decreaseCount} = cartReducer.actions
+export const {addToCart, setResultPrice, increaseCount, decreaseCount, numberOfItems} = cartReducer.actions
