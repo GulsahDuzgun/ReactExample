@@ -1,16 +1,18 @@
 import React from 'react'
 import { connect, useDispatch } from 'react-redux'
-import { increaseCount, decreaseCount } from '../reducers/cartReducer'
+import { increaseCount, decreaseCount, setResultPrice } from '../reducers/cartReducer'
 
 const BasketItems = ({product}) => {
   const dispatch = useDispatch()
 
   const increaseItemCount = (product) => {
     dispatch(increaseCount(product.id))
+    dispatch(setResultPrice(product.price))
   }
 
   const decreaseItemCount = (product) => {
     dispatch(decreaseCount(product.id))
+    dispatch(setResultPrice(-product.price))
   }
 
   return (
@@ -27,8 +29,8 @@ const BasketItems = ({product}) => {
       <div className="productPrice">
         <p> $ {product.price}</p>  
         <div className='btnItemCount'>
-          <button onClick={decreaseItemCount(product)}>-</button>
-          <button onClick={increaseItemCount(product)}>+</button>
+          <button onClick={() => decreaseItemCount(product)}>-</button>
+          <button onClick={() => increaseItemCount(product)}>+</button>
         </div>
       </div>
     </div>

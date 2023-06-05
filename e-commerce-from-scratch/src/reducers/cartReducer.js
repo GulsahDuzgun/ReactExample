@@ -25,18 +25,31 @@ const cartReducer = createSlice({
         increaseCount :(state, action) => {
             state.buyList = state.buyList.filter((item) => {
                 if(item.id === action.payload) {
-                    item.quantity += 1
+                    console.log(item.quantity)
+                     return item = {
+                        ...item,
+                        quantity: ++item.quantity 
+                
+                    }
                 }
-                return item;
+                else {
+                    return item
+                }
             })
         },
 
         decreaseCount : (state, action ) => {
             state.buyList = state.buyList.filter((item) => {
                     if(item.id === action.payload) {
-                        item.quantity -= 1
+                        return {
+                            ...item,
+                            quantity: --item.quantity
+                    
+                        }
                     }
-                    return item;
+                    else {
+                        return item
+                    }
             })
         }
     }
