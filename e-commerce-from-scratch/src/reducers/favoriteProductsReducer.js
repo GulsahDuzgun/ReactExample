@@ -5,10 +5,15 @@ const favoriteProducts = createSlice({
     initialState: {favoriItems :[]},
     reducers: {
         setFavoriList:(state, actions) => {
-            state = {
-                ...state ,
-                favoriItems: state.favoriItems.push(actions.payload)
-            }
+           let index = state.favoriItems?.findIndex(i => i.id === actions.payload.id)
+           console.log(index)
+
+           if(index === -1) {
+            console.log([...state.favoriItems, actions.payload])
+            state.favoriItems = [...state.favoriItems, actions.payload]
+           }else {
+            state.favoriItems = state.favoriItems.filter(i => i.id !== actions.payload.id)
+           }
         }
     }
 })

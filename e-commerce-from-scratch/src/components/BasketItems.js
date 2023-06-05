@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect, useDispatch } from 'react-redux'
-import { increaseCount, decreaseCount, setResultPrice, numberOfItems} from '../reducers/cartReducer'
+import { increaseCount, decreaseCount, setResultPrice} from '../reducers/cartReducer'
 
 const BasketItems = ({product}) => {
   const dispatch = useDispatch()
@@ -22,7 +22,7 @@ const BasketItems = ({product}) => {
       </div>
       <div className="productTitle">
         <p>{product.title}</p>
-        <p>{product.availableSizes[0]} || {product.style}</p>
+        <p>{product.availableSizes[0]}  |  {product.style}</p>
         <p>{product.quantity}</p>
 
       </div>
