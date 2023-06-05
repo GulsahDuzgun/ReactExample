@@ -395,7 +395,7 @@ text-decoration: none;
 
 .productTitle p {
   padding: 0px;
-  margin: 0px 0px 15px 0px;
+  margin: 0px 0px 5px 0px;
   text-align: start;
   color:rgb(91, 90, 94);
   word-wrap: break-word;
@@ -415,6 +415,11 @@ text-decoration: none;
   overflow-y:scroll;
   background-color: rgb(27, 26, 32);
   height: 480px;
+}
+
+.noProduct {
+  color: white;
+  text-align: center;
 }
 
 .countBadge {

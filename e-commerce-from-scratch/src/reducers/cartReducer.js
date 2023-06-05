@@ -40,12 +40,15 @@ const cartReducer = createSlice({
 
         decreaseCount : (state, action ) => {
             state.buyList = state.buyList.filter((item) => {
-                    if(item.id === action.payload) {
+                    if(item.id === action.payload && item.quantity > 1) {
                         return {
                             ...item,
                             quantity: --item.quantity
-                    
-                        }
+                        }    
+                    }
+                    else if(item.id === action.payload && item.quantity === 1) {
+                        console.log("aynı")
+                
                     }
                     else {
                         return item

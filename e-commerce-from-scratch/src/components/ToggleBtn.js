@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 
 const ToggleBtn = (props) => {
     const [isClick, setClick] = useState(false)  
+    const [buyListCount, setBuyListCount] = useState(props.state.buyProductState.buyList.length > 0)
 
     const changeClickVal = () => {
         setClick(!isClick)
+        setBuyListCount(props.state.buyProductState.buyList.length > 0)
     }
 
     if(isClick === true) {
@@ -21,11 +23,15 @@ const ToggleBtn = (props) => {
                         <span className='countBadge'>{ props.state.buyProductState.buyList.length}</span>
                     </div>
                 </div>
-                <div className='cartProducts'>
-                    {props.state.buyProductState.buyList.map((item, index) => {
-                         return <BasketItems key={index} product={item}/>        
-                    })}
-                </div>
+                { buyListCount ? 
+                    <div className='cartProducts'> 
+                        {   props.state.buyProductState.buyList.map((item, index) => {
+                                return item.quantity > 0 && <BasketItems key={index} product={item}/>        
+                            })  
+                        }
+                    </div>
+                    : <div className='noProduct'>Add some products in the cart.</div>
+                }
                 <div className='total'>
                     <div  className='subtotal'>
                         <div className='title'>
