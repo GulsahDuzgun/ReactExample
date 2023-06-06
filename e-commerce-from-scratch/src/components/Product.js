@@ -9,7 +9,7 @@ const Product = ({product}) => {
 
     const handleFavoriteBtn = (favoriteProduct) => {
         const btn =document.getElementById(`favoriteBtn__${product.id}`);
-        btn.classList.add("isActive")
+        !!favoriteProduct.isFavori !== true ? btn.classList.add("isActive") : btn.classList.remove("isActive") 
         dispatch(setFavoriList(favoriteProduct))
     }
 

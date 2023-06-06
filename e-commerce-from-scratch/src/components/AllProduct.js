@@ -18,7 +18,7 @@ const AllProduct = (props) => {
 
             let itemsData = data.map( i => {
                 let tempItem = i
-                
+
                 props.state.favoriteState.favoriItems?.forEach(element => {
                     if(i.id === element.id) {
                         tempItem = element
@@ -26,7 +26,6 @@ const AllProduct = (props) => {
                 })
                 return tempItem
             })
-            console.log(itemsData)
             setProducts(itemsData)
         }
         loadData()
