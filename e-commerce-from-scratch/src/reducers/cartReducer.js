@@ -51,8 +51,7 @@ const cartReducer = createSlice({
                         }    
                     }
                     else if(item.id === action.payload && item.quantity === 1) {
-                        console.log("aynı")
-                
+                        
                     }
                     else {
                         return item

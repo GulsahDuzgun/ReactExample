@@ -15,7 +15,19 @@ const AllProduct = (props) => {
             const data = await FetchProducts()
             dispatch(LoadData({items:data}))
             dispatch(setLoading(false))
-            setProducts(data)
+
+            let itemsData = data.map( i => {
+                let tempItem = i
+                
+                props.state.favoriteState.favoriItems?.forEach(element => {
+                    if(i.id === element.id) {
+                        tempItem = element
+                    }
+                })
+                return tempItem
+            })
+            console.log(itemsData)
+            setProducts(itemsData)
         }
         loadData()
     },[])//just first render 
