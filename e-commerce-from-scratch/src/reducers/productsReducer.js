@@ -13,7 +13,7 @@ const productsReducer = {
     filterSize:(state, action) => {
         return {
            ... state ,
-           filterList :[...state.items].filter(i => i.availableSizes.includes(action.payload))
+           filterList :state.items.filter(i => i.availableSizes.includes(action.payload))
         }
     },
     setFilterList:(state, action) => {

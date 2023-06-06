@@ -11,7 +11,7 @@ const AllProduct = (props) => {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        const loadData = async () =>{
+        const loadData = async () => {
             const data = await FetchProducts()
             dispatch(LoadData({items:data}))
             dispatch(setLoading(false))
@@ -24,8 +24,8 @@ const AllProduct = (props) => {
         <div className='productsContainer'>
         {!props.state.productsReducer.isLoading &&
             products?.map( (item) => {
-            return <Product key={item.id} product={item} />
-            }) 
+                return <Product key={item.id} product={item} />                   
+            })
         }
         </div>  
     )

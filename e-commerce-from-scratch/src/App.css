@@ -417,7 +417,7 @@ text-decoration: none;
   justify-content: center;
   flex-direction: column;
   align-content:flex-end !important;
-  align-items: start;
+  align-items: flex-start;
 }
 
 

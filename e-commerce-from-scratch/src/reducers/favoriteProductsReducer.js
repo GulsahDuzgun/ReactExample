@@ -6,17 +6,16 @@ const favoriteProducts = createSlice({
     reducers: {
         setFavoriList:(state, actions) => {
            let index = state.favoriItems?.findIndex(i => i.id === actions.payload.id)
-           console.log(index)
 
            if(index === -1) {
-            console.log([...state.favoriItems, actions.payload])
-            state.favoriItems = [...state.favoriItems, actions.payload]
+                state.favoriItems.push({...actions.payload, isFavori:true})
            }else {
-            state.favoriItems = state.favoriItems.filter(i => i.id !== actions.payload.id)
+                state.favoriItems[index].isFavori = false
+                state.favoriItems = state.favoriItems.filter(i => i.isFavori === true)
            }
         }
     }
 })
 
 export default favoriteProducts.reducer;
-export const { setFavoriList, setFovoriFromState } = favoriteProducts.actions
+export const { setFavoriList } = favoriteProducts.actions
